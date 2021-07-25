@@ -1,0 +1,7 @@
+version: '3' # specify docker-compose version
+
+services:
+  frontend: # name of the first service
+    build: ./frontend # specify the directory of the Dockerfile
+    ports:
+      - "8083:80" # maps port 4200 on localhost to 80 in container
