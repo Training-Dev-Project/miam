@@ -1,16 +1,9 @@
 plugins {
    id 'java'
 }
+
 println 'Frontend process compiling...'
 
-/*
-sourceSets {
-  main {
-    resources {
-      srcDirs = ["$webappDir/dist", "$projectDir/src/main/resources"]
-    }
-  }
-}*/
 sourceCompatibility = '11'
 
 sourceSets.main.resources.srcDirs = [ "dist" ]
@@ -28,7 +21,7 @@ task start(type:Exec){
   if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")){
     commandLine "yarn.cmd", "start"
   } else {
-    commandLine "yarn", "start", "--port=3000"
+    commandLine "yarn", "start", "--port=4200"
   }
 }
 

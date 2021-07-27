@@ -1,7 +1,35 @@
-version: '3' # specify docker-compose version
+version: "3"
 
 services:
-  backend: #miam project: service backend
-    build: ./backend # specify the directory of the Dockerfile
+# DATABASE CONTAINER
+  postgres:
+    image: postgres:latest
+    network_mode: bridge
+    container_name: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data #PERSISTENCE DATA
+    expose:
+    - 5432
     ports:
-      - "8083:8080" # maps port 4200 on localhost to 80 in container
+      - 5432:5432
+    environment:
+         - POSTGRES_PASSWORD=miam
+         - POSTGRES_USER=miam
+         - POSTGRES_DB=miam
+    restart: unless-stopped # RESTART CONTAINER IF IT STOP
+# BACKEND CONTAINER
+  backend: #MIAM PROJECT: SERVICE 
+    build: ./backend # THE DIRECTORY FILE OF DOCKERFILE
+    network_mode: bridge
+    container_name: miam_app
+    expose:
+      - 8080
+    ports:
+      - 8080:8080 # MAPS PORT 8080 ON LOCALHOST TO 8080 IN CONTAINER
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    links:
+      - postgres
+volumes:
+  postgres-data:
