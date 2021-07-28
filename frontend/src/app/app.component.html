@@ -9,8 +9,27 @@
 <body>
   <app-header></app-header>
   <div class="container">
-    <h1>Yo</h1>
-    <div class="btn btn-primary">click app-header</div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title text-align-center">
+              <fa-icon [icon]="faCoffee"></fa-icon>
+            </h5>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <app-footer></app-footer>
 </body>
