@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faHamburger, faCocktail, faTv, faCarrot, faClipboardList, faCannabis, faAddressCard, faBookReader } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +8,12 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 })
 export class AppComponent {
   title = 'miam-frontend';
-  faCoffee = faCoffee;
+  faHamburger = faHamburger;
+  faCarrot = faCarrot;
+  faTv = faTv;
+  faCocktail = faCocktail;
+  faCannabis = faCannabis;
+  faAddressCard = faAddressCard;
+  faClipboardList = faClipboardList;
+  faBookReader = faBookReader;
 }

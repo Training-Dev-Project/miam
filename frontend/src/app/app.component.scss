@@ -1,3 +1,16 @@
-.card-icon > * {
-  size: 80px;
+.card-menu {
+  border: 1px solid rgb(240, 240, 240);
+  margin: 15px 5px;
+  flex-grow: 0;
+  justify-content: center;
+  color: darkgray;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.card-menu-body {
+  padding: 5px;
+  padding-left: 10px;
 }
