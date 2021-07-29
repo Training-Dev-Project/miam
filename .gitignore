@@ -19,6 +19,7 @@
 # BACKEND
 backend/target
 backend/miam.iml
+backend/build
 
 # IDEs and editors
 .idea
