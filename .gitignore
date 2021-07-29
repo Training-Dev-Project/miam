@@ -31,4 +31,5 @@ backend/build
 *.sublime-workspace
 miam.iml
 .gradle
+gradle
 # 
