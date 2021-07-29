@@ -16,5 +16,5 @@ services:
     expose:
       - 8080
     ports:
-      - 8086:8080 # MAPS PORT 8086 ON LOCALHOST TO 8080 IN CONTAINER
+      - 8083:8083 # MAPS PORT 8086 ON LOCALHOST TO 8080 IN CONTAINER
     restart: unless-stopped
