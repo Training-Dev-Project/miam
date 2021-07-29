@@ -1,3 +1,0 @@
-rootProject.name = 'miam'
-include('frontend', 'backend')
-println 'MIAM compilation process ...'
