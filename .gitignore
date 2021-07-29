@@ -11,15 +11,16 @@
 
 # dependencies
 /frontend/node_modules
-
+/frontend/.idea
 # profiling files
 /frontend/chrome-profiler-events*.json
 
 
 # BACKEND
-backend/target
-backend/miam.iml
-backend/build
+/backend/target
+/backend/miam.iml
+/backend/build
+/backend/.idea
 
 # IDEs and editors
 .idea
