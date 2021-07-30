@@ -1,4 +1,4 @@
-package com.cognizant.miam.controller;
+package com.cognizant.miam.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,8 +8,8 @@ import java.io.IOException;
 
 @RestController
 public class Index {
-    @RequestMapping(value = "/")
+   @RequestMapping(value = "/")
     public void redirect(HttpServletResponse response) throws IOException {
-        response.sendRedirect("docs-api/swagger-ui.html");
+        response.sendRedirect("/swagger-ui.html");
     }
 }
