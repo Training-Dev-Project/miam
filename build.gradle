@@ -11,7 +11,7 @@ task frontendCommand(type: Exec){
             .replace("App", "")
             .replace("]", "")
             .replace("[","")
-    doFirst {
+    doFirst {20
         println "Execute: yarn ${taskName}"
     }
     if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")){
@@ -39,19 +39,31 @@ task backendCommand(type: Exec){
     commandLine "mvn", "${taskName}", "-DskipTests"
 }
 /**
- *  Install plugins and dependancies, Options: -Pdev=frontend or -Pdev=backend
+ * Creating Task: install test build
+ * @param taskType
  */
-task buildApp() {
-    if (project.hasProperty("dev")) {
-        if(dev.contains("frontend")){
+void createTask(String taskType) {
+    String taskName = taskType + "App"
+    task (taskName) {
+        if (project.hasProperty("type")) {
+            if(type.contains("frontend")){
+                dependsOn "frontendCommand"
+            }
+            if(type.contains("backend")){
+                dependsOn "backendCommand"
+            }
+        }
+        else{
             dependsOn "frontendCommand"
-        }
-        if(dev.contains("backend")){
-            dependsOn "backendCommand"
+            finalizedBy "backendCommand"
         }
     }
-    else{
-        dependsOn "frontendCommand"
-        finalizedBy "backendCommand"
-    }
+}
+
+// Setting goal|task
+String[] listTasks = ["install", "test", "build", "start"];
+
+// Instanciate goal|task
+for(String task : listTasks) {
+    createTask(task);
 }
