@@ -1,2 +1,57 @@
-println name
-println project.name
+def frontend = project(':frontend').projectDir
+def backend =project(':backend').projectDir
+
+/**
+ *  Command to launch yarn install/test/build
+ */
+task frontendCommand(type: Exec){
+    workingDir "$frontend"
+    String taskName = "${project.gradle.startParameter.taskNames}"
+    taskName = taskName
+            .replace("App", "")
+            .replace("]", "")
+            .replace("[","")
+    doFirst {
+        println "Execute: yarn ${taskName}"
+    }
+    if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")){
+        commandLine "yarn.cmd", "${taskName}"
+    } else {
+        commandLine "yarn", "${taskName}"
+    }
+}
+/**
+ *  Command to launch maven install/test/build
+ */
+task backendCommand(type: Exec){
+    workingDir "$backend"
+    String taskName = "${project.gradle.startParameter.taskNames}"
+    taskName = taskName
+            .replace("App", "")
+            .replace("]", "")
+            .replace("[","")
+    if(taskName.contains("build")){
+        taskName ="package"
+    }
+    doFirst {
+        println "Execute: mvn ${taskName}"
+    }
+    commandLine "mvn", "${taskName}", "-DskipTests"
+}
+/**
+ *  Install plugins and dependancies, Options: -Pdev=frontend or -Pdev=backend
+ */
+task buildApp() {
+    if (project.hasProperty("dev")) {
+        if(dev.contains("frontend")){
+            dependsOn "frontendCommand"
+        }
+        if(dev.contains("backend")){
+            dependsOn "backendCommand"
+        }
+    }
+    else{
+        dependsOn "frontendCommand"
+        finalizedBy "backendCommand"
+    }
+}
