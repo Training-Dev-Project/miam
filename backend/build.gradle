@@ -1,0 +1,35 @@
+plugins {
+    id "org.springframework.boot" version "2.5.3"
+    id "io.spring.dependency-management" version "1.0.11.RELEASE"
+    id "java"
+}
+
+ext {
+    springVersion = "2.5.3"
+}
+
+group = "com.cognizant.miam"
+version = "1.0"
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter:${springVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-web:${springVersion}"
+    implementation "org.postgresql:postgresql:42.2.23"
+    implementation "org.springframework.boot:spring-boot-devtools:${springVersion}"
+    implementation "org.springdoc:springdoc-openapi-ui:1.5.9"
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${springVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}
