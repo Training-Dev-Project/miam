@@ -1,19 +1,19 @@
+apply plugin: 'java'
+
 def frontend = project(':frontend').projectDir
 def backend =project(':backend').projectDir
 
+String taskName = "${project.gradle.startParameter.taskNames}"
+taskName = taskName
+        .replace("App", "")
+        .replace("]", "")
+        .replace("[","")
 /**
  *  Command to launch yarn install/test/build
  */
 task frontendCommand(type: Exec){
     workingDir "$frontend"
-    String taskName = "${project.gradle.startParameter.taskNames}"
-    taskName = taskName
-            .replace("App", "")
-            .replace("]", "")
-            .replace("[","")
-    doFirst {20
-        println "Execute: yarn ${taskName}"
-    }
+    println "Execute: yarn ${taskName}"
     if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")){
         commandLine "yarn.cmd", "${taskName}"
     } else {
@@ -25,18 +25,16 @@ task frontendCommand(type: Exec){
  */
 task backendCommand(type: Exec){
     workingDir "$backend"
-    String taskName = "${project.gradle.startParameter.taskNames}"
-    taskName = taskName
-            .replace("App", "")
-            .replace("]", "")
-            .replace("[","")
-    if(taskName.contains("build")){
-        taskName ="package"
-    }
     doFirst {
         println "Execute: mvn ${taskName}"
     }
-    commandLine "mvn", "${taskName}", "-DskipTests"
+    if(taskName.contains("build")){
+        taskName ="package"
+    }
+    if(taskName.contains("start")){
+        taskName ="spring-boot:run"
+    }
+    commandLine "mvn", "${taskName}"
 }
 /**
  * Creating Task: install test build
@@ -59,7 +57,6 @@ void createTask(String taskType) {
         }
     }
 }
-
 // Setting goal|task
 String[] listTasks = ["install", "test", "build", "start"];
 
