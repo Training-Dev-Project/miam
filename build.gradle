@@ -1,3 +1,4 @@
-tasks.register('startAll') {
-    dependsOn ':backend:bootRun'
+task cleanAll(type: Delete) {
+    dependsOn(":backend:clean", ":frontend:clean")
+    delete 'build'
 }
