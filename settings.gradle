@@ -1,0 +1,4 @@
+rootProject.name = 'miam'
+
+include 'frontend'
+include 'backend'

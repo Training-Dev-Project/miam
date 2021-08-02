@@ -1,0 +1,36 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# FRONTEND 
+
+# compiled output
+/frontend/dist
+/frontend/tmp
+/frontend/out-tsc
+# Only exists if Bazel was run
+/frontend/bazel-out
+
+# dependencies
+/frontend/node_modules
+/frontend/.idea
+# profiling files
+/frontend/chrome-profiler-events*.json
+
+
+# BACKEND
+/backend/target
+/backend/miam.iml
+/backend/build
+/backend/.idea
+
+# IDEs and editors
+.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+miam.iml
+.gradle
+gradle
+# 

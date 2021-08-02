@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col">
+    <div ngbDropdown display="dynamic" class="d-inline-block dropdown-menu-right">
+      <button class="btn btn-outline-primary" id="navbarDropdownForm" ngbDropdownToggle>Connexion</button>
+      <div ngbDropdownMenu aria-labelledby="navbarDropdownForm">
+        <form class="px-4 py-3">
+          <div class="form-group">
+            <label for="navbarDropdownFormEmail">Email</label>
+            <input type="email" class="form-control" id="navbarDropdownFormEmail" placeholder="email@exemple.com"
+              autocomplete="username">
+          </div>
+          <div class="form-group">
+            <label for="navbarDropdownFormPassword">Mot de passe</label>
+            <input type="password" class="form-control" id="navbarDropdownFormPassword" placeholder="Mot de passe"
+              autocomplete="current-password">
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="dropdownCheck">
+            <label class="form-check-label" for="dropdownCheck">
+              Se souvenir de moi
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">Connexion</button>
+        </form>
+        <div class="dropdown-divider"></div>
+        <button ngbDropdownItem>Nouveau dans le coin? Inscription</button>
+        <button ngbDropdownItem>Mot de passe oublié?</button>
+      </div>
+    </div>
+  </div>
+</div>
