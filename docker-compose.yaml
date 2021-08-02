@@ -1,15 +1,16 @@
 version: "3"
 
 services:
-# FRONTEND CONTAINER
+  postgres
+
   frontend:
     build: ./frontend
     container_name: miam_frontend
     expose:
     - 80
     restart: unless-stopped # RESTART CONTAINER IF IT STOP
-# BACKEND CONTAINER
-  backend: #MIAM PROJECT: SERVICE 
+
+  backend: #MIAM PROJECT: SERVICE
     build: ./backend # THE DIRECTORY FILE OF DOCKERFILE
     network_mode: bridge
     container_name: miam_backend
