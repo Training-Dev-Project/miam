@@ -1,0 +1,17 @@
+
+<form>
+    <div class="form-group">
+      <label for="nom-ingredient">Nom de l'ingrédient: {{ ingredient.name }}</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        [(ngModel)]="ingredient.name" 
+        name = "name"
+        id="nom-ingredient" 
+        aria-describedby="nom de l'ingredient"
+
+        
+      >
+    </div>
+    <button type="submit" class="btn btn-primary" (click) = "onSubmit()">Submit</button>
+  </form>
