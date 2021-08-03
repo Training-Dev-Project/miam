@@ -1,6 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 build
+bin
 
 # FRONTEND
 
@@ -22,6 +23,7 @@ build
 /backend/target
 /backend/miam.iml
 /backend/build
+/backend/bin
 /backend/.idea
 /backend/bin
 

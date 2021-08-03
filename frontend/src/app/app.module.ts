@@ -36,7 +36,7 @@ import { PageContainerComponent } from './page-container/page-container.componen
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule,
-    FormsModule, 
+    FormsModule,
     HttpClientModule,
   ],
   providers: [],
