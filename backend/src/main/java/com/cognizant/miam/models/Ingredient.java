@@ -8,14 +8,21 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 public class Ingredient {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private long id;
+  @NotNull
+  @NotBlank
+  private String name;
+
+
   @Override
   public String toString() {
     return "Ingredient [name=" + name + "]";
@@ -32,11 +39,5 @@ public class Ingredient {
   public void setName(String name) {
     this.name = name;
   }
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private long id;
-  @NotNull
-  @NotBlank
-  private String name;
 
 }
