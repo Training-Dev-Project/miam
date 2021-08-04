@@ -1,9 +1,8 @@
 <div class="ingredient">
     <ul>
         <li *ngFor="let ingredient of ingredients ">
-            <app-ingredient [name]= "ingredient.name"></app-ingredient>
+            <app-ingredient [name]="ingredient.name"></app-ingredient>
             <!-- <app-ingredient [name]="" [quantity] = ""> </app-ingredient> -->
         </li>
     </ul>
 </div>
-

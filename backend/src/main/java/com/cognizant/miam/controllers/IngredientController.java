@@ -27,7 +27,6 @@ public class IngredientController {
     this.ingredientService = ingredientService;
   }
 
-
   @PostMapping
   public void addIngredients( @RequestBody IngredientDTO ingredientDTO) {
     System.out.println("Ingredient DTO : " + ingredientDTO);
@@ -37,16 +36,13 @@ public class IngredientController {
     System.out.println("Ingredient : " + ingredient);
   }
 
-
   @GetMapping
   public List<IngredientDTO> getAllIngredients(){
     List<Ingredient> ingredients = ingredientService.findAll();
     List<IngredientDTO> ingredientDTOs = ingredients.stream()
                   .map(ingredient -> modelMapper.map(ingredient, IngredientDTO.class))
                   .collect(Collectors.toList());
-
     return ingredientDTOs; 
   }
-
 
 }

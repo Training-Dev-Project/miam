@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class IngredientServiceService {
   readonly apiPath:string = '/ingredient';
-  private defaulHeader: HttpHeaders= new HttpHeaders({'Content-type': 'application/json'});
+  private defaultHeader: HttpHeaders= new HttpHeaders({'Content-type': 'application/json'});
   
   constructor(private client:HttpClient) { 
 
@@ -17,10 +17,14 @@ export class IngredientServiceService {
 
   onSubmitIngredient(ingredient: Ingredient): Observable<any>{
     // console.log(environment.urlBackend + this.apiPath)
-      return this.client.post(environment.urlBackend + this.apiPath , ingredient, {headers : this.defaulHeader} );
+      return this.client.post(environment.urlBackend + this.apiPath , ingredient, {headers : this.defaultHeader} );
       
               // .map( (response:Ingredient)  => response ); 
   }
 
+   onGetAllIngredients(): Observable<any>{
+        return this.client.get(environment.urlBackend + this.apiPath, {headers : this.defaultHeader});
+        //console.log(ingredients);
+   }
 
 }
