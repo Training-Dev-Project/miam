@@ -1,7 +1,3 @@
-task wrapper(type: Wrapper) {
-    gradleVersion = '7.1.1'
-}
-
 task cleanAll(type: Delete) {
     dependsOn(":backend:clean", ":frontend:clean")
     delete 'build'
