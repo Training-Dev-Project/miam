@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { IngredientComponent } from './components/ingredient/ingredient/ingredient.component';
 import { ListingIngredientsComponent } from './components/ingredient/listing-ingredients/listing-ingredients.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { PageContainerComponent } from './page-container/page-container.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { ListingIngredientsComponent } from './components/ingredient/listing-ing
     DropdownFormComponent,
     IngredientFormComponent,
     IngredientComponent,
-    ListingIngredientsComponent
+    ListingIngredientsComponent,
+    HomePageComponent,
+    PageContainerComponent
   ],
   imports: [
     BrowserModule,
