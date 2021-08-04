@@ -20,7 +20,6 @@ export class IngredientServiceService {
       return this.client.post(environment.urlBackend + this.apiPath , ingredient, {headers : this.defaulHeader} );
       
               // .map( (response:Ingredient)  => response ); 
-
   }
 
 

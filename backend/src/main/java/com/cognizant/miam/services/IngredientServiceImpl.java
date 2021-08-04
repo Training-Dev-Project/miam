@@ -1,5 +1,6 @@
 package com.cognizant.miam.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.cognizant.miam.models.Ingredient;
@@ -28,8 +29,12 @@ public class IngredientServiceImpl implements IngredientService{
 
   @Override
   public Optional<Ingredient> deleteById(long id) {
-    // TODO Auto-generated method stub
     return null;
+  }
+
+  @Override
+  public List<Ingredient> findAll() {
+    return ingredientRepository.findAll();
   }
 
 }
