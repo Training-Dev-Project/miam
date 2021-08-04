@@ -10,19 +10,26 @@ import { DropdownFormComponent } from './dropdown-form/dropdown-form.component';
 
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { IngredientFormComponent } from './components/ingredient/ingredient-form/ingredient-form.component';
+
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    DropdownFormComponent
+    DropdownFormComponent,
+    IngredientFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule, 
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

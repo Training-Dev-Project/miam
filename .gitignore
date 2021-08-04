@@ -2,7 +2,7 @@
 
 build
 
-# FRONTEND 
+# FRONTEND
 
 # compiled output
 /frontend/dist
@@ -35,4 +35,5 @@ build
 miam.iml
 .gradle
 gradle
-# 
+.vscode/
+#
