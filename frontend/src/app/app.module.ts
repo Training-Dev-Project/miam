@@ -14,6 +14,8 @@ import { IngredientFormComponent } from './components/ingredient/ingredient-form
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { IngredientComponent } from './components/ingredient/ingredient/ingredient.component';
+import { ListingIngredientsComponent } from './components/ingredient/listing-ingredients/listing-ingredients.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     DropdownFormComponent,
-    IngredientFormComponent
+    IngredientFormComponent,
+    IngredientComponent,
+    ListingIngredientsComponent
   ],
   imports: [
     BrowserModule,
