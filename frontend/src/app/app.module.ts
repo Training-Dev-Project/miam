@@ -14,6 +14,8 @@ import { IngredientFormComponent } from './components/ingredient/ingredient-form
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RecipePageComponent } from './components/recipe/recipe-page/recipe-page.component';
+import { RecipeFormComponent } from './components/recipe/recipe-form/recipe-form.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     DropdownFormComponent,
-    IngredientFormComponent
+    IngredientFormComponent,
+    RecipePageComponent,
+    RecipeFormComponent
   ],
   imports: [
     BrowserModule,

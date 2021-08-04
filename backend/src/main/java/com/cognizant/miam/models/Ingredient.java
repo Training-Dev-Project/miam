@@ -1,14 +1,14 @@
 package com.cognizant.miam.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -21,6 +21,9 @@ public class Ingredient {
   @NotNull
   @NotBlank
   private String name;
+
+  @OneToMany(mappedBy= "ingredient")
+  private Set<RecipeIngredient> recipes = new HashSet<>();
 
 
   @Override
@@ -40,4 +43,11 @@ public class Ingredient {
     this.name = name;
   }
 
+  public Set<RecipeIngredient> getRecipes() {
+    return recipes;
+  }
+
+  public void setRecipes(Set<RecipeIngredient> recipes) {
+    this.recipes = recipes;
+  }
 }
