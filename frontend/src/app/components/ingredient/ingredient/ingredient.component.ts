@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { IngredientServiceService } from '../ingredient-service.service';
 
 @Component({
   selector: 'app-ingredient',
@@ -9,7 +10,8 @@ export class IngredientComponent implements OnInit {
   quantity = 0 ; 
   @Input() name : string = "";
   
-  constructor() { }
+  constructor(
+    private ingredientService: IngredientServiceService){}
 
   ngOnInit(): void {
   }
@@ -22,5 +24,4 @@ export class IngredientComponent implements OnInit {
     if (this.quantity>0)
       this.quantity -= 1 ;
   }
-
 }

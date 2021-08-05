@@ -9,5 +9,5 @@ public interface IngredientService {
   public List<Ingredient> findAll();
   public Optional<Ingredient> findById(long id);
   public Ingredient save(Ingredient ingredient);
-  public Optional<Ingredient> deleteById(long id);
+  public Long deleteByName(String name);
 }

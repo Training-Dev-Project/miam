@@ -27,4 +27,8 @@ export class IngredientServiceService {
         //console.log(ingredients);
    }
 
+   onDeleteIngredient(name : string) : Observable<any> {
+        return this.client.delete(environment.urlBackend + this.apiPath + "/" + name, {headers : this.defaultHeader})
+   }
+
 }
