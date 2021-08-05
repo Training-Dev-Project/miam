@@ -1,4 +1,0 @@
-task cleanAll(type: Delete) {
-    dependsOn(":backend:clean", ":frontend:clean")
-    delete 'build'
-}
