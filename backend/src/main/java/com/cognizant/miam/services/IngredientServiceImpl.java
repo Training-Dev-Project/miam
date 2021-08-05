@@ -8,6 +8,8 @@ import com.cognizant.miam.repositories.IngredientRepository;
 
 import javax.transaction.Transactional;
 
+import java.lang.Exception;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -38,6 +40,12 @@ public class IngredientServiceImpl implements IngredientService{
   @Transactional
   public Long deleteByName(String name) {
     return ingredientRepository.deleteByName(name);
+  }
+
+  @Override
+  @Transactional
+  public void deleteById(long id) throws Exception {
+    ingredientRepository.deleteById(id);    
   }
 
 }
