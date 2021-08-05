@@ -23,9 +23,8 @@ jobs:
           min_length: 15 # Min length of the branch name
           max_length: 30 # Max length of the branch name
   build:
-
+    needs: branch-naming-rules
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up environment
