@@ -23,6 +23,7 @@ build
 /backend/miam.iml
 /backend/build
 /backend/.idea
+/backend/bin
 
 # IDEs and editors
 .idea
