@@ -17,11 +17,11 @@ jobs:
     steps:
       - uses: deepakputhraya/action-branch-name@master
         with:
-          regex: '/.*' # Regex the branch should match. This example enforces grouping
+          regex: 'MIAM[0-9]/.*' # Regex the branch should match. This example enforces grouping
           allowed_prefixes: 'feature, fix' # All branches should start with the given prefix
           ignore: master # Ignore exactly matching branch names from convention
           min_length: 15 # Min length of the branch name
-          max_length: 30 # Max length of the branch name
+          max_length: 80 # Max length of the branch name
   build:
     needs: branch-naming-rules
     runs-on: ubuntu-latest
