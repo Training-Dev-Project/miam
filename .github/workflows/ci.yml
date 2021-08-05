@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: deepakputhraya/action-branch-name@master
         with:
-          regex: 'MIAM[0-9]{3}/.*' # Regex the branch should match. This example enforces grouping
+          regex: '/MIAM+[0-9]{3}/.*' # Regex the branch should match. This example enforces grouping
           allowed_prefixes: 'feature, fix' # All branches should start with the given prefix
           ignore: master # Ignore exactly matching branch names from convention
           min_length: 15 # Min length of the branch name
