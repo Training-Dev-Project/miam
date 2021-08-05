@@ -18,6 +18,7 @@ import { IngredientComponent } from './components/ingredient/ingredient/ingredie
 import { ListingIngredientsComponent } from './components/ingredient/listing-ingredients/listing-ingredients.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { PageContainerComponent } from './page-container/page-container.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PageContainerComponent } from './page-container/page-container.componen
     IngredientComponent,
     ListingIngredientsComponent,
     HomePageComponent,
-    PageContainerComponent
+    PageContainerComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

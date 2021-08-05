@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Ingredient } from 'src/app/models/ingredient';
 import { IngredientServiceService } from '../ingredient-service.service';
+import { AlertComponent } from '../../alert/alert.component';
 
 @Component({
   selector: 'app-ingredient-form',
@@ -8,11 +9,11 @@ import { IngredientServiceService } from '../ingredient-service.service';
   styleUrls: ['./ingredient-form.component.scss']
 })
 export class IngredientFormComponent implements OnInit {
-  ingredient : Ingredient = {name:""}
+  ingredient : Ingredient = {name:"", id: 0}
   isValid : Boolean = false
+  alertVisibility : Boolean = false;
 
   constructor(private ingredientService: IngredientServiceService) {
-
   }
 
   ngOnInit(): void {
@@ -29,7 +30,9 @@ export class IngredientFormComponent implements OnInit {
   onSubmit() {
     if (this.isValid) {
       this.ingredientService.onSubmitIngredient(this.ingredient).subscribe( response => {console.log(response)})
+       this.alertVisibility = true;
     } else {
+    this.alertVisibility = false;
       alert("Name is invalid")
     }
   }

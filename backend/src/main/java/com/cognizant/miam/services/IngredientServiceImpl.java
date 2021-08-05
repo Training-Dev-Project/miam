@@ -40,4 +40,10 @@ public class IngredientServiceImpl implements IngredientService{
     return ingredientRepository.deleteByName(name);
   }
 
+  @Override
+  @Transactional
+  public void deleteById(long id) {
+    ingredientRepository.deleteById(id);
+  }
+
 }

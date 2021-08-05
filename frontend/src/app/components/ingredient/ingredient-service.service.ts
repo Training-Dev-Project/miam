@@ -31,4 +31,8 @@ export class IngredientServiceService {
         return this.client.delete(environment.urlBackend + this.apiPath + "/" + name, {headers : this.defaultHeader})
    }
 
+   onDeleteById(id : number) : Observable<any> {
+        return this.client.delete(environment.urlBackend + this.apiPath + "/delete/" + id, {headers : this.defaultHeader} )
+   }
+
 }
