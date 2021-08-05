@@ -8,30 +8,9 @@ import { IngredientServiceService } from '../ingredient-service.service';
   styleUrls: ['./listing-ingredients.component.scss']
 })
 export class ListingIngredientsComponent implements OnInit {
-  /* = [
-      {name: "tomate"},
-      {name: "farine"},
-      {name: "banane"},
-    ]; */
-  /* = [
-    {name: "tomate"},
-    {name: "farine"},
-    {name: "banane"},
-  ]; */
-  /* = [
-      {name: "tomate"},
-      {name: "farine"},
-      {name: "banane"},
-    ]; */
-  /* = [
-    {name: "tomate"},
-    {name: "farine"},
-    {name: "banane"},
-  ]; */
   ingredients: Array<Ingredient> = [];
 
-  constructor(private ingredientService: IngredientServiceService,) {
-
+  constructor(private ingredientService: IngredientServiceService) {
   }
 
   ngOnInit(): void {
@@ -39,7 +18,9 @@ export class ListingIngredientsComponent implements OnInit {
   }
 
   deleteIngredient(name: string) {
-    this.ingredientService.onDeleteIngredient(name).subscribe()
-    this.ingredientService.onGetAllIngredients().subscribe(data => { this.ingredients = data; })
+    this.ingredientService.onDeleteIngredient(name).subscribe(() => {
+      this.ingredients = this.ingredients.filter(i => i.name !== name);
+    });
+
   }
 }

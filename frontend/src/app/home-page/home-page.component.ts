@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faHamburger, faCocktail, faTv, faCarrot, faClipboardList, faCannabis, faAddressCard, faBookReader } from '@fortawesome/free-solid-svg-icons';
+import { faHamburger, faCocktail, faTv, faCarrot, faClipboardList, faCannabis, faAddressCard, faBookReader, faDrumstickBite } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -18,6 +18,7 @@ export class HomePageComponent implements OnInit {
   faAddressCard = faAddressCard;
   faClipboardList = faClipboardList;
   faBookReader = faBookReader;
+  faDrumstickBite = faDrumstickBite;
   constructor() { }
 
   ngOnInit(): void {

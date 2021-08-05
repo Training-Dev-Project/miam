@@ -3,11 +3,7 @@
   margin: 15px 5px;
   flex-grow: 0;
   justify-content: center;
-  color: darkgray;
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+  color: darker;
 }
 
 .card-menu-body {
@@ -39,6 +35,11 @@
   opacity: .7;
   margin-bottom: 0;
   margin-top: 8px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 ul li {

@@ -2,15 +2,15 @@
 
     <ul>
         <li>
-            <a href="list-ingredients"><button type="button" class="btn btn-success">Ajouter un ingrédient</button></a>
-            
+            <button routerLink="/create-ingredient" type="button" class="btn btn-success">Ajouter un ingrédient</button>
         </li>
-        
+
+        <hr/>
+
         <li *ngFor="let ingredient of ingredients ">
             <app-ingredient [name]="ingredient.name"></app-ingredient>
-            <button type="button" class="btn btn-success mr-3" >Add</button>
-            <button type="button" class="btn btn-danger" (click) = deleteIngredient(ingredient.name)>Delete</button>
-            <!-- <app-ingredient [name]="" [quantity] = ""> </app-ingredient> -->
+            <button type="button" class="btn btn-danger" (click)=deleteIngredient(ingredient.name)>Delete</button>
         </li>
     </ul>
+
 </div>
