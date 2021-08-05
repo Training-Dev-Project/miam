@@ -1,9 +1,12 @@
 package com.cognizant.miam.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.cognizant.miam.models.Ingredient;
 import com.cognizant.miam.repositories.IngredientRepository;
+
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
@@ -27,9 +30,14 @@ public class IngredientServiceImpl implements IngredientService{
   }
 
   @Override
-  public Optional<Ingredient> deleteById(long id) {
-    // TODO Auto-generated method stub
-    return null;
+  public List<Ingredient> findAll() {
+    return ingredientRepository.findAll();
+  }
+
+  @Override
+  @Transactional
+  public Long deleteByName(String name) {
+    return ingredientRepository.deleteByName(name); 
   }
 
 }

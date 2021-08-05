@@ -14,6 +14,10 @@ import { IngredientFormComponent } from './components/ingredient/ingredient-form
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { IngredientComponent } from './components/ingredient/ingredient/ingredient.component';
+import { ListingIngredientsComponent } from './components/ingredient/listing-ingredients/listing-ingredients.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { PageContainerComponent } from './page-container/page-container.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     DropdownFormComponent,
-    IngredientFormComponent
+    IngredientFormComponent,
+    IngredientComponent,
+    ListingIngredientsComponent,
+    HomePageComponent,
+    PageContainerComponent
   ],
   imports: [
     BrowserModule,
