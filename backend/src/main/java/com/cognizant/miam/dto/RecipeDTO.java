@@ -48,4 +48,14 @@ public class RecipeDTO {
     public void setIngredients(Map<Long, Double> ingredients) {
         this.ingredients = ingredients;
     }
+
+    @Override
+    public String toString() {
+        return "RecipeDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", instructions='" + instructions + '\'' +
+                ", ingredients=" + ingredients +
+                '}';
+    }
 }

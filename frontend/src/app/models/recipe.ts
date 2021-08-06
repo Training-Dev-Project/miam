@@ -3,7 +3,7 @@
 export interface Recipe {
     id? : number;
     name: string;
-    recipeIngredients: { [ingredientId: string] : number; }
+    ingredients: { [ingredientId: number] : number };
     instructions? : string;
 }
 

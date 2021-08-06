@@ -21,9 +21,9 @@ public class RecipeController {
 
   @PostMapping
   public @ResponseBody RecipeDTO addRecipe(@RequestBody RecipeDTO recipe) {
-    System.out.println("Recipe DTO : " + recipe);
+    System.out.println("Recipe DTO : " + recipe.toString());
     var result = recipeService.save(recipe);
-    System.out.println("Recipe : " + recipe);
+    // System.out.println("Recipe : " + recipe.toString());
     return result;
   }
 

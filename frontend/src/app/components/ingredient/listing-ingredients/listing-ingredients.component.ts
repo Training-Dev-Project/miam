@@ -14,7 +14,7 @@ export class ListingIngredientsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ingredientService.onGetAllIngredients().subscribe(data => { this.ingredients = data; })
+    this.ingredientService.onGetAllIngredients().subscribe(data => { this.ingredients = data; });
   }
 
   deleteIngredient(name: string) {

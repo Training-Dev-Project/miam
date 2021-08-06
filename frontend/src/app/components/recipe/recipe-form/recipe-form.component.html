@@ -11,11 +11,11 @@
             <!--
             TODO Remplir les options du select avec les ingrédients de la db
             -->
+
             <select class="form-control" id="ingredientsSelect" [(ngModel)]="ingredientToAddId" name="ingredientToAddId">
-                <!--option value="ingredient.id">{{ingredient.name}}</option-->
-                <option>Farine</option>
-                <option>Banane</option>
+                <option *ngFor="let ingredient of allIngredients " value="{{ingredient.id}}">{{ingredient.name}}</option>
             </select>
+
         </div>
         <div class="form-group">
             <label for="ingredientQuantity">Quantité</label>
@@ -23,7 +23,7 @@
         </div>
         <button type="button" (click)="addIngredientToRecipe(ingredientToAddId,ingredientToAddQuantity)" class="btn btn-success">Ajouter l'ingrédient</button>
         <ul>
-            <li *ngFor="let item of ingredients" >{{item}} qté : {{recipe.recipeIngredients[item]}}</li>
+            <li *ngFor="let item of recipe.ingredients | keyvalue " >{{item.key}} quantité : {{item.value}}</li>
         </ul>
     </div>
 

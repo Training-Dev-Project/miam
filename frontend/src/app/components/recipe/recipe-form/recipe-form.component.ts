@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Ingredient } from 'src/app/models/ingredient';
 import {Recipe} from "../../../models/recipe";
 import {IngredientServiceService} from "../../ingredient/ingredient-service.service";
 import {RecipeServiceService} from "../recipe-service.service";
@@ -10,34 +11,41 @@ import {RecipeServiceService} from "../recipe-service.service";
 })
 export class RecipeFormComponent implements OnInit {
 
-  constructor(private recipeService: RecipeServiceService) { }
+  ingredientsName : Array<string> = [];
+
+  allIngredients: Array<Ingredient> = [];
+  isValid : boolean = true;
+  recipe : Recipe = {name:"", ingredients:{}};
+  ingredientToAddId: number = 0;
+  // ingredientToAdd: Ingredient = {name: ""};
+  ingredientToAddQuantity: number = 1;
+
+  constructor(private recipeService: RecipeServiceService, private ingredientService: IngredientServiceService) { }
 
   ngOnInit(): void {
-    //TODO Récuper les ingrédients de la db
+    // Retrieve all ingredients from DB
+    this.ingredientService.onGetAllIngredients().subscribe(data => {
+      this.allIngredients = data; 
+    });
   }
-  ingredients : string[] = [];
-  isValid : boolean = true;
-  recipe : Recipe = {name:"",recipeIngredients:{}}
-    ingredientToAddId: string = "Banane";
-    ingredientToAddQuantity: number = 0;
+
 
 
 
   onSubmit() {
     if (this.isValid) {
-      this.recipeService.saveRecipe(this.recipe).subscribe( response => {console.log(response)})
+      this.recipeService.saveRecipe(this.recipe).subscribe( response => {console.log(response)});
     } else {
       alert("Name is invalid")
     }
   }
 
-  addIngredientToRecipe(id: string,quantity : number){
-    this.recipe.recipeIngredients[id]=quantity;
-    if(this.ingredients.indexOf(id)==-1){
-      this.ingredients.push(id);
-    }
-
-
+  addIngredientToRecipe(ingredientToAddId: number, ingredientToAddQuantity: number){
+    this.recipe.ingredients[ingredientToAddId] = ingredientToAddQuantity;
+    console.log(this.recipe);
+    // if (this.ingredients.indexOf(ingredient.id) == -1) {
+    //   this.ingredients.push(id);
+    // }
   }
 
 }
