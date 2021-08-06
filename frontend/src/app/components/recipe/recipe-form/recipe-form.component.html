@@ -1,1 +1,40 @@
-<p>recipe-form works!</p>
+<h3>Création d'une recette</h3>
+
+{{recipe.name}}-
+{{recipe.instructions}}-
+{{ingredientToAddId}}-
+{{ingredientToAddQuantity}}
+
+<form>
+    <div class="form-group">
+        <label for="recipeName">Nom de la recette</label>
+        <input  [(ngModel)]="recipe.name" name="name" type="text" class="form-control" id="recipeName" placeholder="Nom de la recette">
+    </div>
+    <div class="recipe-add-ingredient-section">
+        <div class="form-group">
+            <label for="ingredientsSelect">Ajout d'un ingrédient</label>
+            <select class="form-control" id="ingredientsSelect" [(ngModel)]="ingredientToAddId" name="ingredientToAddId">
+                <option>Tomate</option>
+                <option>Farine</option>
+                <option>Banane</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ingredientQuantity">Quantité</label>
+            <input [(ngModel)]="ingredientToAddQuantity" type="number" name="ingredientToAddQuantity" class="form-control" id="ingredientQuantity" placeholder="Quantité">
+        </div>
+        <button type="button" (click)="addIngredientToRecipe(ingredientToAddId,ingredientToAddQuantity)" class="btn btn-success">Ajouter l'ingrédient</button>
+        <ul>
+            <li *ngFor="let item of ingredients" >{{item}} qté : {{recipe.recipeIngredients[item]}}</li>
+        </ul>
+    </div>
+
+    <div class="form-group">
+        <label for="recipeInstructions">Instructions</label>
+        <textarea [(ngModel)]="recipe.instructions" name="instructions" class="form-control" id="recipeInstructions" rows="8"></textarea>
+    </div>
+
+
+    <button type="button" (click)="onSubmit()" class="btn btn-primary">Ajouter la recette!</button>
+
+</form>
