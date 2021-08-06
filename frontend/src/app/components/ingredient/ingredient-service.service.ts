@@ -18,8 +18,8 @@ export class IngredientServiceService {
   onSubmitIngredient(ingredient: Ingredient): Observable<any>{
     // console.log(environment.urlBackend + this.apiPath)
       return this.client.post(environment.urlBackend + this.apiPath , ingredient, {headers : this.defaultHeader} );
-      
-              // .map( (response:Ingredient)  => response ); 
+
+              // .map( (response:Ingredient)  => response );
   }
 
    onGetAllIngredients(): Observable<any>{
