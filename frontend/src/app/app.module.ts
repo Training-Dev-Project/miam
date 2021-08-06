@@ -33,7 +33,7 @@ import { RecipeFormComponent } from './components/recipe/recipe-form/recipe-form
     ListingIngredientsComponent,
     HomePageComponent,
     PageContainerComponent,
-    AlertComponent
+    AlertComponent,
     RecipePageComponent,
     RecipeFormComponent
   ],
