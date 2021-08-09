@@ -7,10 +7,14 @@ import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+<<<<<<< HEAD
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+=======
+@Entity(name ="ingredients")
+>>>>>>> e1ac69f... [MIAM-55] liquibase integration
 @NoArgsConstructor
 @AllArgsConstructor
 public class Ingredient {
