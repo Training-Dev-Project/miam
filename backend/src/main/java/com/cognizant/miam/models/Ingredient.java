@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(name ="ingredients")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Ingredient {

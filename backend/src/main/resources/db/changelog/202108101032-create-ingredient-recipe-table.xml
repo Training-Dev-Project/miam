@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:pro="http://www.liquibase.org/xml/ns/pro" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
+  <changeSet id="202108091717" author="JavaProScript">
+    <createTable tableName="ingredient_recipes">
+      <column name="id" type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="ingredient_id" type="bigint">
+      </column>
+      <column name="recipe_id" type="bigint">
+      </column>
+    </createTable>
+    <addAutoIncrement tableName="ingredient" columnName="id" columnDataType="bigint" startWith="1" incrementBy="1" />
+    <addForeignKeyConstraint baseTableName="ingredient_recipes" baseColumnNames="ingredient_id" constraintName="ingredient_fk" referencedTableName="ingredients" referencedColumnNames="id" />
+    <addForeignKeyConstraint baseTableName="ingredient_recipes" baseColumnNames="recipe_id" constraintName="recipe_fk" referencedTableName="recipes" referencedColumnNames="id" />
+
+
+  </changeSet>
+</databaseChangeLog>
