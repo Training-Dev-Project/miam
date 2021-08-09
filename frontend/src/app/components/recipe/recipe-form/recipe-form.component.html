@@ -8,12 +8,9 @@
     <div class="recipe-add-ingredient-section">
         <div class="form-group">
             <label for="ingredientsSelect">Ajout d'un ingrédient</label>
-            <!--
-            TODO Remplir les options du select avec les ingrédients de la db
-            -->
-
-            <select class="form-control" id="ingredientsSelect" [(ngModel)]="ingredientToAddId" name="ingredientToAddId">
-                <option *ngFor="let ingredient of allIngredients " value="{{ingredient.id}}">{{ingredient.name}}</option>
+            <select class="form-control" id="ingredientsSelect" [(ngModel)]="ingredientToAdd" name="ingredientToAdd">
+                <!--option *ngFor="let ingredient of allIngredients " value="{{ingredient.id}}">{{ingredient.name}}</option-->
+                <option *ngFor="let ingredient of allIngredients " [ngValue]="ingredient">{{ingredient.name}}</option>
             </select>
 
         </div>
@@ -21,9 +18,9 @@
             <label for="ingredientQuantity">Quantité</label>
             <input [(ngModel)]="ingredientToAddQuantity" type="number" name="ingredientToAddQuantity" class="form-control" id="ingredientQuantity" placeholder="Quantité">
         </div>
-        <button type="button" (click)="addIngredientToRecipe(ingredientToAddId,ingredientToAddQuantity)" class="btn btn-success">Ajouter l'ingrédient</button>
+        <button type="button" (click)="addIngredientToRecipe(ingredientToAdd,ingredientToAddQuantity)" class="btn btn-success">Ajouter l'ingrédient</button>
         <ul>
-            <li *ngFor="let item of recipe.ingredients | keyvalue " >{{item.key}} quantité : {{item.value}}</li>
+            <li *ngFor="let item of ingredientsFromRecipe | keyvalue" >{{item.key}} quantité : {{item.value}}</li>
         </ul>
     </div>
 
@@ -32,7 +29,11 @@
         <textarea [(ngModel)]="recipe.instructions" name="instructions" class="form-control" id="recipeInstructions" rows="8"></textarea>
     </div>
 
-
+    <p *ngIf="alertVisibility">
+        <ngb-alert [dismissible]="false">
+            <strong>Ajouté !</strong> Votre recette vient d'être ajouté à la liste :)
+        </ngb-alert>
+    </p>
     <button type="button" (click)="onSubmit()" class="btn btn-primary">Ajouter la recette!</button>
 
 </form>

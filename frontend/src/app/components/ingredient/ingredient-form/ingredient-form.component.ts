@@ -29,8 +29,7 @@ export class IngredientFormComponent implements OnInit {
 
   onSubmit() {
     if (this.isValid) {
-      this.ingredientService.onSubmitIngredient(this.ingredient).subscribe( response => {console.log(response)})
-       this.alertVisibility = true;
+      this.ingredientService.onSubmitIngredient(this.ingredient).subscribe( response => {this.alertVisibility = true;})
     } else {
     this.alertVisibility = false;
       alert("Name is invalid")
