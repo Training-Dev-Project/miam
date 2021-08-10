@@ -40,7 +40,7 @@ import { RecipeComponent } from './components/recipe/recipe/recipe.component';
     RecipeFormComponent,
     ListRecipesComponent,
     RecipeComponent,
-    
+
   ],
   imports: [
     BrowserModule,

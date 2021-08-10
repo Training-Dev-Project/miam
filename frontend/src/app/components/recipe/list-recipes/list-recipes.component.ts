@@ -9,7 +9,7 @@ import { RecipeServiceService } from '../recipe-service.service';
 })
 export class ListRecipesComponent implements OnInit {
 
-  recipes : Array<Recipe> = []; 
+  recipes : Array<Recipe> = [];
   constructor(private recipeService: RecipeServiceService) { }
 
   ngOnInit(): void {
