@@ -19,6 +19,8 @@ import { ListingIngredientsComponent } from './components/ingredient/listing-ing
 import { HomePageComponent } from './home-page/home-page.component';
 import { PageContainerComponent } from './page-container/page-container.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { RecipePageComponent } from './components/recipe/recipe-page/recipe-page.component';
+import { RecipeFormComponent } from './components/recipe/recipe-form/recipe-form.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { AlertComponent } from './components/alert/alert.component';
     ListingIngredientsComponent,
     HomePageComponent,
     PageContainerComponent,
-    AlertComponent
+    AlertComponent,
+    RecipePageComponent,
+    RecipeFormComponent
   ],
   imports: [
     BrowserModule,
