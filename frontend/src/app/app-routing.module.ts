@@ -4,12 +4,14 @@ import { ListingIngredientsComponent } from './components/ingredient/listing-ing
 import { IngredientFormComponent } from './components/ingredient/ingredient-form/ingredient-form.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { RecipeFormComponent } from './components/recipe/recipe-form/recipe-form.component';
+import { ListRecipesComponent } from './components/recipe/list-recipes/list-recipes.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent},
   { path: 'list-ingredients', component: ListingIngredientsComponent },
   { path : 'create-ingredient', component: IngredientFormComponent },
-  { path: 'recipe', component: RecipeFormComponent}
+  { path: 'recipe', component: RecipeFormComponent}, 
+  { path: 'list-recipes', component: ListRecipesComponent },
 ];
 
 @NgModule({
