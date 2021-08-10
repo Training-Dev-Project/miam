@@ -17,10 +17,7 @@ export class RecipeServiceService {
   }
 
   saveRecipe(recipe: Recipe): Observable<any>{
-    // console.log(environment.urlBackend + this.apiPath)
-      return this.client.post(environment.urlBackend + this.apiPath , recipe, {headers : this.defaulHeader} );
-      
-      
+    return this.client.post(environment.urlBackend + this.apiPath , recipe, {headers : this.defaulHeader} );
   }
 
 

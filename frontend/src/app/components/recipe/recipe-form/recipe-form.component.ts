@@ -12,14 +12,13 @@ import {RecipeServiceService} from "../recipe-service.service";
 export class RecipeFormComponent implements OnInit {
 
   ingredientsFromRecipe : { [name: string] : number; } = {};
-  alertVisibility : Boolean = false;
   allIngredients: Array<Ingredient> = [];
-  isValid : boolean = true;
   recipe : Recipe = {name:"", ingredients:{}};
-  // ingredientToAddId: number = 0;
   ingredientToAdd: Ingredient = {name: ""};
   ingredientToAddQuantity: number = 1;
-
+  
+  isValid : boolean = true;
+  alertVisibility : Boolean = false;
   constructor(private recipeService: RecipeServiceService, private ingredientService: IngredientServiceService) { }
 
   ngOnInit(): void {
@@ -28,9 +27,6 @@ export class RecipeFormComponent implements OnInit {
       this.allIngredients = data; 
     });
   }
-
-
-
 
   onSubmit() {
     if (this.isValid) {
@@ -44,11 +40,8 @@ export class RecipeFormComponent implements OnInit {
   addIngredientToRecipe(ingredientToAdd: Ingredient, ingredientToAddQuantity: number){
     this.recipe.ingredients[ingredientToAdd.id!] = ingredientToAddQuantity;
     console.log(this.recipe);
+
     this.ingredientsFromRecipe[ingredientToAdd.name] = ingredientToAddQuantity;
     console.log(this.ingredientsFromRecipe);
-    // if (this.ingredients.indexOf(ingredient.id) == -1) {
-    //   this.ingredients.push(id);
-    // }
   }
-
 }

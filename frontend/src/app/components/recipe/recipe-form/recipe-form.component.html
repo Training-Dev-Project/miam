@@ -9,7 +9,6 @@
         <div class="form-group">
             <label for="ingredientsSelect">Ajout d'un ingrédient</label>
             <select class="form-control" id="ingredientsSelect" [(ngModel)]="ingredientToAdd" name="ingredientToAdd">
-                <!--option *ngFor="let ingredient of allIngredients " value="{{ingredient.id}}">{{ingredient.name}}</option-->
                 <option *ngFor="let ingredient of allIngredients " [ngValue]="ingredient">{{ingredient.name}}</option>
             </select>
 
