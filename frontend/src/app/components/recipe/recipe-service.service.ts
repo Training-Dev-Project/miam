@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Ingredient } from 'src/app/models/ingredient';
 import { environment} from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import {Recipe} from "../../models/recipe";
@@ -10,15 +9,20 @@ import {Recipe} from "../../models/recipe";
 })
 export class RecipeServiceService {
   readonly apiPath:string = '/recipe';
-  private defaulHeader: HttpHeaders= new HttpHeaders({'Content-type': 'application/json'});
+  private defaultHeader: HttpHeaders= new HttpHeaders({'Content-type': 'application/json'});
   
   constructor(private client:HttpClient) { 
 
   }
 
   saveRecipe(recipe: Recipe): Observable<any>{
-    return this.client.post(environment.urlBackend + this.apiPath , recipe, {headers : this.defaulHeader} );
+    return this.client.post(environment.urlBackend + this.apiPath , recipe, {headers : this.defaultHeader} );
   }
+
+  getAllRecipes(): Observable<any>{
+    return this.client.get(environment.urlBackend + this.apiPath, {headers : this.defaultHeader});
+  }
+
 
 
 }

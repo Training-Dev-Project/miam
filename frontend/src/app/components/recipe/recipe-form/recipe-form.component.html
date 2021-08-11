@@ -17,7 +17,7 @@
             <label for="ingredientQuantity">Quantité</label>
             <input [(ngModel)]="ingredientToAddQuantity" type="number" name="ingredientToAddQuantity" class="form-control" id="ingredientQuantity" placeholder="Quantité">
         </div>
-        <button type="button" (click)="addIngredientToRecipe(ingredientToAdd,ingredientToAddQuantity)" class="btn btn-success">Ajouter l'ingrédient</button>
+        <button type="button" (click)="addIngredientToRecipe(ingredientToAdd,ingredientToAddQuantity)" class="btn btn-warning">Ajouter l'ingrédient</button>
         <ul>
             <li *ngFor="let item of ingredientsFromRecipe | keyvalue" >{{item.key}} quantité : {{item.value}}</li>
         </ul>
@@ -33,6 +33,6 @@
             <strong>Ajouté !</strong> Votre recette vient d'être ajouté à la liste :)
         </ngb-alert>
     </p>
-    <button type="button" (click)="onSubmit()" class="btn btn-primary">Ajouter la recette!</button>
-
+    <button type="button" (click)="onSubmit()" class="btn btn-success">Ajouter la recette!</button>
+    <a routerLink="/list-recipes" class="btn btn-primary mx-2">Liste de recettes</a>
 </form>
