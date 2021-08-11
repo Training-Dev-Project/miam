@@ -1,0 +1,43 @@
+.card:hover{
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+// .card{
+//     margin-left: 20px;
+//     margin-top: 20px;
+// }
+
+.card:hover{
+  img{
+    opacity: .7;
+  };
+  transform: rotateY(-3deg);
+  transition: .5s;
+}
+
+.ingredient{
+  background-image: url("../../../../assets/images/png/ingredient.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.ingredients{
+    background-image: url("../../../../assets/images/png/ingredients.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.recipe{
+    background-image: url("../../../../assets/images/png/recipe.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}  
+.recipes{
+    background-image: url("../../../../assets/images/png/recipes.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.vegan{
+    background-image: url("../../../../assets/images/png/vegan.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}

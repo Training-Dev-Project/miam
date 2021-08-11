@@ -1,9 +1,9 @@
 
 <div style="border:1px solid transparent">
-   <div style="position:aboslute;margin-top:30px;border:1px solid transparent">
+   <div>
        <h3>Liste des ingrédients</h3>
    </div>
-   <div class="row" style="padding:15px;">
+   <div class="row">
        <div class="col-md-6"></div>
        <div class="col-md-6 text-right">
            <div style="cursor: pointer" (click)="openModalIngredient()">
@@ -12,7 +12,7 @@
            </div>
        </div>
    </div>
-    <table class="table" style="background: white; text-align: center;">
+    <table class="table" style="background: white; text-align: center;margin-top:15px">
         <thead>
         <tr style=" text-align: center; color:  #0a2735;border: 0;text-transform: uppercase;">
           <th>Image</th>
@@ -26,7 +26,9 @@
             <img [src]="'assets/images/'+ingredient.name+'.png'" class="mr-2" style="width: 32px; height: 32px;">
           </td>
           <td>{{ingredient.name}}</td>
-          <td>  <button type="button" class="btn btn-primary" (click)=deleteIngredient(ingredient.name)>Supprimer</button> </td>
+          <td>
+              <button type="button" class="btn btn-primary" (click)=deleteById(ingredient.id)>Supprimer</button>
+          </td>
         </tr>
         </tbody>
       </table>

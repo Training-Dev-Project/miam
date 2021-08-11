@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CardMenuComponent } from './card-menu/card-menu.component';
 import { AlertComponent } from './alert/alert.component';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { DropdownFormComponent } from './dropdown-form/dropdown-form.component';
 
 
 
@@ -15,7 +16,8 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
   declarations: [
     CardMenuComponent,
     AlertComponent,
-    DialogBoxComponent
+    DialogBoxComponent,
+    DropdownFormComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
   exports:[
     CardMenuComponent,
     AlertComponent ,
-    DialogBoxComponent
+    DialogBoxComponent,
+    DropdownFormComponent
   ]
 })
 export class GlobalModule { }

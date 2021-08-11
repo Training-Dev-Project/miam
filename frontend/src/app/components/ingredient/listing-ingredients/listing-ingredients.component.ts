@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DialogBoxComponent } from '../../global/dialog-box/dialog-box.component'; 
 import { IngredientFormComponent } from '../ingredient-form/ingredient-form.component';
 import { AppContextService } from 'src/app/app.service';
+
 @Component({
   selector: 'app-listing-ingredients',
   templateUrl: './listing-ingredients.component.html',
@@ -29,14 +30,11 @@ export class ListingIngredientsComponent implements OnInit {
    });
   }
 
-  deleteIngredient(name: string) {
-    this.ingredientService.onDeleteIngredient(name).subscribe(() => {
-      this.ingredients = this.ingredients.filter(i => i.name !== name);
-      this.appCtx.setIngredientsObservable(this.ingredients);
   deleteById(id: number) {
-    this.ingredientService.onDeleteById(id).subscribe(() => {
-      this.ingredients = this.ingredients.filter(i => i.id !== id);
-    });
+  this.ingredientService.onDeleteById(id).subscribe(() => {
+       this.ingredients = this.ingredients.filter(i => i.id !== id);
+       this.appCtx.setIngredientsObservable(this.ingredients);
+    }, error =>{});
   }
   openModalIngredient(){
     const modal=this.modalService.open(DialogBoxComponent);

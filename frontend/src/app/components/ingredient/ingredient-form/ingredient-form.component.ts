@@ -9,7 +9,7 @@ import { AppContextService } from 'src/app/app.service';
   styleUrls: ['./ingredient-form.component.scss']
 })
 export class IngredientFormComponent implements OnInit {
-  ingredient : Ingredient = {name:"", id: 0}
+  ingredient : Ingredient = {name: '', id: 0}
   isValid : Boolean = false
   alertVisibility : Boolean = false;
   ingredients: Array<Ingredient> = [];
@@ -33,9 +33,9 @@ export class IngredientFormComponent implements OnInit {
       this.ingredientService.onSubmitIngredient(this.ingredient).subscribe( response => {
         this.alertVisibility = true;
         this.ingredients =   this.appCtx.getIngredientsObservable().getValue();
-        this.ingredients.push(this.ingredient)
+        this.ingredients.push(response);
         this.appCtx.setIngredientsObservable(this.ingredients);
-      })
+      }, error => {})
     } else {
     this.alertVisibility = false;
       alert("Name is invalid")

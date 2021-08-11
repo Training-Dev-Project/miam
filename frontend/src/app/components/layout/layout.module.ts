@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router'; 
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AppToolbarComponent } from './app-toolbar/app-toolbar.component';
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { PageContainerComponent } from './page-container/page-container.component';
 import { AppBodyComponent } from './app-body/app-body.component';
-import { RouterModule } from '@angular/router'; 
+import { GlobalModule } from '../global/global.module';
 
 
 @NgModule({
@@ -18,7 +22,9 @@ import { RouterModule } from '@angular/router';
     AppBodyComponent
   ],
   imports: [
-    RouterModule
+    RouterModule,
+    FontAwesomeModule,
+    GlobalModule
   ],
   exports:[
     AppBodyComponent,

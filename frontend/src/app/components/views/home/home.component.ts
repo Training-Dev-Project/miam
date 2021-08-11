@@ -9,42 +9,41 @@ import { Menu } from 'src/app/models/menu';
 export class HomeComponent implements OnInit {
   menus: Menu[] =[
   {
-      href: '',
-      title: 'Ajouter une recette',
-      description: '',
-      uri: 'ingredients/create-ingredient',
-      buttonText: 'Ajouter'
-  },
-  {
-    href: '',
+    href: 'ingredients',
     title: 'Liste d\'ingrédients',
-    description: '',
-    uri: 'ingredients/list-ingredients',
+    description: 'Selection et verifier la liste de vos ingredients ..',
+    uri: 'workflow-ingredients/list-ingredients',
     buttonText: 'Voir liste'
 }
 ,
   {
-    href: '',
+    href: 'ingredient',
     title: 'Créer un ingrédient',
-    description: '',
-    uri: 'ingredients/create-ingredient',
+    description: 'Ajouter de nouvel ingrédient...',
+    uri: 'workflow-ingredients/create-ingredient',
     buttonText: 'Créer'
+},
+{
+  href: 'recipe',
+  title: 'Ajouter une recette',
+  description: 'Préparer vos recttes favoris...',
+  uri: 'workflow-recipes/recipe',
+  buttonText: 'Ajouter'
+},
+  {
+    href: 'recipes',
+    title: 'Liste des recettes',
+    description: 'Lister et afficher toutes vos recttes déjà réalisées...',
+    uri: 'workflow-recipes/list-recipes',
+    buttonText: 'Voir'
 }
 ,
   {
-    href: '',
-    title: 'Mon compte',
-    description: '',
+    href: 'vegan',
+    title: 'Vegan? par ici',
+    description: 'Vous avez une préférence pour de la nourriture Végan...',
     uri: '',
     buttonText: 'Gérer'
-}
-,
-  {
-    href: '',
-    title: 'Menus existants',
-    description: '',
-    uri: '',
-    buttonText: 'Voir'
 }
 ] 
 

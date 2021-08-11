@@ -23,7 +23,7 @@ import { AppContextService } from './app.service';
     HttpClientModule,
     LayoutModule,
     GlobalModule,
-    ViewsModule 
+    ViewsModule
   ],
   exports:[
   ],

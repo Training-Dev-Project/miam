@@ -11,6 +11,7 @@ import com.cognizant.miam.models.Ingredient;
 import com.cognizant.miam.services.IngredientService;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,12 +38,10 @@ public class IngredientController {
   }
 
   @PostMapping
-  public void addIngredients( @RequestBody IngredientDTO ingredientDTO) {
-    System.out.println("Ingredient DTO : " + ingredientDTO);
-    // ModelMapper modelMapper = new ModelMapper();
+  public ResponseEntity<Ingredient> addIngredients(@RequestBody IngredientDTO ingredientDTO) {
     Ingredient ingredient = modelMapper.map(ingredientDTO, Ingredient.class);
-    ingredientService.save(ingredient);
-    System.out.println("Ingredient : " + ingredient);
+    ingredient = ingredientService.save(ingredient);
+    return new ResponseEntity<>(ingredient, HttpStatus.OK);
   }
 
   @GetMapping
