@@ -9,7 +9,7 @@
 
         <li *ngFor="let ingredient of ingredients ">
             <app-ingredient [name]="ingredient.name"></app-ingredient>
-            <button type="button" class="btn btn-danger" (click)=deleteIngredient(ingredient.name)>Delete</button>
+            <button type="button" class="btn btn-danger" (click)=deleteById(ingredient.id)>Delete</button>
         </li>
     </ul>
 
