@@ -17,6 +17,7 @@ bin
 /frontend/.idea
 # profiling files
 /frontend/chrome-profiler-events*.json
+/frontend/.vscode
 
 
 # BACKEND
@@ -26,6 +27,7 @@ bin
 /backend/bin
 /backend/.idea
 /backend/bin
+/backend/.vscode
 
 # IDEs and editors
 .idea
