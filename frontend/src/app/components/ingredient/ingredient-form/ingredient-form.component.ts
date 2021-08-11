@@ -9,7 +9,7 @@ import { AlertComponent } from '../../alert/alert.component';
   styleUrls: ['./ingredient-form.component.scss']
 })
 export class IngredientFormComponent implements OnInit {
-  ingredient : Ingredient = {name:""}
+  ingredient : Ingredient = {name:"", id: 0}
   isValid : Boolean = false
   alertVisibility : Boolean = false;
 
@@ -30,6 +30,7 @@ export class IngredientFormComponent implements OnInit {
   onSubmit() {
     if (this.isValid) {
       this.ingredientService.onSubmitIngredient(this.ingredient).subscribe( response => {this.alertVisibility = true;})
+       this.alertVisibility = true;
     } else {
     this.alertVisibility = false;
       alert("Name is invalid")
