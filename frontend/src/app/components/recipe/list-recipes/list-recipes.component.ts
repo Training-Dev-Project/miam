@@ -14,8 +14,14 @@ export class ListRecipesComponent implements OnInit {
 
   ngOnInit(): void {
     this.recipeService.getAllRecipes().subscribe(data => { this.recipes = data; })
-    console.log(this.recipes)
+    //console.log(this.recipes)
   }
+
+  deleteById(id: number) {
+      this.recipeService.deleteById(id).subscribe(() => {
+        this.recipes= this.recipes.filter(i => i.id !== id);
+      });
+    }
 
 
 

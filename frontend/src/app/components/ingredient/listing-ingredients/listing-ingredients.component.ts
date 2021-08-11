@@ -17,10 +17,10 @@ export class ListingIngredientsComponent implements OnInit {
     this.ingredientService.onGetAllIngredients().subscribe(data => { this.ingredients = data; });
   }
 
-  deleteIngredient(name: string) {
-    this.ingredientService.onDeleteIngredient(name).subscribe(() => {
-      this.ingredients = this.ingredients.filter(i => i.name !== name);
+  deleteById(id: number) {
+    this.ingredientService.onDeleteById(id).subscribe(() => {
+      this.ingredients = this.ingredients.filter(i => i.id !== id);
     });
-
   }
+
 }

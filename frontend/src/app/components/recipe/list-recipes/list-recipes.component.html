@@ -1,5 +1,4 @@
 <div class="recipe">
-
     <ul>
         <li>
             <button routerLink="/recipe" type="button" class="btn btn-success">Ajouter une recette</button>
@@ -9,6 +8,7 @@
 
         <li *ngFor="let recipe of recipes ">
             <app-recipe [recipe] = "recipe"></app-recipe>
+            <button type="button" class="btn btn-danger" (click)=deleteById(recipe.id!)>Delete</button>
         </li>
     </ul>
 

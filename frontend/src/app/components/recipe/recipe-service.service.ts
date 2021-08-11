@@ -11,8 +11,7 @@ export class RecipeServiceService {
   readonly apiPath:string = '/recipe';
   private defaultHeader: HttpHeaders= new HttpHeaders({'Content-type': 'application/json'});
   
-  constructor(private client:HttpClient) { 
-
+  constructor(private client:HttpClient) {
   }
 
   saveRecipe(recipe: Recipe): Observable<any>{
@@ -23,6 +22,7 @@ export class RecipeServiceService {
     return this.client.get(environment.urlBackend + this.apiPath, {headers : this.defaultHeader});
   }
 
-
-
+  deleteById(id : number) : Observable<any> {
+    return this.client.delete(environment.urlBackend + this.apiPath +"/"+ id, {headers : this.defaultHeader} )
+  }
 }

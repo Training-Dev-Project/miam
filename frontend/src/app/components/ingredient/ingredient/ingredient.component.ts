@@ -9,6 +9,7 @@ import { IngredientServiceService } from '../ingredient-service.service';
 export class IngredientComponent implements OnInit {
   quantity = 0 ; 
   @Input() name : string = "";
+  id : number = 0;
   
   constructor(
     private ingredientService: IngredientServiceService){}
