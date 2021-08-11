@@ -33,6 +33,9 @@ export class ListingIngredientsComponent implements OnInit {
     this.ingredientService.onDeleteIngredient(name).subscribe(() => {
       this.ingredients = this.ingredients.filter(i => i.name !== name);
       this.appCtx.setIngredientsObservable(this.ingredients);
+  deleteById(id: number) {
+    this.ingredientService.onDeleteById(id).subscribe(() => {
+      this.ingredients = this.ingredients.filter(i => i.id !== id);
     });
   }
   openModalIngredient(){

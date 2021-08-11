@@ -9,7 +9,7 @@ import { AppContextService } from 'src/app/app.service';
   styleUrls: ['./ingredient-form.component.scss']
 })
 export class IngredientFormComponent implements OnInit {
-  ingredient : Ingredient = {name:""}
+  ingredient : Ingredient = {name:"", id: 0}
   isValid : Boolean = false
   alertVisibility : Boolean = false;
   ingredients: Array<Ingredient> = [];

@@ -1,0 +1,15 @@
+<div class="recipe">
+
+    <ul>
+        <li>
+            <button routerLink="/recipe" type="button" class="btn btn-success">Ajouter une recette</button>
+        </li>
+
+        <hr/>
+
+        <li *ngFor="let recipe of recipes ">
+            <app-recipe [recipe] = "recipe"></app-recipe>
+        </li>
+    </ul>
+
+</div>
