@@ -1,15 +1,19 @@
 <div class="recipe">
     <ul>
+        <br/>
         <li>
             <button routerLink="/recipe" type="button" class="btn btn-success">Ajouter une recette</button>
         </li>
-
+        <br/>
+        <p *ngIf="alertVisibility">
+            <ngb-alert [dismissible]="false">
+                <strong>Supprimée !</strong> La recette <strong>{{ currentDelete }}</strong> a été supprimée de la liste des recettes :) !
+            </ngb-alert>
+        </p>
         <hr/>
-
         <li *ngFor="let recipe of recipes ">
             <app-recipe [recipe] = "recipe"></app-recipe>
-            <button type="button" class="btn btn-danger" (click)=deleteById(recipe.id!)>Delete</button>
+            <button type="button" class="btn btn-danger" (click)=deleteById(recipe.id!,recipe.name)>Delete</button>
         </li>
     </ul>
-
 </div>
