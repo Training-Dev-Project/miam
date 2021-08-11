@@ -18,9 +18,6 @@ export class IngredientFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.appCtx.getIngredientsObservable().subscribe((ingredients)=>{
-      ingredients = ingredients;
-    })
   }
 
   validateInput(ingredient: Ingredient){
@@ -35,8 +32,9 @@ export class IngredientFormComponent implements OnInit {
     if (this.isValid) {
       this.ingredientService.onSubmitIngredient(this.ingredient).subscribe( response => {
         this.alertVisibility = true;
-        this.ingredients.push(this.ingredient);
-        console.log(' ******* ', this.ingredients)
+        this.ingredients =   this.appCtx.getIngredientsObservable().getValue();
+        this.ingredients.push(this.ingredient)
+        this.appCtx.setIngredientsObservable(this.ingredients);
       })
     } else {
     this.alertVisibility = false;

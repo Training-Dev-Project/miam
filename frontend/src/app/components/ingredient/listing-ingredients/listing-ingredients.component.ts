@@ -23,15 +23,16 @@ export class ListingIngredientsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   /* this.appCtx.getIngredientsObservable().subscribe((ingredients:Array<Ingredient>)=>{
-      this.ingredients = ingredients;
-    });*/
-    this.ingredientService.onGetAllIngredients().subscribe(data => { this.ingredients = data; this.appCtx.setIngredientsObservable(this.ingredients)});
+   this.ingredientService.onGetAllIngredients().subscribe(data => {
+      this.ingredients = data;
+      this.appCtx.setIngredientsObservable(this.ingredients);
+   });
   }
 
   deleteIngredient(name: string) {
     this.ingredientService.onDeleteIngredient(name).subscribe(() => {
       this.ingredients = this.ingredients.filter(i => i.name !== name);
+      this.appCtx.setIngredientsObservable(this.ingredients);
     });
   }
   openModalIngredient(){
