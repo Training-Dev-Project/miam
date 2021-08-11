@@ -38,5 +38,5 @@ bin
 miam.iml
 .gradle
 gradle
-.vscode/
+.vscode
 #
