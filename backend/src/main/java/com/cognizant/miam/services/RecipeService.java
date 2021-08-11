@@ -8,4 +8,6 @@ public interface RecipeService {
     public RecipeDTO save(RecipeDTO recipe);
 
     List<RecipeDTO> findAll();
+
+    void deleteById(long id);
 }

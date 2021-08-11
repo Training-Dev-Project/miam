@@ -18,7 +18,7 @@ public class RecipeIngredient {
     @JoinColumn(name = "ingredient_id",referencedColumnName="id")
     private Ingredient ingredient;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "recipe_id",referencedColumnName="id")
     private Recipe recipe;
 
