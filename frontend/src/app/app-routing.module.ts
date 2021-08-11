@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { ListingIngredientsComponent } from './components/ingredient/listing-ingredients/listing-ingredients.component';
-import { IngredientFormComponent } from './components/ingredient/ingredient-form/ingredient-form.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import { RouterModule, Routes } from '@angular/router'; 
+
+import { IngredientModule } from './components/ingredient/ingredient.module';
+
+import { HomeComponent } from './components/views/home/home.component';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent},
-  { path: 'list-ingredients', component: ListingIngredientsComponent },
-  { path : 'create-ingredient', component: IngredientFormComponent }
+  { path: '', component: HomeComponent },
+  { path: 'ingredients', loadChildren: () => import('./../app/components/ingredient/ingredient.module').then(m => m.IngredientModule)},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes), 
+    IngredientModule
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

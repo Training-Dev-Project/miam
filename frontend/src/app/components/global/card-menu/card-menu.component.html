@@ -1,0 +1,14 @@
+<div class="card-columns">
+    <ng-container *ngIf="menus">
+        <div class="card" *ngFor="let menu of menus">
+            <img class="card-img-top" [src]="menu.href" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{menu.title}}</h5>
+              <p class="card-text">{{menu.description}}</p>
+            </div>
+            <div class="card-footer text-right">
+                <a [routerLink]="menu.uri" class="btn btn-primary">{{menu.buttonText}} >></a>
+            </div>
+          </div>
+    </ng-container>
+  </div>

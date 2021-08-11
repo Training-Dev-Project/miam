@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/ingredient")
-@CrossOrigin(origins = "http://localhost:4200")
 public class IngredientController {
 
   private IngredientService ingredientService;
