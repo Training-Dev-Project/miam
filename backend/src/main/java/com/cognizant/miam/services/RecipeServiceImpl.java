@@ -9,6 +9,7 @@ import com.cognizant.miam.repositories.RecipeIngredientRepository;
 import com.cognizant.miam.repositories.RecipeRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +58,7 @@ public class RecipeServiceImpl implements RecipeService {
             recipeDTOS = recipes.stream()
                     .map(recipe -> {
                                 return RecipeDTO.Builder.newInstance()
+                                        .setId(recipe.getId())
                                         .setInstructions(recipe.getInstructions())
                                         .setName(recipe.getName()).build();
                             }
@@ -67,6 +69,13 @@ public class RecipeServiceImpl implements RecipeService {
         }
 
         return recipeDTOS;
+    }
+
+
+    @Override
+    @Transactional
+    public void deleteById(long id){
+        recipeRepository.deleteById(id);
     }
 
 

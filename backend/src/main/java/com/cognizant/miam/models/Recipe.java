@@ -29,7 +29,7 @@ public class Recipe {
   @NotBlank
   private String name;
   
-  @OneToMany(cascade = CascadeType.MERGE,mappedBy="recipe")
+  @OneToMany(cascade = CascadeType.ALL,mappedBy="recipe")
   private Set<RecipeIngredient> recipeIngredientList = new HashSet<>();
 
   @NotNull

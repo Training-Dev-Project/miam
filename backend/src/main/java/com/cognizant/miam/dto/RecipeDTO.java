@@ -70,7 +70,7 @@ public class RecipeDTO {
             return new Builder();
         }
 
-        public Builder set(long id) {
+        public Builder setId(long id) {
             this.id = id;
             return this;
         }
