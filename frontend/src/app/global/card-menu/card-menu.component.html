@@ -1,0 +1,15 @@
+<div class="card-columns">
+    <ng-container *ngIf="menus">
+        <div class="card" *ngFor="let menu of menus" style="cursor: pointer;color:#242A31">
+            <div class="{{menu.href}}" style="height:200px"> 
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{menu.title}}</h5>
+              <p class="card-text">{{menu.description}}</p>
+            </div>
+            <div class="card-footer text-right" style="background: white;">
+                <a [routerLink]="menu.uri" class="btn btn-primary">{{menu.buttonText}} >></a>
+            </div>
+          </div>
+    </ng-container>
+  </div>

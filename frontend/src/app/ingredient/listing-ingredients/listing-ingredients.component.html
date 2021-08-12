@@ -1,0 +1,40 @@
+
+<div style="border:1px solid transparent">
+   <div>
+       <h3 class="title-page">Liste des ingrédients</h3>
+   </div>
+   <div class="row">
+       <div class="col-md-6"></div>
+       <div class="col-md-6 text-right">
+           <div style="cursor: pointer" (click)="openModalIngredient()">
+               <fa-icon [icon]="faAddressCard" size="1x" style="color:#0a2735"></fa-icon>
+               <span style="text-decoration: underline;">&nbsp;&nbsp;Ajouter un ingrédient</span>
+           </div>
+       </div>
+   </div>
+    <table class="table" style="background: white; text-align: center;margin-top:15px">
+        <thead>
+        <tr style=" text-align: center; color:  #0a2735;border: 0;text-transform: uppercase;">
+          <th>Image</th>
+          <th>Nom ingredient</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let ingredient of ingredients">
+          <td>
+            <img [src]="'assets/images/'+ingredient.name+'.png'" class="mr-2" style="width: 32px; height: 32px;">
+          </td>
+          <td>{{ingredient.name}}</td>
+          <td>
+              <button type="button" class="btn btn-primary" (click)=deleteById(ingredient.id)>Supprimer</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+</div>
+
+<ng-template #ingredientForm>
+    <app-ingredient-form></app-ingredient-form>
+</ng-template>

@@ -1,0 +1,21 @@
+<div class="container">
+    <form>
+        <div class="form-group">
+            <label for="nom-ingredient">Nom de l'ingrédient: {{ ingredient.name }}</label>
+            <div *ngIf="alertVisibility">
+                <alert></alert>
+            </div>
+            <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="ingredient.name"
+                    (ngModelChange)="validateInput(ingredient)"
+                    name="name"
+                    id="nom-ingredient"
+                    aria-describedby="nom de l'ingredient"
+            >
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Créer</button>
+        <a routerLink="/list-ingredients" class="btn btn-secondary mx-2">Liste</a>
+    </form>
+</div>

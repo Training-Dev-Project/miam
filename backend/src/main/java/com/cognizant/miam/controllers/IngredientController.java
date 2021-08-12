@@ -11,6 +11,7 @@ import com.cognizant.miam.models.Ingredient;
 import com.cognizant.miam.services.IngredientService;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,8 +28,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping(value = "/ingredient")
-@CrossOrigin(origins = "http://localhost:4200")
-public class IngredientController{
+public class IngredientController {
 
   private IngredientService ingredientService;
   private ModelMapper modelMapper = new ModelMapper();
@@ -38,12 +38,10 @@ public class IngredientController{
   }
 
   @PostMapping
-  public void addIngredients( @RequestBody IngredientDTO ingredientDTO) {
-    System.out.println("Ingredient DTO : " + ingredientDTO);
-    // ModelMapper modelMapper = new ModelMapper();
+  public ResponseEntity<Ingredient> addIngredients(@RequestBody IngredientDTO ingredientDTO) {
     Ingredient ingredient = modelMapper.map(ingredientDTO, Ingredient.class);
-    ingredientService.save(ingredient);
-    System.out.println("Ingredient : " + ingredient);
+    ingredient = ingredientService.save(ingredient);
+    return new ResponseEntity<>(ingredient, HttpStatus.OK);
   }
 
   @GetMapping
@@ -66,7 +64,7 @@ public class IngredientController{
     }
     catch (Exception ex) {
       throw new ResponseStatusException( HttpStatus.NOT_FOUND, "Il n'existe pas l'ingrédient avec l'id: " +id, ex);
-    }     
+    }
   }
 
 }

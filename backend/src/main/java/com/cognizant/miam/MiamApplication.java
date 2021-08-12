@@ -18,7 +18,7 @@ public class MiamApplication {
 		return new OpenAPI()
 				.info(new Info()
 								.title("Miam documentation api")
-								.version(appVersion)
+								.version("v"+ appVersion)
 								.description(appDesciption));
 	}
 }
