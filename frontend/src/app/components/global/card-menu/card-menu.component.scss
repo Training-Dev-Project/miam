@@ -1,12 +1,6 @@
 .card:hover{
     transition: transform 0.6s;
-    transform-style: preserve-3d;
 }
-
-// .card{
-//     margin-left: 20px;
-//     margin-top: 20px;
-// }
 
 .card:hover{
   img{
@@ -14,6 +8,7 @@
   };
   transform: rotateY(-3deg);
   transition: .5s;
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 30%);
 }
 
 .ingredient{
@@ -21,6 +16,7 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
 .ingredients{
     background-image: url("../../../../assets/images/png/ingredients.png");
     background-repeat: no-repeat;
