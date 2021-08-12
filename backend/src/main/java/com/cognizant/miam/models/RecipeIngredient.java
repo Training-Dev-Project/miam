@@ -5,13 +5,15 @@ import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Table(name = "recipe_ingredient")
 public class RecipeIngredient {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
     private long id;
 
     @ManyToOne(cascade = CascadeType.MERGE)
@@ -22,6 +24,7 @@ public class RecipeIngredient {
     @JoinColumn(name = "recipe_id",referencedColumnName="id")
     private Recipe recipe;
 
+    @Column(name="quantity")
     private double quantity;
 
     public long getId() {
