@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'; 
 
 import { AppRoutingModule } from './app-routing.module';
-import { LayoutModule } from './components/layout/layout.module';
-import { ViewsModule } from './components/views/views.module';
-import { GlobalModule } from './components/global/global.module';
+import { LayoutModule } from './layout/layout.module';
+import { ViewsModule } from './views/views.module';
+import { GlobalModule } from './global/global.module';
 
 import { AppComponent } from './app.component';
 import { AppContextService } from './app.service';

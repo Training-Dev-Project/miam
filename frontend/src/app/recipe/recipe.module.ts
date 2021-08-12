@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { IngredientRoutingModule } from './recipe-routing.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
+import { RecipeRoutingModule } from './recipe-routing.module';
 
 import { ListRecipesComponent } from './list-recipes/list-recipes.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import { RecipePageComponent } from './recipe-page/recipe-page.component'; 
+
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { RecipePageComponent } from './recipe-page/recipe-page.component';
     CommonModule,
     NgbModule,
     FormsModule,
-    IngredientRoutingModule
+    RecipeRoutingModule
   ],
   exports: [
     ListRecipesComponent,
