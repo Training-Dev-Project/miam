@@ -1,21 +1,25 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { ListingIngredientsComponent } from './components/ingredient/listing-ingredients/listing-ingredients.component';
-import { IngredientFormComponent } from './components/ingredient/ingredient-form/ingredient-form.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { RecipeFormComponent } from './components/recipe/recipe-form/recipe-form.component';
-import { ListRecipesComponent } from './components/recipe/list-recipes/list-recipes.component';
+import { RouterModule, Routes } from '@angular/router'; 
+import { RecipeModule } from './recipe/recipe.module';
+
+import { IngredientModule } from './ingredient/ingredient.module';
+
+import { HomeComponent } from './views/home/home.component';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent},
-  { path: 'list-ingredients', component: ListingIngredientsComponent },
-  { path : 'create-ingredient', component: IngredientFormComponent },
-  { path: 'recipe', component: RecipeFormComponent}, 
-  { path: 'list-recipes', component: ListRecipesComponent },
+  { path: '', component: HomeComponent },
+  { path: 'workflow-ingredients', loadChildren: () => import('./ingredient/ingredient.module').then(m => m.IngredientModule)},
+  { path: 'workflow-recipes', loadChildren: () => import('./recipe/recipe.module').then(m => m.RecipeModule)},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes), 
+  ],
+  exports: [
+    RouterModule,
+    IngredientModule,
+    RecipeModule
+  ]
 })
 export class AppRoutingModule { }

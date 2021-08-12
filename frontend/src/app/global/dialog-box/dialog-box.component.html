@@ -1,0 +1,15 @@
+  <ng-template #defaultModal>
+        <div>Components ...</div>
+  </ng-template>
+  <div class="modal-header">
+    <h4 class="modal-title">{{name}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ng-container 
+        *ngTemplateOutlet="bodyTemplate ?bodyTemplate:defaultModal">
+    </ng-container>
+  </div>
+  
