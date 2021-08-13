@@ -10,20 +10,29 @@ import org.springframework.core.env.Environment;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.io.*;
+import java.util.Locale;
 import java.util.Properties;
 
 @Configuration
 public class DataSourceConfig {
     @Autowired
     private Environment env;
-    DataSourceBuilder dataSourceBuilder;
-    Properties prop = null;
+    private DataSourceBuilder dataSourceBuilder;
+    private Properties prop = null;
+    private String osName = "";
 
     @PostConstruct
     public void setup(){
         prop = new Properties();
         dataSourceBuilder = DataSourceBuilder.create();
-        try (InputStream input = new FileInputStream(env.getProperty("USERPROFILE")+"/.miam.properties")) {
+        osName= System.getProperty("os.name");
+        String repoUser = env.getProperty("HOME");
+
+        if((osName.toUpperCase()).startsWith("WINDOWS")) {
+            repoUser = env.getProperty("USERPROFILE");
+        }
+
+        try (InputStream input = new FileInputStream(repoUser +"/.miam.properties")) {
             prop = new Properties();
             prop.load(input);
         } catch (IOException ex) {
