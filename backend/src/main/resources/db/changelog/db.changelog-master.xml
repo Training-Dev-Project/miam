@@ -5,15 +5,7 @@ xmlns:pro="http://www.liquibase.org/xml/ns/pro"
 xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
 http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
-	<changeSet id="202103031102" author="JavaProScript">
-		<createTable tableName="ingredient">
-			<column name="id" type="bigint">
-				<constraints primaryKey="true" primaryKeyName="ingredient_id" />
-			</column>
-			<column name="name" type="varchar(250)">
-				<constraints unique="true" uniqueConstraintName="ingredient_name_unq" />
-			</column>
-		</createTable>
-		<addAutoIncrement tableName="ingredient" columnName="id" columnDataType="bigint" startWith="1" incrementBy="1" />
-	</changeSet>
+    <include file="/db/changelog/202108091717-create-ingredient-table.xml"/>
+    <include file="/db/changelog/202108091724-create-recipe-table.xml"/>
+    <include file="/db/changelog/202108101032-create-ingredient-recipe-table.xml"/>
 </databaseChangeLog>

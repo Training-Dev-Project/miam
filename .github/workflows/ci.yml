@@ -8,6 +8,7 @@ on:
     branches:
       - master
       - 'feature/**'
+      - 'fix/**'
   pull_request:
     branches: [ master ]
 
@@ -18,7 +19,7 @@ jobs:
       - uses: deepakputhraya/action-branch-name@master
         with:
           regex: '/.*' # Regex the branch should match. This example enforces grouping
-          allowed_prefixes: 'feature, fix' # All branches should start with the given prefix
+          allowed_prefixes: 'feature,fix,task' # All branches should start with the given prefix
           ignore: master # Ignore exactly matching branch names from convention
           min_length: 15 # Min length of the branch name
           max_length: 80 # Max length of the branch name

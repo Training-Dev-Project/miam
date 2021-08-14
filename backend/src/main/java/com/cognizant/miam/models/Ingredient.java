@@ -7,19 +7,23 @@ import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "ingredient")
 public class Ingredient {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name ="id")
   private long id;
   @NotNull
   @NotBlank
+  @Column(name ="name")
   private String name;
 
   @OneToMany(mappedBy= "ingredient")
