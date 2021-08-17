@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Ingredient } from 'src/app/models/ingredient';
 import { IngredientServiceService } from '../ingredient-service.service';
 import { AppContextService } from 'src/app/app.service';
+import { faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-ingredient-form',
@@ -9,6 +10,7 @@ import { AppContextService } from 'src/app/app.service';
   styleUrls: ['./ingredient-form.component.scss']
 })
 export class IngredientFormComponent implements OnInit {
+  faAddressCard = faFolderOpen;
   ingredient : Ingredient = {name: '', id: 0}
   isValid : Boolean = false
   alertVisibility : Boolean = false;
@@ -35,7 +37,7 @@ export class IngredientFormComponent implements OnInit {
         this.ingredients =   this.appCtx.getIngredientsObservable().getValue();
         this.ingredients.push(response);
         this.appCtx.setIngredientsObservable(this.ingredients);
-      }, error => {})
+      }, error => { console.log(" Hello Word ... ", error);})
     } else {
     this.alertVisibility = false;
       alert("Name is invalid")

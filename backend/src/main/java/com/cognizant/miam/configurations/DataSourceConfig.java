@@ -10,7 +10,6 @@ import org.springframework.core.env.Environment;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.io.*;
-import java.util.Locale;
 import java.util.Properties;
 
 @Configuration
