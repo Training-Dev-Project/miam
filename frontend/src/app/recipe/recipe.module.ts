@@ -9,6 +9,7 @@ import { ListRecipesComponent } from './list-recipes/list-recipes.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import { RecipePageComponent } from './recipe-page/recipe-page.component'; 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -23,6 +24,7 @@ import { RecipePageComponent } from './recipe-page/recipe-page.component';
     CommonModule,
     NgbModule,
     FormsModule,
+    FontAwesomeModule,
     RecipeRoutingModule
   ],
   exports: [
