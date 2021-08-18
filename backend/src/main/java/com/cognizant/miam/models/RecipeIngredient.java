@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class RecipeIngredient {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private long id;
 
