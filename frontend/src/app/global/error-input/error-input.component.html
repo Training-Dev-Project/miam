@@ -1,0 +1,7 @@
+<div class="error-messages" *ngIf="hasErrors">
+    <span  [ngClass]="{'alert-error': type=== 'ERROR'}"
+           *ngFor="let error of errorMessages()">{{ error | decodeErrorMessage}}
+           <br/>
+    </span>
+</div>
+
