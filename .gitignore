@@ -38,7 +38,5 @@ bin
 .settings/
 *.sublime-workspace
 miam.iml
-.gradle
-gradle
 .vscode
 #
