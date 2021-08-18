@@ -2,7 +2,7 @@
 
 build
 bin
-
+.project
 # FRONTEND
 
 # compiled output
@@ -18,7 +18,7 @@ bin
 # profiling files
 /frontend/chrome-profiler-events*.json
 /frontend/.vscode
-
+/frontend/.project
 
 # BACKEND
 /backend/target
@@ -28,7 +28,7 @@ bin
 /backend/.idea
 /backend/bin
 /backend/.vscode
-
+/backend/.project
 # IDEs and editors
 .idea
 .project
