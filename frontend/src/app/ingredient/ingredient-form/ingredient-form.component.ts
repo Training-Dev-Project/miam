@@ -5,6 +5,7 @@ import { AppContextService } from 'src/app/app.service';
 import { faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 import { NgForm} from '@angular/forms';
 import { ErrorInputComponent } from 'src/app/global/error-input/error-input.component';
+import { MessageError } from 'src/app/utils/message-error';
 
 @Component({
   selector: 'app-ingredient-form',
@@ -30,16 +31,17 @@ export class IngredientFormComponent{
  * @param ngForm 
  */
   onSubmit(formIngredient: NgForm){
-    console.log(formIngredient);
     if(formIngredient.valid){ 
         this.ingredientService.onSubmitIngredient(this.ingredient).subscribe( response => {
           this.ingredients =   this.appCtx.getIngredientsObservable().getValue();
           this.ingredients.push(response);
           this.appCtx.setIngredientsObservable(this.ingredients);
         }, response => { 
-            formIngredient.controls['name'].setErrors({uniqueNameIngredient: {
-              message: response.error.code
-            }});
+            if(response.error.code ==='INGREDIENT_ALREADY_EXISTS'){
+              formIngredient.controls['name'].setErrors({uniqueNameIngredient: {
+                message: MessageError.INGREDIENT_ALREADY_EXISTS(this.ingredient.name)
+              }});
+            }
         });
      }
      else if(formIngredient.invalid){

@@ -42,7 +42,7 @@ public class IngredientServiceImpl implements IngredientService{
     if(this.ingredientRepository.findByName(ingredient.getName()) !=null){
       IngredientException ingredientException = new IngredientException("Constraint violation of name: "+ingredient.getName() +" must be unique");
       ingredientException.setErrorCode(ErrorCode.INGREDIENT_ALREADY_EXISTS);
-      ingredientException.setStatus(HttpStatus.CONFLICT);
+      ingredientException.setStatus(HttpStatus.BAD_REQUEST);
       throw ingredientException;
     }
     return this.ingredientRepository.save(ingredient);

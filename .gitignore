@@ -20,7 +20,7 @@ node_modules
 /frontend/chrome-profiler-events*.json
 /frontend/.vscode
 /frontend/.project
-
+/frontend/.classpath
 # BACKEND
 /backend/target
 /backend/miam.iml
@@ -30,6 +30,7 @@ node_modules
 /backend/bin
 /backend/.vscode
 /backend/.project
+/backend/.classpath
 # IDEs and editors
 .idea
 .project

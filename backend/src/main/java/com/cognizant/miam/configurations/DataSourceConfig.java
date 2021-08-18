@@ -31,7 +31,7 @@ public class DataSourceConfig {
             repoUser = env.getProperty("USERPROFILE");
         }
 
-        try (InputStream input = new FileInputStream(repoUser +"/.miam.properties")) {
+        try (InputStream input = new FileInputStream(repoUser +"/.miam-project.properties")) {
             prop = new Properties();
             prop.load(input);
         } catch (IOException ex) {
