@@ -62,8 +62,8 @@ public class IngredientController {
     try {
       ingredientService.deleteById(id);
     }
-    catch (Exception ex) {
-      throw new ResponseStatusException( HttpStatus.NOT_FOUND, "Il n'existe pas l'ingrédient avec l'id: " +id, ex);
+    catch(Exception ex) {
+      throw new ResponseStatusException( HttpStatus.BAD_REQUEST, "INGREDIENT_USED");
     }
   }
 
