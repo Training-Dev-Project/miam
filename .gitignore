@@ -2,7 +2,7 @@
 
 build
 bin
-
+node_modules
 # FRONTEND
 
 # compiled output
