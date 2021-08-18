@@ -21,7 +21,7 @@ import { ListingIngredientsComponent } from './listing-ingredients/listing-ingre
   imports: [
     CommonModule,
     GlobalModule,
-    FormsModule, 
+    FormsModule,
     FontAwesomeModule,
     IngredientRoutingModule,
     NgbModule
