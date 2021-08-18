@@ -3,6 +3,7 @@ import { Ingredient } from 'src/app/models/ingredient';
 import {Recipe} from "../../models/recipe";
 import {IngredientServiceService} from "../../ingredient/ingredient-service.service";
 import {RecipeServiceService} from "../recipe-service.service";
+import { AppContextService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-recipe-form',
@@ -19,7 +20,9 @@ export class RecipeFormComponent implements OnInit {
   
   isValid : boolean = true;
   alertVisibility : Boolean = false;
-  constructor(private recipeService: RecipeServiceService, private ingredientService: IngredientServiceService) { }
+  recipes: Recipe[] = [];
+  
+  constructor(private recipeService: RecipeServiceService, private ingredientService: IngredientServiceService, private appCtx: AppContextService) { }
 
   ngOnInit(): void {
     // Retrieve all ingredients from DB
@@ -30,7 +33,12 @@ export class RecipeFormComponent implements OnInit {
 
   onSubmit() {
     if (this.isValid) {
-      this.recipeService.saveRecipe(this.recipe).subscribe( response => {this.alertVisibility = true;} );
+      this.recipeService.saveRecipe(this.recipe).subscribe( response => {
+        this.alertVisibility = true;
+        this.recipes =   this.appCtx.getRecipesObservable().getValue();
+        this.recipes.push(response);
+        this.appCtx.setRecipesObservable(this.recipes);
+      } );
     } else {
       this.alertVisibility = false;
       alert("Name is invalid")
