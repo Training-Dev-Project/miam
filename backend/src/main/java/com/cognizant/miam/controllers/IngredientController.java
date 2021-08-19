@@ -2,9 +2,7 @@ package com.cognizant.miam.controllers;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.Optional;
 
-import javax.swing.plaf.synth.SynthSpinnerUI;
 
 import com.cognizant.miam.dto.IngredientDTO;
 import com.cognizant.miam.models.Ingredient;
@@ -20,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -62,7 +60,11 @@ public class IngredientController {
     try {
       ingredientService.deleteById(id);
     }
+<<<<<<< HEAD
     catch(Exception ex) {
+=======
+    catch(DataIntegrityViolationException ex) {
+>>>>>>> feature/MIAM59/prevent-user-from-deleting-a-used-ingredient
       throw new ResponseStatusException( HttpStatus.BAD_REQUEST, "INGREDIENT_USED");
     }
   }
