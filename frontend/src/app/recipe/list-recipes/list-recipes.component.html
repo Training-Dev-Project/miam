@@ -29,7 +29,9 @@
            <td>
              <img [src]="'assets/images/'+recipe.name+'.png'" class="mr-2" style="width: 32px; height: 32px;">
            </td>
-           <td>{{recipe.name}}</td>
+           <td>
+                <a (click)=openModalDetailedRecipe(recipe)>{{recipe.name}}</a>
+            </td>
            <td>
                <button type="button" class="btn btn-primary" (click)=deleteById(recipe.id!,recipe.name)>Supprimer</button>
            </td>
@@ -42,3 +44,7 @@
  <ng-template #recipeForm>
      <app-recipe-form></app-recipe-form>
  </ng-template>
+
+ <ng-template #detailedRecipe>
+    <app-detailed-recipe [recipe]="recipe"></app-detailed-recipe>
+</ng-template>
