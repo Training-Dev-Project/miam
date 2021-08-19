@@ -1,5 +1,6 @@
 package com.cognizant.miam.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,6 +58,10 @@ public class IngredientServiceImpl implements IngredientService{
   public List<Ingredient> findAll() {
     return ingredientRepository.findAll();
   }
+
+
+  @Override
+  public List<Ingredient> findAllByIds(ArrayList<Long> ids) { return ingredientRepository.findAllById(ids); }
 
   /**
    *

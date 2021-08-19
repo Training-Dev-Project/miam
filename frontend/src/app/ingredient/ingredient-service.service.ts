@@ -26,6 +26,10 @@ export class IngredientServiceService {
         return this.client.get(environment.urlBackend + this.apiPath, {headers : this.defaultHeader});
         //console.log(ingredients);
    }
+   
+   onGetIngredientsByIds(ids : Array<number>) : Observable<any> {
+     return this.client.get(environment.urlBackend + this.apiPath + "/" + ids.join(','), {headers : this.defaultHeader} );
+     }
 
    onDeleteIngredient(name : string) : Observable<any> {
         return this.client.delete(environment.urlBackend + this.apiPath + "/" + name, {headers : this.defaultHeader})
@@ -34,5 +38,4 @@ export class IngredientServiceService {
    onDeleteById(id : number) : Observable<any> {
         return this.client.delete(environment.urlBackend + this.apiPath + "/delete/" + id, {headers : this.defaultHeader} )
    }
-
 }
