@@ -17,41 +17,56 @@ import java.util.Set;
 @Table(name = "ingredient")
 public class Ingredient {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name ="id")
-  private long id;
-  @NotNull
-  @NotBlank
-  @Column(name ="name")
-  private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private long id;
+    @NotNull
+    @NotBlank
+    @Column(name = "name")
+    private String name;
 
-  @OneToMany(mappedBy= "ingredient")
-  private Set<RecipeIngredient> recipes = new HashSet<>();
+    @OneToMany(mappedBy = "ingredient")
+    private Set<RecipeIngredient> recipes = new HashSet<>();
+
+    @Column(name = "image")
+    private String image;
 
 
-  @Override
-  public String toString() {
-    return "Ingredient [name=" + name + "]";
-  }
-  public long getId() {
-    return id;
-  }
-  public void setId(long id) {
-    this.id = id;
-  }
-  public String getName() {
-    return name;
-  }
-  public void setName(String name) {
-    this.name = name;
-  }
+    public long getId() {
+        return id;
+    }
 
-  public Set<RecipeIngredient> getRecipes() {
-    return recipes;
-  }
+    public void setId(long id) {
+        this.id = id;
+    }
 
-  public void setRecipes(Set<RecipeIngredient> recipes) {
-    this.recipes = recipes;
-  }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<RecipeIngredient> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(Set<RecipeIngredient> recipes) {
+        this.recipes = recipes;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    @Override
+    public String toString() {
+        return "Ingredient [name=" + name + "]";
+    }
 }

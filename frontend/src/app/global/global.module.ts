@@ -8,16 +8,15 @@ import { CardMenuComponent } from './card-menu/card-menu.component';
 import { AlertComponent } from './alert/alert.component';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { DropdownFormComponent } from './dropdown-form/dropdown-form.component';
-
-
-
+import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
 
 @NgModule({
   declarations: [
     CardMenuComponent,
     AlertComponent,
     DialogBoxComponent,
-    DropdownFormComponent
+    DropdownFormComponent,
+    ImageUploaderComponent
   ],
   imports: [
     CommonModule,
@@ -26,9 +25,10 @@ import { DropdownFormComponent } from './dropdown-form/dropdown-form.component';
   ],
   exports:[
     CardMenuComponent,
-    AlertComponent ,
+    AlertComponent,
     DialogBoxComponent,
-    DropdownFormComponent
+    DropdownFormComponent,
+    ImageUploaderComponent
   ]
 })
 export class GlobalModule { }
