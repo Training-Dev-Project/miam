@@ -34,6 +34,14 @@
                     </error-input>
                 </div>
             </div>
+
+            <div class="row" style="padding: 20px">
+                <label for="name" class="col-xs-12 col-sm-4 col-form-label">Image</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input class="form-control" id="image" name="image" type="file" (change)="onFileUpload($event)" accept="image/png">
+                </div>
+            </div>
+
             <hr/>
             <div class="row" style="padding: 20px;">
                 <div class="col-sm-10 offset-md-2 text-right">
