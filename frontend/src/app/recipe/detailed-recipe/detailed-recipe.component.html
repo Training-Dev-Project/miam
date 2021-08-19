@@ -1,22 +1,11 @@
-<h2 style="text-align: center">{{recipe.name}}</h2>
-<table class="table" style="background: white; text-align: center;margin-top:15px">
-    <p style="max-height: 50vh; overflow-y: auto;">
-        <tbody>
-            <!--tr style=" text-align: center; color:  #0a2735;border: 0;text-transform: uppercase;"-->
-            <tr>
-                <td>Ingrédients</td>
-                <td>
-                    <li *ngFor="let ingredient of ingredients | keyvalue">
-                        {{ingredient.key}}: {{ingredient.value}}
-                    </li>
-                </td>
-            </tr>
-            <tr>
-                <td>Instructions</td>
-                <td>
-                    {{recipe.instructions}}
-                </td>
-            </tr>
-        </tbody>
-    </p>
-</table>
+<h2>{{recipe.name}}</h2>
+<hr>
+<div class="scrollable">
+    <h4>Ingrédients</h4>
+    <li *ngFor="let ingredient of ingredients | keyvalue">
+        {{ingredient.key}}: {{ingredient.value}}
+    </li>
+    <hr>
+    <h4>Instructions</h4>
+    <p>{{recipe.instructions}}</p>
+</div>
