@@ -32,7 +32,7 @@ public class IngredientDTO {
 
     @Override
     public String toString() {
-        return "IngredientDTO [name=" + name + "]";
+        return "IngredientDTO [name=" + name +"]";
     }
 
 }

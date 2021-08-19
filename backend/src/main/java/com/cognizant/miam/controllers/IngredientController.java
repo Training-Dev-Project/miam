@@ -50,6 +50,7 @@ public class IngredientController {
     List<IngredientDTO> ingredientDTOs = ingredients.stream()
                   .map(ingredient -> modelMapper.map(ingredient, IngredientDTO.class))
                   .collect(Collectors.toList());
+    System.out.println(ingredientDTOs.toString());
     return ingredientDTOs; 
   }
 

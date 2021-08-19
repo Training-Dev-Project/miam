@@ -23,7 +23,8 @@
         <tbody>
         <tr *ngFor="let ingredient of ingredients">
           <td>
-            <img [src]="'assets/images/'+ingredient.name+'.png'" class="mr-2" style="width: 32px; height: 32px;">
+            <!--<img [src]="'assets/images/'+ingredient.name+'.png'" class="mr-2" style="width: 32px; height: 32px;">-->
+              <img [src]="'data:image/png;base64,'+ingredient.image" class="mr-2" style="width: 32px; height: 32px;">
           </td>
           <td>{{ingredient.name}}</td>
           <td>

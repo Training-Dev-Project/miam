@@ -36,9 +36,11 @@ export class ListingIngredientsComponent implements OnInit {
        this.appCtx.setIngredientsObservable(this.ingredients);
     }, error =>{});
   }
+
   openModalIngredient(){
     const modal=this.modalService.open(DialogBoxComponent);
     modal.componentInstance.name= "Ajouter un nouveau ingrédient"
     modal.componentInstance.bodyTemplate = this.ingredientForm; 
   }
+
 }
