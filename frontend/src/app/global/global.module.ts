@@ -10,9 +10,10 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { DropdownFormComponent } from './dropdown-form/dropdown-form.component';
 import { ErrorInputComponent } from './error-input/error-input.component';
 import { FieldEmptyValidator } from '../directives/field-empty-validator.directive';
-import { DecodeErrorMessagePipe } from '../pipes/decode-error-message.pipe'; 
+import { DecodeErrorMessagePipe } from '../pipes/decode-error-message.pipe';
 
 
+import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DecodeErrorMessagePipe } from '../pipes/decode-error-message.pipe';
     DropdownFormComponent,
     ErrorInputComponent,
     FieldEmptyValidator,
-    DecodeErrorMessagePipe
+    DecodeErrorMessagePipe,
+    ImageUploaderComponent
   ],
   imports: [
     CommonModule,
@@ -31,12 +33,13 @@ import { DecodeErrorMessagePipe } from '../pipes/decode-error-message.pipe';
   ],
   exports:[
     CardMenuComponent,
-    AlertComponent ,
+    AlertComponent,
     DialogBoxComponent,
     DropdownFormComponent,
     FieldEmptyValidator,
     ErrorInputComponent,
-    DecodeErrorMessagePipe
+    DecodeErrorMessagePipe,
+    ImageUploaderComponent
   ]
 })
 export class GlobalModule { }

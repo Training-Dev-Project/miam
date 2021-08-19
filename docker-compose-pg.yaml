@@ -1,6 +1,17 @@
 version: "3.3"
 
 services:
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "contact@miam.com"
+      PGADMIN_DEFAULT_PASSWORD: "pgadmin"
+    links:
+      - "postgres:postgres"
+    ports:
+      - "8989:80"
+
   postgres:
     image: postgres:12
     restart: always
