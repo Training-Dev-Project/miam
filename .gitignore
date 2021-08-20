@@ -2,7 +2,8 @@
 
 build
 bin
-
+node_modules
+.project
 # FRONTEND
 
 # compiled output
@@ -18,8 +19,8 @@ bin
 # profiling files
 /frontend/chrome-profiler-events*.json
 /frontend/.vscode
-
-
+/frontend/.project
+/frontend/.classpath
 # BACKEND
 /backend/target
 /backend/miam.iml
@@ -28,7 +29,8 @@ bin
 /backend/.idea
 /backend/bin
 /backend/.vscode
-
+/backend/.project
+/backend/.classpath
 # IDEs and editors
 .idea
 .project
@@ -38,7 +40,5 @@ bin
 .settings/
 *.sublime-workspace
 miam.iml
-.gradle
-gradle
 .vscode
 #

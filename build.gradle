@@ -1,3 +1,15 @@
+plugins {
+  id "org.sonarqube" version "3.3"
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "Training-Dev-Project_miam"
+    property "sonar.organization", "miam-code-quality"
+    property "sonar.host.url", "https://sonarcloud.io"
+  }
+}
+
 task cleanAll(type: Delete) {
     dependsOn(":backend:clean", ":frontend:clean")
     delete 'build'

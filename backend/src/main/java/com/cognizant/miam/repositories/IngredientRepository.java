@@ -10,7 +10,8 @@ import java.util.Set;
 public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
     Long deleteByName(String name);
 
+    Ingredient findByName(String name);
+
     @Query("SELECT i From Ingredient i WHERE i.id IN (:ids)")
     Set<Ingredient> findIngredients(Set<Long> ids);
-
 }

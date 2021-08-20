@@ -42,9 +42,38 @@ body{
    font-weight: bold;
 
 }
+.form-control{
+    display: block;
+    font-size: 1.3rem!important;
+    color: #495057;
+    border: 1px solid #263238!important;
+    border-radius: 0!important;
+}
 
+.form-control:focus {
+    border-color: #263238!important;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(38 50 56 / 30%)!important;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 0px!important;
+    margin-left: 0px!important;
+}
+.col-form-label{
+  font-size: 1.2em!important;
+  color: #263238!important;
+  font-weight: 600!important;
+}
 /***********     Global sccs app            ******/
 
 .title-page{
     font-family: 'Content-font',' Roboto', sans-serif!important;;
+}
+
+.has-errors-input{
+    border-color: red!important;
+    box-shadow: 0 0 0 0.2rem rgb(255 0 0 / 30%)!important;
 }

@@ -12,6 +12,7 @@
            </div>
        </div>
    </div>
+   <div class="delete-error" *ngIf="isUsed"> {{messageError}} </div>
     <table class="table" style="background: white; text-align: center;margin-top:15px">
         <thead>
         <tr style=" text-align: center; color:  #0a2735;border: 0;text-transform: uppercase;">
@@ -23,12 +24,11 @@
         <tbody>
         <tr *ngFor="let ingredient of ingredients">
           <td>
-            <!--<img [src]="'assets/images/'+ingredient.name+'.png'" class="mr-2" style="width: 32px; height: 32px;">-->
-              <img [src]="'data:image/png;base64,'+ingredient.image" class="mr-2" style="width: 32px; height: 32px;">
+            <img [src]="ingredient.image" class="mr-2" style="width: 32px; height: 32px;">
           </td>
           <td>{{ingredient.name}}</td>
           <td>
-              <button type="button" class="btn btn-primary" (click)=deleteById(ingredient.id)>Supprimer</button>
+              <button type="button" class="btn btn-primary" (click)=deleteById(ingredient.id,ingredient.name)>Supprimer</button>
           </td>
         </tr>
         </tbody>

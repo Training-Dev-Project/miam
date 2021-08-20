@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DialogBoxComponent } from '../../global/dialog-box/dialog-box.component'; 
 import { IngredientFormComponent } from '../ingredient-form/ingredient-form.component';
 import { AppContextService } from 'src/app/app.service';
+import { MessageError } from 'src/app/utils/message-error';
 
 @Component({
   selector: 'app-listing-ingredients',
@@ -19,6 +20,8 @@ export class ListingIngredientsComponent implements OnInit {
   
   ingredients: Array<Ingredient> = [];
   faAddressCard = faPlusCircle;
+  isUsed : Boolean = false;
+  messageError: String = ""; 
 
   constructor(private ingredientService: IngredientServiceService, private modalService: NgbModal, private appCtx: AppContextService ) {
   }
@@ -30,16 +33,23 @@ export class ListingIngredientsComponent implements OnInit {
    });
   }
 
-  deleteById(id: number) {
+  deleteById(id: number, name: string) {
   this.ingredientService.onDeleteById(id).subscribe(() => {
+      this.isUsed = false;
        this.ingredients = this.ingredients.filter(i => i.id !== id);
        this.appCtx.setIngredientsObservable(this.ingredients);
-    }, error =>{});
+    }, error =>{ 
+      if(error.error.message === "INGREDIENT_USED"){
+        this.isUsed = true
+        this.messageError = MessageError.INGREDIENT_USED(name)
+      }
+      
+    });
   }
 
   openModalIngredient(){
     const modal=this.modalService.open(DialogBoxComponent);
-    modal.componentInstance.name= "Ajouter un nouveau ingrédient"
+    modal.componentInstance.name= ""
     modal.componentInstance.bodyTemplate = this.ingredientForm; 
   }
 
