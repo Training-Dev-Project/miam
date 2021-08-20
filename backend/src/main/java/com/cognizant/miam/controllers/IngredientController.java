@@ -1,5 +1,6 @@
 package com.cognizant.miam.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import com.cognizant.miam.dto.IngredientDTO;
@@ -35,6 +36,15 @@ public class IngredientController {
     List<IngredientDTO> ingredientDTOs = ingredients.stream()
                   .map(ingredient -> modelMapper.map(ingredient, IngredientDTO.class))
                   .collect(Collectors.toList());
+    return new ResponseEntity<>(ingredientDTOs, HttpStatus.OK);
+  }
+
+  @GetMapping("/{ids}")
+  public ResponseEntity<List<IngredientDTO>> getIngredientsByIds(@PathVariable ("ids") ArrayList<Long> ids){
+    List<Ingredient> ingredients = ingredientService.findAllByIds(ids);
+    List<IngredientDTO> ingredientDTOs = ingredients.stream()
+            .map(ingredient -> modelMapper.map(ingredient, IngredientDTO.class))
+            .collect(Collectors.toList());
     return new ResponseEntity<>(ingredientDTOs, HttpStatus.OK);
   }
 

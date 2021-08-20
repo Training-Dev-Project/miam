@@ -10,6 +10,7 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import { RecipePageComponent } from './recipe-page/recipe-page.component'; 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DetailedRecipeComponent } from './detailed-recipe/detailed-recipe.component';
 
 
 
@@ -18,7 +19,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ListRecipesComponent,
     RecipeComponent,
     RecipeFormComponent,
-    RecipePageComponent
+    RecipePageComponent,
+    DetailedRecipeComponent
   ],
   imports: [
     CommonModule,

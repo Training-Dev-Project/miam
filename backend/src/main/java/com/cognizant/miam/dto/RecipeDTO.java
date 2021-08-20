@@ -62,6 +62,7 @@ public class RecipeDTO {
         private long id;
         private String name;
         private String instructions;
+        private Map<Long, Double> ingredients;
 
         private Builder() {
         }
@@ -85,11 +86,17 @@ public class RecipeDTO {
             return this;
         }
 
+        public Builder setIngredients(Map<Long, Double> ingredients) {
+            this.ingredients = ingredients;
+            return this;
+        }
+
         public RecipeDTO build() {
             RecipeDTO recipe = new RecipeDTO();
             recipe.setId(this.id);
             recipe.setName(this.name);
             recipe.setInstructions(this.instructions);
+            recipe.setIngredients(this.ingredients);
             return recipe;
         }
     }

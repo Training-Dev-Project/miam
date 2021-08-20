@@ -1,0 +1,11 @@
+<h2>{{recipe.name}}</h2>
+<hr>
+<div class="scrollable">
+    <h4>Ingrédients</h4>
+    <li *ngFor="let ingredient of ingredients | keyvalue">
+        {{ingredient.key}}: {{ingredient.value}}
+    </li>
+    <hr>
+    <h4>Instructions</h4>
+    <p>{{recipe.instructions}}</p>
+</div>

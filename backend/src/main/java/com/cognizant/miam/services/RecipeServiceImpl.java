@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -54,13 +55,25 @@ public class RecipeServiceImpl implements RecipeService {
         List<RecipeDTO> recipeDTOS = new ArrayList<>();
         try {
             List<Recipe> recipes = recipeRepository.findAll();
+            List<RecipeIngredient> recipeIngredients = recipeIngredientRepository.findAll();
 
             recipeDTOS = recipes.stream()
                     .map(recipe -> {
+                        HashMap<Long, Double> ingredients = new HashMap<>();
+
+                        recipeIngredients.stream().
+                                filter(recipeIngredient -> recipeIngredient.getRecipe().getId() == recipe.getId())
+                                .forEach(recipeIngredient -> {
+                                    ingredients.put(recipeIngredient.getIngredient().getId(),
+                                            recipeIngredient.getQuantity());
+                                });
+
                                 return RecipeDTO.Builder.newInstance()
                                         .setId(recipe.getId())
                                         .setInstructions(recipe.getInstructions())
-                                        .setName(recipe.getName()).build();
+                                        .setName(recipe.getName())
+                                        .setIngredients(ingredients)
+                                        .build();
                             }
                     )
                     .collect(Collectors.toList());
