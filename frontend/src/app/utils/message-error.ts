@@ -9,4 +9,10 @@ export class MessageError {
     static INGREDIENT_ALREADY_EXISTS = (name: string ):string => {
             return "L’ingrédient "+ name +" existe déjà."
     }
+
+    static MAXIMUM_IMAGE_SIZE = 100;
+
+    static IMAGE_SIZE_EXCEEDED = (max_size: number): string => {
+        return "The image must not exceed the size : 100"
+    }
 }

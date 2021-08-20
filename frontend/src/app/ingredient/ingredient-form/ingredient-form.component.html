@@ -26,10 +26,10 @@
                             [fieldEmptyValidator]="'Le champs ingrédient ne peut etre vide.'"
                             [ngClass]="{'has-errors-input': name.invalid && (name.dirty || name.touched)}"
                             #name="ngModel"
-                            >
+                    >
                     <error-input
-                        [control]="name.control"
-                        [type]="'ERROR'"
+                            [control]="name.control"
+                            [type]="'ERROR'"
                     >
                     </error-input>
                 </div>
@@ -38,7 +38,12 @@
             <div class="row" style="padding: 20px">
                 <label for="name" class="col-xs-12 col-sm-4 col-form-label">Image</label>
                 <div class="col-xs-12 col-sm-8">
-                    <input class="form-control" id="image" name="image" type="file" (change)="onFileUpload($event)" accept="image/png">
+                    <input class="form-control" id="image" name="image" type="file" (change)="onFileUpload($event)"
+                           accept="image/png">
+                    <div class="error-messages" *ngIf="hasErrors">
+                        <span class="alert-error">{{ error }}
+                        </span>
+                    </div>
                 </div>
             </div>
 

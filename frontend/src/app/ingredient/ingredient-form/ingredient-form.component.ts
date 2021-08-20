@@ -16,7 +16,8 @@ export class IngredientFormComponent {
     faAddressCard = faFolderOpen;
     ingredients: Array<Ingredient> = [];
     ingredient!: Ingredient;
-    image!: File
+    error: string = ""
+    hasErrors = false
 
     /**
      *
@@ -27,13 +28,11 @@ export class IngredientFormComponent {
         private ingredientService: IngredientServiceService,
         private appCtx: AppContextService
     ) {
-
         this.ingredient = {id: 0, image: "", name: ""}
-
     }
 
     onSubmit(formIngredient: NgForm) {
-        if (formIngredient.valid) {
+        if (formIngredient.valid && !this.hasErrors) {
             this.ingredientService.onSubmitIngredient(this.ingredient).subscribe(response => {
                 this.ingredients = this.appCtx.getIngredientsObservable().getValue();
                 this.ingredients.push(response);
@@ -55,13 +54,17 @@ export class IngredientFormComponent {
 
 
     async onFileUpload(event: Event) {
+        this.hasErrors = false
         const target = (<HTMLInputElement>event.target);
         if (target.files) {
             const file: File = target.files[0];
-            console.log("The size is" + file.size);
+            const imageSize = Math.ceil(file.size/1024);
+            if(imageSize > MessageError.MAXIMUM_IMAGE_SIZE){
+                this.hasErrors = true;
+                this.error = MessageError.IMAGE_SIZE_EXCEEDED(imageSize)
+            }
             const result = await this.toBase64(file).catch(e => { throw Error(e) });
             this.ingredient.image = result as string;
-            console.log("here is the base ==> " + this.ingredient.image);
         }
     }
 
@@ -71,7 +74,6 @@ export class IngredientFormComponent {
             reader.readAsDataURL(file);
             reader.onload = () => resolve(reader.result);
             reader.onerror = error => reject(error);
-            console.log(reader.result)
         })
     }
 }
