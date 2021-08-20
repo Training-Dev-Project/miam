@@ -41,4 +41,5 @@ node_modules
 *.sublime-workspace
 miam.iml
 .vscode
+*.gradle/*
 #

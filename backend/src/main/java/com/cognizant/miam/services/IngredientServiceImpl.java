@@ -59,12 +59,6 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     @Transactional
-    public Long deleteByName(String name) {
-        return ingredientRepository.deleteByName(name);
-    }
-
-    @Override
-    @Transactional
     public void deleteById(long id) {
         ingredientRepository.deleteById(id);
     }
