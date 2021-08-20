@@ -4,7 +4,8 @@
     </div>
     <p *ngIf="alertVisibility">
         <ngb-alert [dismissible]="false">
-            <strong>Supprimée !</strong> La recette <strong>{{ currentDelete }}</strong> a été supprimée de la liste des recettes :) !
+            <strong>Supprimée !</strong> La recette <strong>{{ currentDelete }}</strong> a été supprimée de la liste des
+            recettes :) !
         </ngb-alert>
     </p>
     <div class="row">
@@ -16,29 +17,38 @@
             </div>
         </div>
     </div>
-     <table class="table" style="background: white; text-align: center;margin-top:15px">
-         <thead>
-         <tr style=" text-align: center; color:  #0a2735;border: 0;text-transform: uppercase;">
-           <th>Image</th>
-           <th>Nom recette</th>
-           <th>Action</th>
-         </tr>
-         </thead>
-         <tbody>
-         <tr *ngFor="let recipe of recipes">
-           <td>
-             <img [src]="'assets/images/'+recipe.name+'.png'" class="mr-2" style="width: 32px; height: 32px;">
-           </td>
-           <td>{{recipe.name}}</td>
-           <td>
-               <button type="button" class="btn btn-primary" (click)=deleteById(recipe.id!,recipe.name)>Supprimer</button>
-           </td>
-         </tr>
-         </tbody>
-       </table>
- 
- </div>
- 
- <ng-template #recipeForm>
-     <app-recipe-form></app-recipe-form>
- </ng-template>
+    <table class="table" style="background: white; text-align: center;margin-top:15px">
+        <thead>
+            <tr style=" text-align: center; color:  #0a2735;border: 0;text-transform: uppercase;">
+                <th></th>
+                <th>recette</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let recipe of recipes">
+                <td>
+                    <img [src]="'assets/images/'+recipe.name+'.png'" class="mr-2" style="width: 32px; height: 32px;">
+                </td>
+                <td>
+                    <strong>{{recipe.name}}</strong>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary mr-2"
+                        (click)=openModalDetailedRecipe(recipe)>Détails</button>
+                    <button type="button" class="btn btn-danger"
+                        (click)=deleteById(recipe.id!,recipe.name)>Supprimer</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<ng-template #recipeForm>
+    <app-recipe-form></app-recipe-form>
+</ng-template>
+
+<ng-template #detailedRecipe>
+    <app-detailed-recipe [recipe]="recipe"></app-detailed-recipe>
+</ng-template>

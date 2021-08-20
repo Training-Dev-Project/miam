@@ -1,5 +1,9 @@
 package com.cognizant.miam.services;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import com.cognizant.miam.commons.ErrorCode;
 import com.cognizant.miam.exceptions.ingredients.IngredientException;
 import com.cognizant.miam.models.Ingredient;
@@ -64,5 +68,19 @@ public class IngredientServiceImpl implements IngredientService {
     public void deleteById(long id) {
         ingredientRepository.deleteById(id);
     }
+
+  @Override
+  public List<Ingredient> findAllByIds(ArrayList<Long> ids) { return ingredientRepository.findAllById(ids); }
+
+  /**
+   *
+   * @param name
+   * @return
+   */
+  @Override
+  @Transactional
+  public Long deleteByName(String name) {
+    return ingredientRepository.deleteByName(name);
+  }
 
 }
