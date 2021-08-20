@@ -15,7 +15,7 @@ export class RecipeFormComponent implements OnInit {
   ingredientsFromRecipe : { [name: string] : number; } = {};
   allIngredients: Array<Ingredient> = [];
   recipe : Recipe = {name:"", ingredients:{}};
-  ingredientToAdd: Ingredient = {name: '', id: 0};
+  ingredientToAdd!: Ingredient;
   ingredientToAddQuantity: number = 1;
   
   isValid : boolean = true;

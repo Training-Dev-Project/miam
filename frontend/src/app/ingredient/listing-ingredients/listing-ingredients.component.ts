@@ -46,9 +46,11 @@ export class ListingIngredientsComponent implements OnInit {
       
     });
   }
+
   openModalIngredient(){
     const modal=this.modalService.open(DialogBoxComponent);
     modal.componentInstance.name= ""
     modal.componentInstance.bodyTemplate = this.ingredientForm; 
   }
+
 }
