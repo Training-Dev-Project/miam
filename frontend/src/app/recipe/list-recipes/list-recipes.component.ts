@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe';
 import { RecipeServiceService } from '../recipe-service.service';
-
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-list-recipes',
   templateUrl: './list-recipes.component.html',

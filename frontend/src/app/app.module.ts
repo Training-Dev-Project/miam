@@ -10,11 +10,12 @@ import { GlobalModule } from './global/global.module';
 
 import { AppComponent } from './app.component';
 import { AppContextService } from './app.service';
+import { RegistrationFormComponent } from './registration/registration-form/registration-form.component';
 
 
 @NgModule({
   declarations: [
-   AppComponent
+   AppComponent,
   ],
   imports: [
     AppRoutingModule,
