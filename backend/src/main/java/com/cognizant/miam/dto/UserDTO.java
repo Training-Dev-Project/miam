@@ -1,46 +1,18 @@
-package com.cognizant.miam.models;
+package com.cognizant.miam.dto;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "user")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
-    @Column(name = "name")
-    @NotNull
+public class UserDTO {
     private String name;
-
-    @Column(name = "email")
-    @NotNull
     private String email;
-
-    @Column(name = "password")
-    @NotNull
     private String password;
 
-    public User() {
+    public UserDTO() {
     }
 
-    public User(Long id, String name, String email, String password) {
-        this.id = id;
+    public UserDTO(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
-    }
-
-    public User(String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getName() {
@@ -51,8 +23,8 @@ public class User {
         return email;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getPassword() {
+        return password;
     }
 
     public void setName(String name) {
@@ -66,6 +38,7 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
 
     public static class Builder {
         private String name;
@@ -94,8 +67,8 @@ public class User {
             return this;
         }
 
-        public User build() {
-            User user = new User();
+        public UserDTO build() {
+            UserDTO user = new UserDTO();
             user.setEmail(this.email);
             user.setName(this.name);
             user.setPassword(this.password);
@@ -104,4 +77,5 @@ public class User {
 
 
     }
+
 }
