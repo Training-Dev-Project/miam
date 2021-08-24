@@ -7,9 +7,9 @@
                     type="text"
                     class="form-control"
                     name="name"
-                    id="user-name"
-                    aria-describedby="nom de l'utilisateur"
+                    id="name"
                     required
+                    placeholder="nom de l'utilisateur"
                     pattern = "^[A-Za-z]+(\s+[-]+[A-Za-z]+){0,2}$"
             >
             
@@ -20,8 +20,8 @@
                     [(ngModel)]="user.email"
                     name="email"
                     id="user-email"
-                    aria-describedby="adresse email"
                     required
+                    placeholder="adresse email"
             >
 
             <label for="user-password">Mot de passe:</label>
@@ -32,7 +32,6 @@
                     [(ngModel)]="user.password1"
                     name="password"
                     id="user-password1"
-                    required
             >
             <label for="user-password">Confirmer le mot de passe: </label>
             <input
@@ -43,10 +42,12 @@
                     (ngModelChange)="validatePassword(user.password1, user.password2)"
                     name="password"
                     id="user-password2"
-                    required
             >
         </div>
-        <button type="submit" class="btn btn-primary" (click)="onSubmit()">S'inscrire</button>
+        <a href="#">
+                <button type="submit" class="btn btn-primary">S'inscrire</button>
+        </a>
+        
         <!-- <a routerLink="/list-ingredients" class="btn btn-secondary mx-2">Se Connecter</a> -->
     </form>
 </div>

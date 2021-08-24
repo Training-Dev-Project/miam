@@ -7,9 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppHeaderComponent implements OnInit {
 
-  signin: string = "Se connecter"
-  signup: string = 
-
   constructor() { }
 
   ngOnInit(): void {

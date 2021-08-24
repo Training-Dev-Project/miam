@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistrationForm } from '../../models/registration-form';
+import { RegistrationService } from '../registration.service';
 
 @Component({
   selector: 'app-registration-form',
@@ -8,13 +9,18 @@ import { RegistrationForm } from '../../models/registration-form';
 })
 export class RegistrationFormComponent implements OnInit {
 
-  user: RegistrationForm = {name: "",
-    email:"",
-    password1:"",
-    password2:""
-  }
+  user: RegistrationForm 
+  
 
-  constructor() { }
+  constructor(
+    private registrationService: RegistrationService, 
+  ) { 
+    this.user = {name: "",
+      email:"",
+      password1:"",
+      password2:""
+    }
+  }
 
   ngOnInit(): void {
   }
@@ -25,7 +31,14 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   onSubmit(){
-
+    if(this.validatePassword(this.user.password1, this.user.password2)){
+      this.registrationService.onSubmitRegistrationForm(this.user).subscribe(response =>{
+        if(response.error.code === 'EMAIL_ALREADY_EXISTS'){
+          //formRegistration.valid error A FAIRE + .invalid 
+        }
+        
+      })
+    }
   }
 
 }

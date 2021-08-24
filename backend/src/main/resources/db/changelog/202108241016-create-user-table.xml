@@ -17,9 +17,6 @@ http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
             <column name="password" type="varchar(250)">
                 <constraints unique="false" nullable="false"/>
             </column>
-            <column name="user_role" type="varchar(50)">
-                <constraints unique="false" nullable="false"/>
-            </column>
         </createTable>
         <addAutoIncrement tableName="user" columnName="id" columnDataType="bigint" startWith="1" incrementBy="1"/>
     </changeSet>
