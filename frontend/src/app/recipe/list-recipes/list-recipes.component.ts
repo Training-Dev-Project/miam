@@ -9,7 +9,7 @@ import { Recipe } from 'src/app/models/recipe';
 import { DetailedRecipeComponent } from '../detailed-recipe/detailed-recipe.component';
 import { RecipeFormComponent } from '../recipe-form/recipe-form.component';
 import { RecipeServiceService } from '../recipe-service.service';
-
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-list-recipes',
   templateUrl: './list-recipes.component.html',
