@@ -14,7 +14,8 @@ export class RecipeFormComponent implements OnInit {
 
   ingredientsFromRecipe : { [name: string] : number; } = {};
   allIngredients: Array<Ingredient> = [];
-  recipe : Recipe = {name:"", ingredients:{}};
+  errorMessages: Array<string> = [];
+  recipe : Recipe = {name:"", ingredients:{},peopleNumber:1};
   ingredientToAdd!: Ingredient;
   ingredientToAddQuantity: number = 1;
   
@@ -32,6 +33,7 @@ export class RecipeFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.validateForm(this.recipe)
     if (this.isValid) {
       this.recipeService.saveRecipe(this.recipe).subscribe( response => {
         this.alertVisibility = true;
@@ -41,10 +43,17 @@ export class RecipeFormComponent implements OnInit {
       } );
     } else {
       this.alertVisibility = false;
-      alert("Name is invalid")
+      alert(this.errorMessages[0])
     }
   }
-
+  validateForm(recipe : Recipe) {
+    if (recipe.peopleNumber < 1 || recipe.peopleNumber>30){
+      this.isValid = false;
+      this.errorMessages.push("Nombre de personnes invalid (entre 1 et 30)");
+    }else{
+      this.isValid = true;
+    }
+  }
   addIngredientToRecipe(ingredientToAdd: Ingredient, ingredientToAddQuantity: number){
     this.recipe.ingredients[ingredientToAdd.id!] = ingredientToAddQuantity;
     console.log(this.recipe);

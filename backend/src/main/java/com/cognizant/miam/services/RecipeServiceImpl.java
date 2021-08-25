@@ -1,12 +1,16 @@
 package com.cognizant.miam.services;
 
+import com.cognizant.miam.commons.ErrorCode;
 import com.cognizant.miam.dto.RecipeDTO;
+import com.cognizant.miam.exceptions.ingredients.IngredientException;
+import com.cognizant.miam.exceptions.recipes.RecipeException;
 import com.cognizant.miam.models.Ingredient;
 import com.cognizant.miam.models.Recipe;
 import com.cognizant.miam.models.RecipeIngredient;
 import com.cognizant.miam.repositories.IngredientRepository;
 import com.cognizant.miam.repositories.RecipeIngredientRepository;
 import com.cognizant.miam.repositories.RecipeRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -30,10 +34,20 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public RecipeDTO save(RecipeDTO recipe) {
+        if (recipe.getPeopleNumber()<1 || recipe.getPeopleNumber()>30){
+
+            RecipeException recipeException = new RecipeException("The number of people of the recipe is invalid");
+            recipeException.setErrorCode(ErrorCode.RECIPE_PEOPLE_NUMBER_INVALID);
+            recipeException.setStatus(HttpStatus.BAD_REQUEST);
+            throw recipeException;
+        }
         final Recipe createdRecipe = recipeRepository.save(
                 Recipe.Builder.newInstance()
                         .setInstructions(recipe.getInstructions())
+                        .setPeopleNumber(recipe.getPeopleNumber())
                         .setName(recipe.getName()).build()
+
+
         );
         Map<Long, Ingredient> ingredients = ingredientRepository.findIngredients(recipe.getIngredients().keySet())
                 .stream()
@@ -72,6 +86,7 @@ public class RecipeServiceImpl implements RecipeService {
                                         .setId(recipe.getId())
                                         .setInstructions(recipe.getInstructions())
                                         .setName(recipe.getName())
+                                        .setPeopleNumber(recipe.getPeopleNumber())
                                         .setIngredients(ingredients)
                                         .build();
                             }

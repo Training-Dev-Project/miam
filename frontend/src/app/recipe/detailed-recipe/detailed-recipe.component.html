@@ -1,7 +1,7 @@
 <h2>{{recipe.name}}</h2>
 <hr>
 <div class="scrollable">
-    <h4>Ingrédients</h4>
+    <h4>Ingrédients pour {{recipe.peopleNumber}} personnes</h4>
     <li *ngFor="let ingredient of ingredients | keyvalue">
         {{ingredient.key}}: {{ingredient.value}}
     </li>
