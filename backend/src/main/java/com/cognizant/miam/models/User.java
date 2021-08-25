@@ -1,10 +1,16 @@
 package com.cognizant.miam.models;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "user")
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "`user`")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,31 +19,18 @@ public class User {
 
     @Column(name = "name")
     @NotNull
+    @NotBlank
     private String name;
 
     @Column(name = "email")
     @NotNull
+    @NotBlank
     private String email;
 
     @Column(name = "password")
     @NotNull
+    @NotBlank
     private String password;
-
-    public User() {
-    }
-
-    public User(Long id, String name, String email, String password) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
-
-    public User(String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
 
     public Long getId() {
         return id;

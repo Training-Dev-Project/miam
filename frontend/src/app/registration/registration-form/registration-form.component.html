@@ -1,53 +1,28 @@
 <div class="container">
-    <form>
-        <div class="form-group">
-            <label for="user-email">Nom de l'utilisateur:</label>
-            <input
-                    [(ngModel)]="user.name"
-                    type="text"
-                    class="form-control"
-                    name="name"
-                    id="name"
-                    required
-                    placeholder="nom de l'utilisateur"
-                    pattern = "^[A-Za-z]+(\s+[-]+[A-Za-z]+){0,2}$"
-            >
-            
-            <label for="user-email">Adresse email:</label>
-            <input
-                    type="email"
-                    class="form-control"
-                    [(ngModel)]="user.email"
-                    name="email"
-                    id="user-email"
-                    required
-                    placeholder="adresse email"
-            >
+        <form>
+                <div class="form-group">
+                        <label for="user-name">Nom de l'utilisateur:</label>
+                        <input type="text" id="name" name="name" [(ngModel)]="user.name">
+                        <!--input type="text" [(ngModel)]="user.name" name="name" id="user-name"
+                                placeholder="Nom de l'utilisateur" pattern="^[A-Za-z]+(\s+[-]+[A-Za-z]+){0,2}$"
+                                required>
 
-            <label for="user-password">Mot de passe:</label>
-            <input
-                    type="password"
-                    class="form-control"
-                    minlength="6" maxlength="24"
-                    [(ngModel)]="user.password1"
-                    name="password"
-                    id="user-password1"
-            >
-            <label for="user-password">Confirmer le mot de passe: </label>
-            <input
-                    type="password"
-                    class="form-control"
-                    minlength="6" maxlength="24"
-                    [(ngModel)]="user.password2"
-                    (ngModelChange)="validatePassword(user.password1, user.password2)"
-                    name="password"
-                    id="user-password2"
-            >
-        </div>
-        <a href="#">
-                <button type="submit" class="btn btn-primary">S'inscrire</button>
-        </a>
-        
-        <!-- <a routerLink="/list-ingredients" class="btn btn-secondary mx-2">Se Connecter</a> -->
-    </form>
+                        <label for="user-email">Adresse email:</label>
+                        <input type="text" [(ngModel)]="user.email" name="email" id="user-email"
+                                placeholder="adresse email" required>
+
+                        <label for="user-password1">Mot de passe:</label>
+                        <input type="text" [(ngModel)]="user.password" minlength="6" maxlength="24" name="password1"
+                                id="user-password1">
+
+                        <label for="user-password2">Confirmer le mot de passe: </label>
+                        <input type="text" [(ngModel)]="confirmPassword" minlength="6" maxlength="24" name="password2"
+                                id="user-password2"-->
+                </div>
+                <a href="#">
+                        <button type="submit" class="btn btn-primary">S'inscrire</button>
+                </a>
+
+                <!-- <a routerLink="/list-ingredients" class="btn btn-secondary mx-2">Se Connecter</a> -->
+        </form>
 </div>

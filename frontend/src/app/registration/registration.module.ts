@@ -7,9 +7,8 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 @NgModule({
   declarations: [RegistrationFormComponent],
   imports: [
-    CommonModule, 
-    FormsModule,
-    
+    CommonModule,
+    FormsModule
   ]
 })
 export class RegistrationModule { }

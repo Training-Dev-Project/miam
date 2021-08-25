@@ -57,7 +57,8 @@ public class UserServiceImpl implements UserService {
                 .setName(user.getName())
                 .setEmail(user.getEmail())
                 .setPassword(user.getPassword())
-                .setId(user.getId()).build();}
+                .setId(user.getId())
+                        .build();}
         ).collect(Collectors.toList());
 
         return userDTOS;

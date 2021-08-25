@@ -31,5 +31,7 @@ public class UserController {
     public UserDTO getByEmail(@PathVariable String email) { return userService.findByEmail(email); }
 
     @GetMapping
-    public @ResponseBody List<UserDTO> getAllUsers() { return userService.findAll(); }
+    public @ResponseBody List<UserDTO> getAllUsers() {
+        return userService.findAll();
+    }
 }

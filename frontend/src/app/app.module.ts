@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from './layout/layout.module';
@@ -10,12 +10,11 @@ import { GlobalModule } from './global/global.module';
 
 import { AppComponent } from './app.component';
 import { AppContextService } from './app.service';
-import { RegistrationFormComponent } from './registration/registration-form/registration-form.component';
 
 
 @NgModule({
   declarations: [
-   AppComponent,
+    AppComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -26,7 +25,7 @@ import { RegistrationFormComponent } from './registration/registration-form/regi
     GlobalModule,
     ViewsModule
   ],
-  exports:[
+  exports: [
   ],
   providers: [
     AppContextService
