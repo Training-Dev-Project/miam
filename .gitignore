@@ -1,45 +1,27 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-build
-bin
-node_modules
-.project
-# FRONTEND
-
-# compiled output
-/frontend/dist
-/frontend/tmp
-/frontend/out-tsc
-# Only exists if Bazel was run
-/frontend/bazel-out
-
-# dependencies
-/frontend/node_modules
-/frontend/.idea
-# profiling files
-/frontend/chrome-profiler-events*.json
-/frontend/.vscode
-/frontend/.project
-/frontend/.classpath
-# BACKEND
-/backend/target
-/backend/miam.iml
-/backend/build
-/backend/bin
-/backend/.idea
-/backend/bin
-/backend/.vscode
-/backend/.project
-/backend/.classpath
 # IDEs and editors
 .idea
+miam.iml
 .project
 .classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-miam.iml
 .vscode
-*.gradle/*
-#
+.settings/
+.sublime-workspace
+
+# dependencies
+.gradle
+node_modules
+
+# compiled output
+build
+bin
+dist
+    # FRONTEND
+tmp
+out-tsc
+    # BACKEND
+target
+
+# logs
+*.log
