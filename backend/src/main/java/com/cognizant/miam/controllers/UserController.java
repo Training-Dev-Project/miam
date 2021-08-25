@@ -1,18 +1,15 @@
 package com.cognizant.miam.controllers;
 
-import com.cognizant.miam.dto.RecipeDTO;
 import com.cognizant.miam.dto.UserDTO;
-import com.cognizant.miam.models.User;
 import com.cognizant.miam.services.UserService;
-import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/users")
 public class UserController {
 
     private final UserService userService;
@@ -21,17 +18,24 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
-    public UserDTO addUser(@RequestBody UserDTO userDTO) {
-        var result = userService.register(userDTO);
-        return result;
+    @PostMapping("/register")
+    public UserDTO registerUser(@RequestBody UserDTO userDTO) {
+        try {
+            UserDTO result = userService.register(userDTO);
+            return result;
+        } catch (Exception ex) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "EMAIL_ALREADY_USED");
+        }
     }
 
     @GetMapping("/{email}")
-    public UserDTO getByEmail(@PathVariable String email) { return userService.findByEmail(email); }
+    public UserDTO getByEmail(@PathVariable String email) {
+        return userService.findByEmail(email);
+    }
 
     @GetMapping
-    public @ResponseBody List<UserDTO> getAllUsers() {
+    public @ResponseBody
+    List<UserDTO> getAllUsers() {
         return userService.findAll();
     }
 }

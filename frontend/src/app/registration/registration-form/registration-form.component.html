@@ -1,27 +1,60 @@
 <div class="container">
-        <form>
+        <form #formRegistration="ngForm" (ngSubmit)="onSubmit(formRegistration)">
                 <div class="form-group">
-                        <label for="user-name">Nom de l'utilisateur:</label>
-                        <input type="text" id="name" name="name" [(ngModel)]="user.name">
-                        <!--input type="text" [(ngModel)]="user.name" name="name" id="user-name"
-                                placeholder="Nom de l'utilisateur" pattern="^[A-Za-z]+(\s+[-]+[A-Za-z]+){0,2}$"
-                                required>
-
-                        <label for="user-email">Adresse email:</label>
-                        <input type="text" [(ngModel)]="user.email" name="email" id="user-email"
-                                placeholder="adresse email" required>
-
-                        <label for="user-password1">Mot de passe:</label>
-                        <input type="text" [(ngModel)]="user.password" minlength="6" maxlength="24" name="password1"
-                                id="user-password1">
-
-                        <label for="user-password2">Confirmer le mot de passe: </label>
-                        <input type="text" [(ngModel)]="confirmPassword" minlength="6" maxlength="24" name="password2"
-                                id="user-password2"-->
+                        <label for="name">Nom d'utilisateur</label>
+                        <input 
+                                type="text"
+                                class="form-control"
+                                id="name" 
+                                name="name" 
+                                [(ngModel)]="user.name" 
+                                placeholder="Nom de l'utilisateur" 
+                                pattern="^[A-Za-z]+(\s+[-]+[A-Za-z]+){0,2}$"
+                                required
+                                #name="ngModel"
+                        >
+                        <!-- INPUT ERROR -->
                 </div>
-                <a href="#">
+
+                <div class="form-group">
+                        <label for="email">Adresse e-Mail</label>
+                        <input 
+                                type="text"
+                                class="form-control"
+                                id="email" 
+                                name="email" 
+                                [(ngModel)]="user.email" 
+                                placeholder="Entrer une adresse email" 
+                                required
+                                #name="ngModel"
+                        >
+                        <!-- INPUT ERROR -->
+                </div>
+
+                <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input 
+                                type="text"
+                                class="form-control"
+                                id="password" 
+                                name="password" 
+                                [(ngModel)]="user.password"
+                                required
+                                #name="ngModel"
+                        >
+                        <!-- INPUT ERROR -->
+                </div>
+                <!-- <a href="#">
                         <button type="submit" class="btn btn-primary">S'inscrire</button>
-                </a>
+                </a> -->
+                <p *ngIf="alertVisibility">
+                        <!-- <ngb-alert [dismissible]="false">
+                                Votre compte vient d'être créé ! 
+                        </ngb-alert> -->
+                </p>
+                <div>
+                        <button type="submit" class="btn btn-primary">S'inscrire</button>
+                </div>
 
                 <!-- <a routerLink="/list-ingredients" class="btn btn-secondary mx-2">Se Connecter</a> -->
         </form>
