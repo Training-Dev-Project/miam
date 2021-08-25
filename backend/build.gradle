@@ -1,3 +1,5 @@
+import java.nio.file.Paths
+
 plugins {
     id "org.springframework.boot" version "2.5.3"
     id "io.spring.dependency-management" version "1.0.11.RELEASE"
@@ -12,7 +14,6 @@ ext {
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
-
 
 repositories {
     mavenCentral()
@@ -29,6 +30,8 @@ dependencies {
     implementation 'org.modelmapper:modelmapper:1.1.0'
     implementation("org.liquibase:liquibase-core:3.8.2")
     testImplementation "org.springframework.boot:spring-boot-starter-test:${springVersion}"
+    testImplementation(platform('org.junit:junit-bom:5.7.2'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
 }
 
 processResources {
@@ -36,10 +39,18 @@ processResources {
 }
 
 test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
     finalizedBy jacocoTestReport
 }
 
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacoco/html')
+    }
 }
-
