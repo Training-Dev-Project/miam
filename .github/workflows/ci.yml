@@ -38,15 +38,8 @@ jobs:
             -Dsonar.projectKey=Training-Dev-Project_miam
             -Dsonar.organization=miam-code-quality
 
-      - name: Cache Gradle packages
-        uses: actions/cache@v1
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle
-
       - name: Finish tests
-        run: ./gradlew :backend:test sonarqube --info
+        run: gradle :backend:test sonarqube --info
 
   build:
     needs: test
