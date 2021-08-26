@@ -34,6 +34,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Finish tests
+        with:
+          args: >
+            -Dsonar.projectKey=Training-Dev-Project_miam
+            -Dsonar.organization=miam-code-quality
         run: ./gradlew :backend:test sonarqube --info
 
 
