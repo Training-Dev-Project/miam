@@ -5,6 +5,7 @@ plugins {
     id "io.spring.dependency-management" version "1.0.11.RELEASE"
     id "java"
     id "jacoco"
+    id "org.sonarqube" version "3.3"
     // id "org.liquibase.gradle" version "2.0.4"
 }
 
@@ -49,8 +50,15 @@ test {
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
     reports {
-        xml.required = false
-        csv.required = false
-        html.outputLocation = layout.buildDirectory.dir('jacoco/html')
+        xml.required = true
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.coverage.jacoco.xmlReportPaths", "$projectDir.parentFile.path/build/reports/jacoco/test/jacocoTestReport.xml"
+        property "sonar.projectKey", "Training-Dev-Project_miam"
+        property "sonar.organization", "miam-code-quality"
+        property "sonar.host.url", "https://sonarcloud.io"
     }
 }
