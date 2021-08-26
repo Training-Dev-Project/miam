@@ -12,9 +12,12 @@ import { RegistrationService } from '../registration.service';
 export class RegistrationFormComponent implements OnInit {
 
   user: User;
-  alertVisibility : Boolean = false;
-  loading: boolean = false; 
+  alertVisibility : Boolean
+  isValidFormSubmitted = false; 
   hasErrors: boolean = false;
+  namePattern = "^[A-Za-z]+(\s+[-]+[A-Za-z]+){0,2}$"
+  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"; 
+  messageSubmit: string;
 
   constructor(
     private registrationService: RegistrationService,
@@ -26,33 +29,28 @@ export class RegistrationFormComponent implements OnInit {
       email: "",
       password: ""
     }
+    this.messageSubmit = ""
+    this.alertVisibility = false
   }
 
   ngOnInit(): void {
   }
 
-  onSubmit(formRegistration: NgForm) {
-    if (formRegistration.valid && !this.hasErrors) { // !!! CHANGE HERE 
+  onSubmit(userForm: NgForm) {
+    console.log(userForm)
+    if (userForm.valid) { // !!! CHANGE HERE 
+      this.alertVisibility = true;
       this.registrationService.register(this.user)
         .subscribe(response => {
-          this.alertVisibility = true;
-          if (response.error.code === 'EMAIL_ALREADY_EXISTS') { // !!!! ADD EXCEPTION IN BACKEND
-            //formRegistration.valid error A FAIRE + .invalid 
-            this.alertVisibility = false;
-            alert("L'adresse email déjà utilisé pour un compte utilisateur")
-          }
-
-      }); 
-      // .subscribe(
-      //   data => {
-      //       this.alertService.success('Registration successful', { keepAfterRouteChange: true });
-      //       this.router.navigate(['../login'], { relativeTo: this.route });
-      //   },
-      //   error => {
-      //       this.alertService.error(error);
-      //       this.loading = false;
-      //   });
-
+          
+          this.messageSubmit = "Votre compte vient d'être créé ! "
+          setTimeout( () => {this.router.navigate(['/'])}, 1000)
+      }, error =>{
+        if (error.error.message === 'EMAIL_ALREADY_USED') { 
+          this.messageSubmit = "L'adresse email déjà utilisé pour un compte utilisateur"
+        }
+      });
+      
     }
   }
 

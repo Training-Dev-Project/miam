@@ -1,16 +1,15 @@
 package com.cognizant.miam.services;
 
-import com.cognizant.miam.dto.RecipeDTO;
 import com.cognizant.miam.dto.UserDTO;
-import com.cognizant.miam.models.Recipe;
 import com.cognizant.miam.models.User;
 import com.cognizant.miam.repositories.UserRepository;
-// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -25,6 +24,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO register(UserDTO userDTO) {
+        String password = userDTO.getPassword();
+        // ENCODE
         final User user = userRepository.save(
                 User.Builder.newInstance()
                         .setName(userDTO.getName())
@@ -53,12 +54,13 @@ public class UserServiceImpl implements UserService {
         List<User> users = userRepository.findAll();
 
         userDTOS = users.stream().map(user -> {
-                return UserDTO.Builder.newInstance()
-                .setName(user.getName())
-                .setEmail(user.getEmail())
-                .setPassword(user.getPassword())
-                .setId(user.getId())
-                        .build();}
+                    return UserDTO.Builder.newInstance()
+                            .setName(user.getName())
+                            .setEmail(user.getEmail())
+                            .setPassword(user.getPassword())
+                            .setId(user.getId())
+                            .build();
+                }
         ).collect(Collectors.toList());
 
         return userDTOS;

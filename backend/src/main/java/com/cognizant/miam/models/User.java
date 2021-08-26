@@ -44,7 +44,10 @@ public class User {
         return email;
     }
 
-    public String getPassword() { return password; }
+    public String getPassword() {
+        return password;
+    }
+
 
     public void setId(Long id) {
         this.id = id;

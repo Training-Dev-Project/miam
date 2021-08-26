@@ -10,6 +10,7 @@ import { GlobalModule } from './global/global.module';
 
 import { AppComponent } from './app.component';
 import { AppContextService } from './app.service';
+import { RegistrationModule } from './registration/registration.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AppContextService } from './app.service';
     HttpClientModule,
     LayoutModule,
     GlobalModule,
-    ViewsModule
+    ViewsModule, 
+    RegistrationModule, 
   ],
   exports: [
   ],
