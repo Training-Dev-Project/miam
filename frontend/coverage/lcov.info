@@ -1,5 +1,5 @@
 TN:
-SF:src\app\ingredient\ingredient-service.service.ts
+SF:src/app/ingredient/ingredient-service.service.ts
 FN:14,(anonymous_0)
 FN:18,(anonymous_1)
 FN:25,(anonymous_2)
@@ -32,7 +32,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:src\app\ingredient\ingredient\ingredient.component.html
+SF:src/app/ingredient/ingredient/ingredient.component.html
 FNF:0
 FNH:0
 DA:1,1
@@ -42,7 +42,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:src\app\ingredient\ingredient\ingredient.component.ts
+SF:src/app/ingredient/ingredient/ingredient.component.ts
 FN:14,(anonymous_0)
 FN:17,(anonymous_1)
 FN:20,(anonymous_2)
@@ -71,7 +71,7 @@ BRF:2
 BRH:0
 end_of_record
 TN:
-SF:src\app\recipe\recipe-service.service.ts
+SF:src/app/recipe/recipe-service.service.ts
 FN:14,(anonymous_0)
 FN:17,(anonymous_1)
 FN:21,(anonymous_2)
@@ -98,7 +98,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:src\app\recipe\recipe\recipe.component.html
+SF:src/app/recipe/recipe/recipe.component.html
 FNF:0
 FNH:0
 DA:1,1
@@ -108,7 +108,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:src\app\recipe\recipe\recipe.component.ts
+SF:src/app/recipe/recipe/recipe.component.ts
 FN:14,(anonymous_0)
 FN:16,(anonymous_1)
 FNF:2
@@ -125,7 +125,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:src\app\recipe\recipe-page\recipe-page.component.html
+SF:src/app/recipe/recipe-page/recipe-page.component.html
 FNF:0
 FNH:0
 DA:1,1
@@ -135,7 +135,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:src\app\recipe\recipe-page\recipe-page.component.ts
+SF:src/app/recipe/recipe-page/recipe-page.component.ts
 FN:10,(anonymous_0)
 FN:12,(anonymous_1)
 FNF:2
@@ -150,7 +150,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:src\environments\environment.ts
+SF:src/environments/environment.ts
 FNF:0
 FNH:0
 DA:5,3

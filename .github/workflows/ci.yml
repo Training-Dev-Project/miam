@@ -23,8 +23,8 @@ jobs:
           ignore: master # Ignore exactly matching branch names from convention
           min_length: 15 # Min length of the branch name
           max_length: 80 # Max length of the branch name
-  build:
-    needs: test
+  test:
+    needs: branch-naming-rules
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -51,8 +51,10 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
 
-      - name: Build and analyze
+      - name: tests and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew test sonarqube --info
+        run: |
+          ./gradlew :frontend:test
+          ./gradlew :backend:test
