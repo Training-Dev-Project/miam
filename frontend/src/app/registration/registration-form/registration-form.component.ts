@@ -15,7 +15,7 @@ export class RegistrationFormComponent implements OnInit {
   alertVisibility : Boolean
   isValidFormSubmitted = false; 
   hasErrors: boolean = false;
-  namePattern = "^[A-Za-z]+(\s+[-]+[A-Za-z]+){0,2}$"
+  namePattern = "^[A-Za-z]+(\s+[-]+[A-Za-z]+){0,4}$"
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"; 
   messageSubmit: string;
 

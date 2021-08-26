@@ -12,8 +12,17 @@
                                 [(ngModel)]="user.name" 
                                 placeholder="Nom de l'utilisateur" 
                                 required
+                                namePattern
                                 #name="ngModel"
                         >
+                        <div *ngIf="name.errors  && userForm.submitted && !isValidFormSubmitted" [ngClass] = "'error'"> 
+                                <div *ngIf="name.errors?.required"> 
+                                    Le nom est obligatoire.
+                                </div>
+                                <div *ngIf="name.errors?.namePattern"> 
+                                    Votre nom ne peut contenir de chiffres.
+                                </div>
+                        </div>
                         <!-- INPUT ERROR -->
                 </div>
 
@@ -53,6 +62,11 @@
                                 required
                                 #password="ngModel"
                         >
+                        <div *ngIf="password.errors  && userForm.submitted && !isValidFormSubmitted" [ngClass] = "'error'"> 
+                                <div *ngIf="password.errors?.minlength || password.errors?.maxlength"> 
+                                    Votre mot de passe doit contenir entre 6 et 24 caractères.
+                                </div>
+                        </div> 
                         
                 </div>
                 <div *ngIf="alertVisibility">
