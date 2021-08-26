@@ -9,4 +9,14 @@ task ngBuild(type: YarnTask) {
     dependsOn yarn_install
     args = ['build']
 }
+
 task build( dependsOn: ngBuild ) {}
+
+task ngTest(type: YarnTask){
+    dependsOn yarn_test
+    args = ['test']
+}
+
+task test(dependsOn: ngTest){
+    yarn_test
+}
