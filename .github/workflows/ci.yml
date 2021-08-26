@@ -38,6 +38,9 @@ jobs:
             -Dsonar.projectKey=Training-Dev-Project_miam
             -Dsonar.organization=miam-code-quality
       - name: Finish tests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew :backend:test sonarqube --info
 
 
