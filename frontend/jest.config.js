@@ -17,7 +17,9 @@ module.exports = {
     'src/app/recipe/',
     'src/app/ingredient/',
     '/build'
-  ]/*,
+  ],
+  testResultsProcessor: 'jest-sonar-reporter'
+  /*,
   coverageThreshold: {
     './src/app': {
         //defines the coverage
