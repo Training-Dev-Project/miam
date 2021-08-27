@@ -27,6 +27,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@ng-bootstrap/ng-bootstrap": "10.0.0",
     "bootstrap": "4.1.1",
+    "jest-sonar-reporter": "^2.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

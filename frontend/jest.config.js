@@ -1,4 +1,5 @@
 require('jest-preset-angular/ngcc-jest-processor');
+require('jest-sonar-reporter')
 
 /** @type {import('ts-jest/dist/types').ProjectConfigTsJest} */
 module.exports = {
