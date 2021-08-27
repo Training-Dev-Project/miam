@@ -18,6 +18,7 @@ module.exports = {
   ],
   coverageThreshold: {
     '.src/app': {
+        //defines the coverage wanted for quality gate
         'branches':0
     }
   }
