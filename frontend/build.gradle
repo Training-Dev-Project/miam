@@ -2,6 +2,14 @@ plugins {
     id "com.github.node-gradle.node" version "3.1.0"
 }
 
+apply plugin: "org.sonarqube"
+sonarqube {
+    properties {
+        property "sonar.javascript.lcov.reportPaths", "./coverage/lcov.info"
+        property "sonar.testExecutionReportPaths","./test-report.xml"
+    }
+}
+
 task clean{}
 clean.dependsOn(yarn_run_clean)
 
