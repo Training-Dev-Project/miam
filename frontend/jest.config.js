@@ -14,12 +14,14 @@ module.exports = {
     'src/app/pipes/',
     'src/app/layout/',
     'src/app/views/',
+    'src/app/recipe/',
+    'src/app/ingredient/',
     '/build'
-  ],
+  ]/*,
   coverageThreshold: {
-    '.src/app': {
-        //defines the coverage wanted for quality gate
+    './src/app': {
+        //defines the coverage
         'branches':0
     }
-  }
+  }*/
 };

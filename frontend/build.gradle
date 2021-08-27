@@ -13,10 +13,7 @@ task ngBuild(type: YarnTask) {
 task build( dependsOn: ngBuild ) {}
 
 task ngTest(type: YarnTask){
-    dependsOn yarn_test
     args = ['test']
 }
 
-task test(dependsOn: ngTest){
-    yarn_test
-}
+task test(dependsOn: ngTest){}
