@@ -8,4 +8,5 @@ http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibas
     <include file="/db/changelog/202108091717-create-ingredient-table.xml"/>
     <include file="/db/changelog/202108091724-create-recipe-table.xml"/>
     <include file="/db/changelog/202108101032-create-ingredient-recipe-table.xml"/>
+    <include file="/db/changelog/202108241016-create-user-table.xml"/>
 </databaseChangeLog>
