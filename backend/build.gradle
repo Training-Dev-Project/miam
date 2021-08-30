@@ -1,3 +1,4 @@
+//file:noinspection GroovyUnusedAssignment
 plugins {
     id "org.springframework.boot" version "2.5.3"
     id "io.spring.dependency-management" version "1.0.11.RELEASE"
@@ -7,9 +8,6 @@ plugins {
 
 ext {
     springVersion = "2.5.3"
-    PG_URL = System.getenv("PG_URL")
-    PG_USERNAME = System.getenv("PG_USERNAME")
-    PG_PASSWORD = System.getenv("PG_PASSWORD")
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
