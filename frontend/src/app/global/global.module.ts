@@ -12,6 +12,8 @@ import { ImageUploaderComponent } from './image-uploader/image-uploader.componen
 import { ErrorInputComponent } from './error-input/error-input.component';
 import { FieldEmptyValidator } from '../directives/field-empty-validator.directive';
 import { DecodeErrorMessagePipe } from '../pipes/decode-error-message.pipe';
+import { GroceryListComponent } from './grocery-list/grocery-list.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -23,21 +25,24 @@ import { DecodeErrorMessagePipe } from '../pipes/decode-error-message.pipe';
     ErrorInputComponent,
     FieldEmptyValidator,
     DecodeErrorMessagePipe,
+    GroceryListComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    NgbModule
+    NgbModule, FontAwesomeModule
+
   ],
-  exports:[
-    CardMenuComponent,
-    AlertComponent,
-    DialogBoxComponent,
-    DropdownFormComponent,
-    FieldEmptyValidator,
-    ErrorInputComponent,
-    DecodeErrorMessagePipe,
-    ImageUploaderComponent
-  ]
+    exports: [
+        CardMenuComponent,
+        AlertComponent,
+        DialogBoxComponent,
+        DropdownFormComponent,
+        FieldEmptyValidator,
+        ErrorInputComponent,
+        DecodeErrorMessagePipe,
+        ImageUploaderComponent,
+        GroceryListComponent
+    ]
 })
 export class GlobalModule { }

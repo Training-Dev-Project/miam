@@ -1,0 +1,10 @@
+<div class="grocery-list-component-container">
+
+    <fa-icon (click)="showPopup()" *ngIf="headerMode" [icon]="faShoppingCart" size="2x"> </fa-icon>
+    <div *ngIf="popupVisible" class="grocery-list-cart-popup">
+        <h3>Ingredients</h3>
+        <p>{{groceryList.ingredients}}</p>
+    </div>
+
+
+</div>
