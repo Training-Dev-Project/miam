@@ -12,6 +12,13 @@ ext {
     springVersion = "2.5.3"
 }
 
+apply plugin: "org.sonarqube"
+sonarqube {
+    properties {
+        property "sonar.coverage.jacoco.xmlReportPaths", "./build/reports/jacoco/test/jacocoTestReport.xml"
+    }
+}
+
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
