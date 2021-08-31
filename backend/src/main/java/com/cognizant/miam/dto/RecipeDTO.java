@@ -15,6 +15,7 @@ public class RecipeDTO {
     private String name;
     private String instructions;
     private Map<Long, Double> ingredients;
+    private int peopleNumber;
 
     public long getId() {
         return id;
@@ -48,6 +49,14 @@ public class RecipeDTO {
         this.ingredients = ingredients;
     }
 
+    public int getPeopleNumber() {
+        return peopleNumber;
+    }
+
+    public void setPeopleNumber(int peopleNumber) {
+        this.peopleNumber = peopleNumber;
+    }
+
     @Override
     public String toString() {
         return "RecipeDTO{" +
@@ -63,6 +72,7 @@ public class RecipeDTO {
         private String name;
         private String instructions;
         private Map<Long, Double> ingredients;
+        private int peopleNumber;
 
         private Builder() {
         }
@@ -86,6 +96,12 @@ public class RecipeDTO {
             return this;
         }
 
+        public Builder setPeopleNumber(int peopleNumber) {
+            this.peopleNumber = peopleNumber;
+            return this;
+        }
+
+
         public Builder setIngredients(Map<Long, Double> ingredients) {
             this.ingredients = ingredients;
             return this;
@@ -96,6 +112,7 @@ public class RecipeDTO {
             recipe.setId(this.id);
             recipe.setName(this.name);
             recipe.setInstructions(this.instructions);
+            recipe.setPeopleNumber(peopleNumber);
             recipe.setIngredients(this.ingredients);
             return recipe;
         }

@@ -1,8 +1,10 @@
 package com.cognizant.miam.controllers;
 
 import com.cognizant.miam.dto.RecipeDTO;
+import com.cognizant.miam.exceptions.recipes.RecipeException;
 import com.cognizant.miam.services.RecipeService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -22,11 +24,15 @@ public class RecipeController{
 
     @PostMapping
     public @ResponseBody
-    RecipeDTO addRecipe(@RequestBody RecipeDTO recipe) {
+    ResponseEntity<RecipeDTO> addRecipe(@RequestBody RecipeDTO recipe) {
         System.out.println("Recipe DTO : " + recipe.toString());
-        var result = recipeService.save(recipe);
-        // System.out.println("Recipe : " + recipe.toString());
-        return result;
+        try{
+            return new ResponseEntity<RecipeDTO>(recipeService.save(recipe),HttpStatus.OK);
+        }catch (RecipeException e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<RecipeDTO>(recipe,HttpStatus.BAD_REQUEST);
+        }
+
     }
 
 

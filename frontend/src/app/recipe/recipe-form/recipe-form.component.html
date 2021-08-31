@@ -5,6 +5,10 @@
         <label for="recipeName">Nom de la recette</label>
         <input  [(ngModel)]="recipe.name" name="name" type="text" class="form-control" id="recipeName" placeholder="Nom de la recette">
     </div>
+    <div class="form-group">
+        <label for="recipePeopleNumber">Nombre de personnes</label>
+        <input  [(ngModel)]="recipe.peopleNumber" name="peopleNumber" min="1" max="30"  type="number" class="form-control" id="recipePeopleNumber" placeholder="Nombre de personnes">
+    </div>
     <div class="recipe-add-ingredient-section">
         <div class="form-group">
             <label for="ingredientsSelect">Ajout d'un ingrédient</label>
