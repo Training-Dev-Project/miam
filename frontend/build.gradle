@@ -5,6 +5,7 @@ plugins {
 apply plugin: "org.sonarqube"
 sonarqube {
     properties {
+        property "sonar.projectKey", "Training-Dev-Project_miam"
         property "sonar.javascript.lcov.reportPaths", "./coverage/lcov.info"
         property "sonar.testExecutionReportPaths","./test-report.xml"
     }

@@ -6,19 +6,6 @@ describe('IngredientFormComponent', () => {
   let component: IngredientFormComponent;
   let fixture: ComponentFixture<IngredientFormComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ IngredientFormComponent ]
-    })
-    .compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(IngredientFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
   it('should create', () => {
     expect(component).toBeTruthy();
   });
