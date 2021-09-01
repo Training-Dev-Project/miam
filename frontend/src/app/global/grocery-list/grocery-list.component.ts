@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {faShoppingCart, faTrash} from '@fortawesome/free-solid-svg-icons';
 import {GroceryList} from "../../models/grocery-list";
 import {Ingredient} from "../../models/ingredient";
+import {Recipe} from "../../models/recipe";
 
 @Component({
     selector: 'app-grocery-list',
@@ -19,6 +20,12 @@ export class GroceryListComponent implements OnInit {
     sessionStorageKey = "GroceryList-" + new Date().getDate() + "/" + new Date().getMonth()
 
     addIngredient(ingredient: Ingredient, quantity: number) {
+        this.groceryList.ingredients.push({ingredient, quantity})
+        this.saveGrocerySession()
+    }
+
+    addDish(recipe: Recipe, quantity: number) {
+        this.groceryList.dishes.push({recipe, quantity})
         this.saveGrocerySession()
     }
 
@@ -52,7 +59,7 @@ export class GroceryListComponent implements OnInit {
         this.getGrocerySession()
         let ingredient = {id: 1, name: "banane", image: ""}
         let recipe = {name: "tarte a la banane", ingredients: {2: 2}, peopleNumber: 2}
-        this.groceryList.ingredients.push({ingredient, quantity: 3})
-        this.groceryList.dishes.push({recipe, quantity: 2})
+        this.addIngredient(ingredient,1)
+        this.addDish(recipe,2)
     }
 }
