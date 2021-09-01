@@ -1,0 +1,27 @@
+.grocery-list-component-container > fa-icon {
+  color: grey;
+  cursor: pointer
+}
+
+.grocery-list-component-container > fa-icon:hover {
+  color: darkgrey;
+}
+
+.grocery-list-component-container > .grocery-list-cart-popup {
+  position: absolute;
+  top: 7em;
+  right: 1em;
+  background: white;
+  border: black 1px solid;
+  border-radius: 4px;
+  padding: 10px;
+}
+.grocery-list-component-container .grocery-list-quantity-button {
+    height: 20px;
+    width: 20px;
+    margin-bottom: 2px;
+    padding: 0px;
+    font-weight: bold;
+    border-radius: 100%;
+    line-height: 16px;
+}
