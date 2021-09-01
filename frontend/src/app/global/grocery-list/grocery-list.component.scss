@@ -1,10 +1,13 @@
-.grocery-list-component-container > fa-icon{
-  color : grey;
+.grocery-list-component-container > fa-icon {
+  color: grey;
   cursor: pointer
 }
 
+.grocery-list-component-container > fa-icon:hover {
+  color: darkgrey;
+}
 
-.grocery-list-component-container > .grocery-list-cart-popup{
+.grocery-list-component-container > .grocery-list-cart-popup {
   position: absolute;
   top: 7em;
   right: 1em;

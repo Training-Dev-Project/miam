@@ -3,9 +3,9 @@ import {Recipe} from "./recipe";
 
 
 export interface GroceryList {
-    id? : number;
+    id?: number;
     name: string;
-    ingredients: Array<{ingredient:Ingredient,quantity:number}>
-    dishes: Array<{recipe:Recipe,quantity:number}>
+    ingredients: Array<{ ingredient: Ingredient, quantity: number }>
+    dishes: Array<{ recipe: Recipe, quantity: number }>
 }
 

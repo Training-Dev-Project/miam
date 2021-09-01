@@ -1,47 +1,58 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import {faShoppingCart, faTrash} from '@fortawesome/free-solid-svg-icons';
 import {GroceryList} from "../../models/grocery-list";
 import {Ingredient} from "../../models/ingredient";
 
-
 @Component({
-  selector: 'app-grocery-list',
-  templateUrl: './grocery-list.component.html',
-  styleUrls: ['./grocery-list.component.scss']
+    selector: 'app-grocery-list',
+    templateUrl: './grocery-list.component.html',
+    styleUrls: ['./grocery-list.component.scss']
 })
 export class GroceryListComponent implements OnInit {
-  faShoppingCart = faShoppingCart
-  @Input() headerMode = true;
-  popupVisible:boolean = false;
-  groceryList: GroceryList ={name:"Ma liste de courses",ingredients:[],dishes: []};
+    faShoppingCart = faShoppingCart
+    faTrash = faTrash
 
-  createGroceryList(){
-    let today = new Date()
-    let localStorageKey = "GroceryList-"+today.getDate()+"/"+today.getMonth()
-    let localGroceryList= localStorage.getItem(localStorageKey)
-    if (!localGroceryList){
-      localStorage.setItem(localStorageKey,JSON.stringify(this.groceryList))
-    }else{
-      let groceryListObject = JSON.parse(localGroceryList)
-      this.groceryList = groceryListObject
+    @Input() headerMode = true
+    popupVisible: boolean = true
+
+    groceryList: GroceryList = {name: "Ma liste de courses", ingredients: [], dishes: []}
+    sessionStorageKey = "GroceryList-" + new Date().getDate() + "/" + new Date().getMonth()
+
+    addIngredient(ingredient: Ingredient, quantity: number) {
+        this.saveGrocerySession()
     }
-  }
-  addIngredient (ingredient : Ingredient,quantity : number){
-  ingredient = {id:1,name:"banane",image:""}
-    this.groceryList.ingredients.push({ingredient,quantity:3})
-    console.log(this.groceryList)
-  }
-  showPopup(){
-    let ingredient = {id:1,name:"banane",image:""}
-    this.addIngredient(ingredient,1)
-    this.popupVisible=!this.popupVisible
 
-  }
+    showPopup() {
+        this.popupVisible = !this.popupVisible
+    }
 
-  constructor() { }
+    emptyList() {
+        this.groceryList.ingredients = []
+        this.groceryList.dishes = []
+        this.saveGrocerySession()
+    }
 
-  ngOnInit(): void {
-    this.createGroceryList()
-  }
+    saveGrocerySession() {
+        sessionStorage.setItem(this.sessionStorageKey, JSON.stringify(this.groceryList))
+    }
 
+    getGrocerySession() {
+        let localGroceryList = sessionStorage.getItem(this.sessionStorageKey)
+        if (!localGroceryList) {
+            this.saveGrocerySession()
+        } else {
+            this.groceryList = JSON.parse(localGroceryList)
+        }
+    }
+
+    constructor() {
+    }
+
+    ngOnInit(): void {
+        this.getGrocerySession()
+        let ingredient = {id: 1, name: "banane", image: ""}
+        let recipe = {name: "tarte a la banane", ingredients: {2: 2}, peopleNumber: 2}
+        this.groceryList.ingredients.push({ingredient, quantity: 3})
+        this.groceryList.dishes.push({recipe, quantity: 2})
+    }
 }

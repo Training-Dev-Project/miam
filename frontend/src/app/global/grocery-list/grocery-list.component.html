@@ -1,9 +1,19 @@
 <div class="grocery-list-component-container">
 
-    <fa-icon (click)="showPopup()" *ngIf="headerMode" [icon]="faShoppingCart" size="2x"> </fa-icon>
+    <fa-icon (click)="showPopup()" *ngIf="headerMode" [icon]="faShoppingCart" size="2x"></fa-icon>
     <div *ngIf="popupVisible" class="grocery-list-cart-popup">
         <h3>Ingredients</h3>
-        <p>{{groceryList.ingredients}}</p>
+        <ul *ngFor="let groceryIngredient of groceryList.ingredients">
+            <li>{{ groceryIngredient.ingredient.name }} ----- {{ groceryIngredient.quantity }}</li>
+        </ul>
+        <h3>Dishes</h3>
+        <ul *ngFor="let groceryDish of groceryList.dishes">
+            <li>{{ groceryDish.recipe.name }} ----- {{ groceryDish.quantity }}</li>
+        </ul>
+        <div id="reset" class="btn btn-danger" (click)="emptyList()">
+            <fa-icon *ngIf="headerMode" [icon]="faTrash"></fa-icon>
+            Vider
+        </div>
     </div>
 
 
