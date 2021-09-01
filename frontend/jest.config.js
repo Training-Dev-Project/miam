@@ -15,6 +15,8 @@ module.exports = {
     'src/app/pipes/',
     'src/app/layout/',
     'src/app/views/',
+      'src/app/ingredient',
+    'src/app/recipe',
     '/build'
   ],
   testResultsProcessor: 'jest-sonar-reporter'
