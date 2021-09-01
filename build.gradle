@@ -4,6 +4,7 @@ plugins {
 
 sonarqube {
   properties {
+    property "sonar.projectKey", "Training-Dev-Project_miam"
     property "sonar.organization", "miam-code-quality"
     property "sonar.host.url", "https://sonarcloud.io"
   }
