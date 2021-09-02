@@ -23,6 +23,8 @@ export class IngredientServiceService {
   }
 
    onGetAllIngredients(): Observable<any>{
+        console.log("LOGGGGGGS");
+        console.log(environment.urlBackend);
         return this.client.get(environment.urlBackend + this.apiPath, {headers : this.defaultHeader});
         //console.log(ingredients);
    }
@@ -36,6 +38,7 @@ export class IngredientServiceService {
    }
 
    onDeleteById(id : number) : Observable<any> {
+        console.log(environment.urlBackend);
         return this.client.delete(environment.urlBackend + this.apiPath + "/delete/" + id, {headers : this.defaultHeader} )
    }
 }

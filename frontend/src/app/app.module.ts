@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from './layout/layout.module';
@@ -15,7 +16,7 @@ import { RegistrationModule } from './registration/registration.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     AppRoutingModule,
@@ -24,13 +25,14 @@ import { RegistrationModule } from './registration/registration.module';
     HttpClientModule,
     LayoutModule,
     GlobalModule,
-    ViewsModule, 
-    RegistrationModule, 
+    ViewsModule,
+    RegistrationModule,
   ],
   exports: [
   ],
   providers: [
-    AppContextService
+    AppContextService,
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })
