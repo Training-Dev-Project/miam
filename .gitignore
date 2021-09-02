@@ -25,6 +25,3 @@ target
 
 # logs
 *.log
-
-# test reports
-frontend/coverage/
