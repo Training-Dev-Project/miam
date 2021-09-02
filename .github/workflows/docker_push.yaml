@@ -1,0 +1,39 @@
+name: Build and push images
+ 
+on:
+  push:
+    branches: [ task/MIAM68/dockerisation ]
+   
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+ 
+ 
+jobs:
+  build-images:
+      runs-on: ubuntu-latest
+      
+      steps:
+      # Log into github registry    
+      - name: Log into registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin  
+      # Check out the repo    
+      - name: Checkout
+        uses: actions/checkout@v2
+      ###### Generate backend jar
+      - name: move to backend
+        run: cd backend
+      # gradle jar
+      - name: Generate gradle jar
+        run: gradle clean build
+      # gradle jar
+      - name: move back
+        run: cd ..
+      # Build the images    
+      - name: Build the docker-compose stack  
+        run: docker-compose build
+      # List images
+      - name: List images
+        run: docker images
+      # Push images
+      - name: Push images
+        run: docker-compose push --ignore-push-failures
