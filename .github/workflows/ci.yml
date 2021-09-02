@@ -32,19 +32,16 @@ jobs:
         with:
             # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
+
       - name: Cache Gradle packages
         uses: actions/cache@v1
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
-      - name: Test backend
-        run: ./gradlew :backend:test sonarqube
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      - name: Test frontend
-        run: ./gradlew :frontend:test sonarqube
+
+      - name: Test
+        run: ./gradlew test sonarqube
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

@@ -11,7 +11,13 @@ module.exports = {
     },
   },
   testPathIgnorePatterns: [
-    '/build'
+    '/build',
+      'src/app/global',
+    'src/app/ingredient',
+    'src/app/layout',
+    'src/app/recipe',
+    'src/app/views',
+
   ],
   testResultsProcessor: 'jest-sonar-reporter'
   /*,
