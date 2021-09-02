@@ -4,8 +4,8 @@ plugins {
 
 sonarqube {
     properties {
-        property "sonar.javascript.lcov.reportPaths", "./coverage/lcov.info"
-        property "sonar.testExecutionReportPaths","./test-report.xml"
+        property "sonar.javascript.lcov.reportPaths", "frontend/coverage/lcov.info"
+        property "sonar.testExecutionReportPaths","frontend/test-report.xml"
         property "sonar.sources", "./src"
     }
 }
