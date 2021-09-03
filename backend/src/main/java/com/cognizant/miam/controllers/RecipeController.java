@@ -26,7 +26,7 @@ public class RecipeController{
 
     @PostMapping
     public @ResponseBody ResponseEntity<RecipeDTO> addRecipe(@RequestBody RecipeDTO recipe) {
-        logger.info(String.format("Recipe DTO : %s%n", recipe.toString()));
+        logger.info("Recipe DTO added");
         try{
             return new ResponseEntity<>(recipeService.save(recipe),HttpStatus.OK);
         }catch (RecipeException e){
