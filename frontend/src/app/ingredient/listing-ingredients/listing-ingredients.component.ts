@@ -8,6 +8,7 @@ import { DialogBoxComponent } from '../../global/dialog-box/dialog-box.component
 import { IngredientFormComponent } from '../ingredient-form/ingredient-form.component';
 import { AppContextService } from 'src/app/app.service';
 import { MessageError } from 'src/app/utils/message-error';
+import { DataManagementService } from 'src/app/services/data-management.service';
 
 @Component({
   selector: 'app-listing-ingredients',
@@ -17,13 +18,22 @@ import { MessageError } from 'src/app/utils/message-error';
 export class ListingIngredientsComponent implements OnInit {
   @ViewChild('ingredientForm')
   private ingredientForm!: TemplateRef<IngredientFormComponent>;
+  @ViewChild('addIngredientTemplate')
+  private addIngredientTemplate!: TemplateRef<any>;
   
   ingredients: Array<Ingredient> = [];
+  currentIngredient!: Ingredient;
   faAddressCard = faPlusCircle;
   isUsed : Boolean = false;
   messageError: String = ""; 
+  quantity = 1;
 
-  constructor(private ingredientService: IngredientServiceService, private modalService: NgbModal, private appCtx: AppContextService ) {
+  constructor(
+    private ingredientService: IngredientServiceService, 
+    private modalService: NgbModal, 
+    private appCtx: AppContextService,
+    private datas: DataManagementService) 
+    {
   }
 
   ngOnInit(): void {
@@ -47,10 +57,23 @@ export class ListingIngredientsComponent implements OnInit {
     });
   }
 
+  addIngredient(ingredient:Ingredient){
+    this.currentIngredient = ingredient;
+    const modal = this.modalService.open(DialogBoxComponent);
+    modal.componentInstance.name = this.currentIngredient.name;
+    modal.componentInstance.bodyTemplate = this.addIngredientTemplate;
+  }
+
+
   openModalIngredient(){
     const modal=this.modalService.open(DialogBoxComponent);
     modal.componentInstance.name= ""
     modal.componentInstance.bodyTemplate = this.ingredientForm; 
+  }
+
+  submit(){
+    this.datas.create({ quantity: this.quantity, ingredient: this.currentIngredient}, 'ingredients');
+    this.modalService.dismissAll();
   }
 
 }
