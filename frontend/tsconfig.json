@@ -20,7 +20,8 @@
       "es2018",
       "dom"
     ],
-    "types": [ "jest" ]
+    "types": [ "jest" ],
+    //"esModuleInterop": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
