@@ -8,6 +8,7 @@ import { Recipe } from './models/recipe';
 export class AppContextService { 
   private ingredients = new BehaviorSubject<Ingredient[]>([]);
   private recipes = new BehaviorSubject<Recipe[]>([]);
+  private datasManagement= new Map<string, any>();
 
   getIngredientsObservable(){
     return this.ingredients;
@@ -24,4 +25,13 @@ export class AppContextService {
   setRecipesObservable(recipes:Recipe[]){
      this.recipes.next(recipes)
   }
+
+  getDatasByKey(key:string): any{
+     return JSON.parse(localStorage.getItem(key) as '');
+  }
+
+  setDatasByKey(key:string, data: any): void{
+     localStorage.setItem(key, JSON.stringify(data));
+ }
+
 }

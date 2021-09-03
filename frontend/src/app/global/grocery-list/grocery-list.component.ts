@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {faShoppingCart, faTrash} from '@fortawesome/free-solid-svg-icons';
 import {GroceryList} from "../../models/grocery-list";
 import {Ingredient} from "../../models/ingredient";
@@ -14,6 +14,12 @@ export class GroceryListComponent implements OnInit {
     faTrash = faTrash
 
     @Input() headerMode = true
+
+    @Input() grocery!: GroceryList;
+
+    @Output() private badgeEvent = new EventEmitter<boolean>();
+
+
     popupVisible: boolean = true
 
     groceryList: GroceryList = {name: "Ma liste de courses", ingredients: [], dishes: []}
@@ -28,7 +34,7 @@ export class GroceryListComponent implements OnInit {
         this.groceryList.dishes.push({recipe, quantity})
         this.saveGrocerySession()
     }
-
+ 
     showPopup() {
         this.popupVisible = !this.popupVisible
     }
@@ -50,6 +56,13 @@ export class GroceryListComponent implements OnInit {
         } else {
             this.groceryList = JSON.parse(localGroceryList)
         }
+    }
+
+    clearCache(){
+        this.badgeEvent.emit(true);
+        this.grocery.ingredients = [];
+        this.grocery.dishes = [];
+        localStorage.clear();
     }
 
     constructor() {
