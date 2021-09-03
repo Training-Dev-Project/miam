@@ -1,81 +1,97 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { faShoppingCart, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { GroceryList } from "../../models/grocery-list";
-import { Ingredient } from "../../models/ingredient";
-import { Recipe } from "../../models/recipe";
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {faShoppingCart, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {GroceryList} from "../../models/grocery-list";
+import {Ingredient} from "../../models/ingredient";
+import {Recipe} from "../../models/recipe";
 
 @Component({
-  selector: 'app-grocery-list',
-  templateUrl: './grocery-list.component.html',
-  styleUrls: ['./grocery-list.component.scss']
+    selector: 'app-grocery-list',
+    templateUrl: './grocery-list.component.html',
+    styleUrls: ['./grocery-list.component.scss']
 })
 export class GroceryListComponent implements OnInit {
-  faShoppingCart = faShoppingCart
-  faTrash = faTrash
+    faShoppingCart = faShoppingCart
+    faTrash = faTrash
 
-  @Input() headerMode = true
-  popupVisible: boolean = false
+    @Input() headerMode = true
 
-  groceryList: GroceryList = { name: "Ma liste de courses", ingredients: [], dishes: [] }
-  sessionStorageKey = "GroceryList-" + new Date().getDate() + "/" + new Date().getMonth()
+    @Input() grocery!: GroceryList;
 
-  addIngredient(ingredient: Ingredient, quantity: number) {
-    this.groceryList.ingredients.push({ ingredient, quantity })
-    this.saveGrocerySession()
-  }
+    @Output() private badgeEvent = new EventEmitter<boolean>();
 
-  addDish(recipe: Recipe, quantity: number) {
-    this.groceryList.dishes.push({ recipe, quantity })
-    this.saveGrocerySession()
-  }
+    popupVisible: boolean = false
 
-  showPopup() {
-    this.popupVisible = !this.popupVisible
-  }
+    groceryList: GroceryList = {name: "Ma liste de courses", ingredients: [], dishes: []}
+    sessionStorageKey = "GroceryList-" + new Date().getDate() + "/" + new Date().getMonth()
 
-  emptyList() {
-    this.groceryList.ingredients = []
-    this.groceryList.dishes = []
-    this.saveGrocerySession()
-  }
-
-  removeDish(dish: any) {
-    if (confirm("Êtes-vous sûr de vouloir supprimer ce repas?")) {
-      this.groceryList.dishes.splice(this.groceryList.dishes.indexOf(dish), 1)
+    addIngredient(ingredient: Ingredient, quantity: number) {
+        this.groceryList.ingredients.push({ingredient, quantity})
+        this.saveGrocerySession()
     }
-  }
 
-  minusDishQuantity(dish: any) {
-    if (dish.quantity > 1) {
-      dish.quantity--
-    } else if (dish.quantity == 1) {
-      this.removeDish(dish)
+    addDish(recipe: Recipe, quantity: number) {
+        this.groceryList.dishes.push({recipe, quantity})
+        this.saveGrocerySession()
     }
-    this.saveGrocerySession()
-  }
-
-  plusDishQuantity(dish: any) {
-    dish.quantity++
-    this.saveGrocerySession()
-
-  }
-  saveGrocerySession() {
-    sessionStorage.setItem(this.sessionStorageKey, JSON.stringify(this.groceryList))
-  }
-
-  getGrocerySession() {
-    let localGroceryList = sessionStorage.getItem(this.sessionStorageKey)
-    if (!localGroceryList) {
-      this.saveGrocerySession()
-    } else {
-      this.groceryList = JSON.parse(localGroceryList)
+ 
+    showPopup() {
+        this.popupVisible = !this.popupVisible
     }
-  }
 
-  constructor() {
-  }
+    emptyList() {
+        this.groceryList.ingredients = []
+        this.groceryList.dishes = []
+        this.saveGrocerySession()
+    }
 
-  ngOnInit(): void {
-    this.getGrocerySession()
-  }
+    removeDish(dish: any) {
+        if (confirm("Êtes-vous sûr de vouloir supprimer ce repas?")) {
+           this.groceryList.dishes.splice(this.groceryList.dishes.indexOf(dish), 1)
+         }
+    }
+
+    minusDishQuantity(dish: any) {
+        if (dish.quantity > 1) {
+            dish.quantity--
+        } else if (dish.quantity == 1) {
+            this.removeDish(dish)
+        }
+        this.saveGrocerySession()
+    }
+
+    plusDishQuantity(dish: any) {
+        dish.quantity++
+        this.saveGrocerySession()
+    }
+
+    saveGrocerySession() {
+        sessionStorage.setItem(this.sessionStorageKey, JSON.stringify(this.groceryList))
+    }
+
+    getGrocerySession() {
+        let localGroceryList = sessionStorage.getItem(this.sessionStorageKey)
+        if (!localGroceryList) {
+            this.saveGrocerySession()
+        } else {
+            this.groceryList = JSON.parse(localGroceryList)
+        }
+    }
+
+    clearCache(){
+        this.badgeEvent.emit(true);
+        this.grocery.ingredients = [];
+        this.grocery.dishes = [];
+        localStorage.clear();
+    }
+
+    constructor() {
+    }
+
+    ngOnInit(): void {
+        this.getGrocerySession()
+        let ingredient = {id: 1, name: "banane", image: ""}
+        let recipe = {name: "tarte a la banane", ingredients: {2: 2}, peopleNumber: 2}
+        this.addIngredient(ingredient,1)
+        this.addDish(recipe,2)
+    }
 }

@@ -1,7 +1,10 @@
 <div class="row">
   <div class="col">
-    <div ngbDropdown display="dynamic" class="d-inline-block dropdown-menu-right">
-      <button class="btn btn-outline-primary" id="navbarDropdownForm" ngbDropdownToggle>Connexion</button>
+    <div ngbDropdown display="dynamic" class="d-inline-block dropdown-menu-right"> 
+      <div ngbDropdownToggle>
+        <fa-icon [icon]="faUser" size="2x" style="color:gray;cursor:pointer"></fa-icon>
+        <span style="font-weight:bold;position: relative;top:-4px" class="ml-2">Me connecter</span>
+      </div>
       <div ngbDropdownMenu aria-labelledby="navbarDropdownForm">
         <form class="px-4 py-3">
           <div class="form-group">

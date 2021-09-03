@@ -36,8 +36,10 @@
                 <td>
                     <button type="button" class="btn btn-primary mr-2"
                         (click)=openModalDetailedRecipe(recipe)>Détails</button>
-                    <button type="button" class="btn btn-danger"
+                    <button type="button" class="btn btn-danger mr-2"
                         (click)=deleteById(recipe.id!,recipe.name)>Supprimer</button>
+                    <button type="button" class="btn btn-success"
+                            (click)=addDish(recipe)>Ajouter au panier</button>
                 </td>
             </tr>
         </tbody>
@@ -51,4 +53,19 @@
 
 <ng-template #detailedRecipe>
     <app-detailed-recipe [recipe]="recipe"></app-detailed-recipe>
+</ng-template>
+
+<ng-template #addDishTemplate>
+    <div class="row">
+        <label for="ingredientQuantity"  class="col-md-9 col-xs-9 col-form-label">Nombre de personne(s)*: </label>
+        <div  class="col-md-3 col-xs-3">
+            <input [(ngModel)]="quantity" type="number" name="ingredientToAddQuantity" class="form-control" id="ingredientQuantity">
+        </div>
+    </div>
+    <hr/>
+    <div class="row" style="padding: 5px;">
+        <div class="col-sm-10 offset-md-2 text-right">
+            <button type="button" (click)="submit()" class="btn btn-primary">Confirmer l'ajout au panier</button>
+        </div>
+    </div>
 </ng-template>

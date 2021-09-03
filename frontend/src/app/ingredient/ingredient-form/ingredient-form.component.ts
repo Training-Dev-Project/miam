@@ -6,6 +6,7 @@ import {faFolderOpen} from '@fortawesome/free-solid-svg-icons';
 import {NgForm} from '@angular/forms';
 import {ErrorInputComponent} from 'src/app/global/error-input/error-input.component';
 import {MessageError} from 'src/app/utils/message-error';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-ingredient-form',
@@ -26,6 +27,7 @@ export class IngredientFormComponent {
      */
     constructor(
         private ingredientService: IngredientServiceService,
+        private modalService: NgbModal,
         private appCtx: AppContextService
     ) {
         this.ingredient = {id: 0, image: "", name: ""}
@@ -37,6 +39,7 @@ export class IngredientFormComponent {
                 this.ingredients = this.appCtx.getIngredientsObservable().getValue();
                 this.ingredients.push(response);
                 this.appCtx.setIngredientsObservable(this.ingredients);
+                this.modalService.dismissAll();
             }, response => {
                 if (response.error.code === 'INGREDIENT_ALREADY_EXISTS') {
                     formIngredient.controls['name'].setErrors({

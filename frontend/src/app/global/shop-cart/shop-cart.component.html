@@ -1,0 +1,16 @@
+
+<div class="row">
+    <div class="col">
+      <div ngbDropdown display="dynamic" class="d-inline-block dropdown-menu-right"> 
+        <div ngbDropdownToggle>
+            <fa-icon [icon]="faShoppingBag" size="2x" style="color:gray;cursor:pointer"></fa-icon>
+            <span class="badge badge-danger" style="position:relative; top: -15px;left:-2px" *ngIf="totalDishes!==0">{{totalDishes}}</span>
+            <span style="font-weight:bold; position: relative;top:-4px" class="ml-2">Mon panier</span>
+        </div>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdownForm">
+            <app-grocery-list [grocery]="groceryList" (badgeEvent)="resetBagde($event)"></app-grocery-list>
+        </div>
+      </div>
+    </div>
+</div>
+  

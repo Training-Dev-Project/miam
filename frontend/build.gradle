@@ -2,6 +2,14 @@ plugins {
     id "com.github.node-gradle.node" version "3.1.0"
 }
 
+sonarqube {
+    properties {
+        property "sonar.javascript.lcov.reportPaths", "frontend/coverage/lcov.info"
+        property "sonar.testExecutionReportPaths","frontend/test-report.xml"
+        property "sonar.sources", "./src"
+    }
+}
+
 task clean{}
 clean.dependsOn(yarn_run_clean)
 
@@ -9,4 +17,12 @@ task ngBuild(type: YarnTask) {
     dependsOn yarn_install
     args = ['build']
 }
+
 task build( dependsOn: ngBuild ) {}
+
+task ngTest(type: YarnTask){
+    dependsOn yarn_install
+    args = ['test']
+}
+
+task test(dependsOn: ngTest){}
