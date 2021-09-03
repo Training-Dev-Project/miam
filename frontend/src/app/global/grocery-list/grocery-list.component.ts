@@ -19,8 +19,7 @@ export class GroceryListComponent implements OnInit {
 
     @Output() private badgeEvent = new EventEmitter<boolean>();
 
-
-    popupVisible: boolean = true
+    popupVisible: boolean = false
 
     groceryList: GroceryList = {name: "Ma liste de courses", ingredients: [], dishes: []}
     sessionStorageKey = "GroceryList-" + new Date().getDate() + "/" + new Date().getMonth()
@@ -42,6 +41,26 @@ export class GroceryListComponent implements OnInit {
     emptyList() {
         this.groceryList.ingredients = []
         this.groceryList.dishes = []
+        this.saveGrocerySession()
+    }
+
+    removeDish(dish: any) {
+        if (confirm("Êtes-vous sûr de vouloir supprimer ce repas?")) {
+           this.groceryList.dishes.splice(this.groceryList.dishes.indexOf(dish), 1)
+         }
+    }
+
+    minusDishQuantity(dish: any) {
+        if (dish.quantity > 1) {
+            dish.quantity--
+        } else if (dish.quantity == 1) {
+            this.removeDish(dish)
+        }
+        this.saveGrocerySession()
+    }
+
+    plusDishQuantity(dish: any) {
+        dish.quantity++
         this.saveGrocerySession()
     }
 

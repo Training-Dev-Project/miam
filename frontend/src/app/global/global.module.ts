@@ -33,8 +33,6 @@ import { ShopCartComponent } from './shop-cart/shop-cart.component';
     CommonModule,
     RouterModule,
     NgbModule,
-    FontAwesomeModule,
-    NgbModule,
     FontAwesomeModule
   ],
   exports: [

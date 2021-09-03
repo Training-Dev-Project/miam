@@ -8,4 +8,3 @@ export interface GroceryList {
     ingredients: Array<{ ingredient: Ingredient, quantity: number }>
     dishes: Array<{ recipe: Recipe, quantity: number }>
 }
-
