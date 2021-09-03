@@ -10,7 +10,7 @@ export class RecipeComponent implements OnInit {
 
   // @Input() name : string =  "";
   // @Input() ingredients: { [ingredientId: number] : number } = {};
-  @Input() recipe : Recipe = {name:"", ingredients: {}};
+  @Input() recipe : Recipe = {name:"", ingredients: {},peopleNumber:1};
   constructor() { }
 
   ngOnInit(): void {

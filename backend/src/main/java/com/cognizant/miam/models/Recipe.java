@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.cognizant.miam.dto.RecipeDTO;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -34,6 +35,9 @@ public class Recipe {
   @NotBlank
   @Column(name="instructions")
   private String instructions;
+
+  @Column(name="people_number")
+  private int peopleNumber;
 
   public long getId() {
     return id;
@@ -67,10 +71,19 @@ public class Recipe {
     this.instructions = instructions;
   }
 
+  public int getPeopleNumber() {
+    return peopleNumber;
+  }
+
+  public void setPeopleNumber(int peopleNumber) {
+    this.peopleNumber = peopleNumber;
+  }
   public static class Builder {
+
     private long id;
     private String name;
     private String instructions;
+    private int peopleNumber;
 
     private Builder() {
     }
@@ -99,7 +112,15 @@ public class Recipe {
       recipe.setId(this.id);
       recipe.setName(this.name);
       recipe.setInstructions(this.instructions);
+      recipe.setPeopleNumber(this.peopleNumber);
       return recipe;
     }
+
+    public Builder setPeopleNumber(int peopleNumber){
+
+      this.peopleNumber = peopleNumber;
+      return this;
+    }
+
   }
 }

@@ -5,5 +5,6 @@ export interface Recipe {
     name: string;
     ingredients: { [ingredientId: number] : number };
     instructions? : string;
+    peopleNumber : number;
 }
 
