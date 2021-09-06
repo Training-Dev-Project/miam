@@ -33,7 +33,7 @@ jobs:
       # gradle jar
       - name: Generate gradle jar
         run: gradle clean build
-      # gradle jar
+      # move back
       - name: move back
         run: cd ..
       # Build the images    
