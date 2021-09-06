@@ -11,6 +11,7 @@ on:
 jobs:
   build-images:
       runs-on: ubuntu-latest
+      if: '$CI_COMMIT_BRANCH == "task/MIAM68/dockerisation"'
       
       steps:
       # # Log into github registry    
@@ -43,4 +44,4 @@ jobs:
         run: docker images
       # Push images
       - name: Push images
-        run: docker-compose push --ignore-push-failures
+        run: docker-compose push
