@@ -16,27 +16,24 @@ import { RecipeServiceService } from '../recipe-service.service';
 })
 export class ListRecipesComponent implements OnInit {
 
-  @ViewChild('recipeForm')
-  private recipeForm!: TemplateRef<RecipeFormComponent>;
-
-  @ViewChild('detailedRecipe')
-  private detailedRecipe!: TemplateRef<DetailedRecipeComponent>;
-
-  @ViewChild('addDishTemplate')
-  private addDishTemplate!: TemplateRef<any>;
+  @ViewChild('recipeForm')private recipeForm!: TemplateRef<RecipeFormComponent>;
+  @ViewChild('detailedRecipe')private detailedRecipe!: TemplateRef<DetailedRecipeComponent>;
+  @ViewChild('addDishTemplate')private addDishTemplate!: TemplateRef<any>;
+  @ViewChild('footerTemplate') private footerTemplate!: TemplateRef<any>;
   
   recipe!: Recipe;
   recipes: Array<Recipe> = [];
   groceryList: Array<any>  = [];
   quantity = 1;
   currentRecipe!: Recipe;
+  messageLog = '';
 
   alertVisibility = false;
   currentDelete: string = "";
   faAddressCard = faPlusCircle;
 
   constructor(private recipeService: RecipeServiceService,
-    private ngbModal: NgbModal,
+    public ngbModal: NgbModal,
     private datas: DataManagementService,
     private cdRef:ChangeDetectorRef,
     private appCtx: AppContextService) { }
@@ -72,13 +69,20 @@ export class ListRecipesComponent implements OnInit {
 
   addDish(recipe:Recipe){
     this.currentRecipe = recipe;
+    this.messageLog = '';
     const modal = this.ngbModal.open(DialogBoxComponent);
     modal.componentInstance.name = this.currentRecipe.name;
     modal.componentInstance.bodyTemplate = this.addDishTemplate;
+    modal.componentInstance.footerTemplate= this.footerTemplate;
   }
 
-  submit(){
+submit(){
+    try{
       this.datas.create({ quantity:this.quantity, recipe: this.currentRecipe}, 'dishes');
       this.ngbModal.dismissAll();
+   }
+  catch(e){
+    this.messageLog = e.messageLog();
   }
+}
 }

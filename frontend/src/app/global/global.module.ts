@@ -14,7 +14,8 @@ import { FieldEmptyValidator } from '../directives/field-empty-validator.directi
 import { DecodeErrorMessagePipe } from '../pipes/decode-error-message.pipe';
 import { GroceryListComponent } from './grocery-list/grocery-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ShopCartComponent } from './shop-cart/shop-cart.component'; 
+import { ShopCartComponent } from './shop-cart/shop-cart.component';
+import { NotificationComponent } from './notification/notification.component'; 
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ShopCartComponent } from './shop-cart/shop-cart.component';
     FieldEmptyValidator,
     DecodeErrorMessagePipe,
     GroceryListComponent,
-    ShopCartComponent
+    ShopCartComponent,
+    NotificationComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +47,8 @@ import { ShopCartComponent } from './shop-cart/shop-cart.component';
         DecodeErrorMessagePipe,
         ImageUploaderComponent,
         GroceryListComponent,
-        ShopCartComponent
+        ShopCartComponent,
+        NotificationComponent
  ]
 })
 export class GlobalModule { }

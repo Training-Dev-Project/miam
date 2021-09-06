@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="D:\Cognizant\Projet_Miam\miam\frontend\src\app\app.component.spec.ts">
-    <testCase name="1st tests true is true" duration="2"/>
+  <file path="/home/mmaryvon/Documents/projects/Cognizant/github/miam/frontend/src/app/pipes/decode-error-message.pipe.spec.ts">
+    <testCase name="DecodeErrorMessagePipe create an instance" duration="2"/>
   </file>
-  <file path="D:\Cognizant\Projet_Miam\miam\frontend\src\app\pipes\decode-error-message.pipe.spec.ts">
-    <testCase name="DecodeErrorMessagePipe create an instance" duration="1"/>
+  <file path="/home/mmaryvon/Documents/projects/Cognizant/github/miam/frontend/src/app/app.component.spec.ts">
+    <testCase name="AppComponent Mount component :" duration="1"/>
   </file>
 </testExecutions>

@@ -1,21 +1,8 @@
-import { Injectable } from '@angular/core'; 
-import { GroceryList } from '../models/grocery-list';
-import { Ingredient } from '../models/ingredient';
-import { Recipe } from '../models/recipe';
- 
-export interface RecipeQuantity {
-  recipe: Recipe;
-  quantity: number 
-}
-
-export interface IngredientQuantity {
-  ingredient: Ingredient;
-  quantity: number 
-}
-
-export type ProtoTypeGroceryList = 'dishes' | 'ingredients' | 'name';
-
-export type EntityQuantity = RecipeQuantity | IngredientQuantity
+import { Injectable } from '@angular/core';
+import { ExceptionError } from '../models/error-exception';
+import { GroceryList } from '../models/grocery-list'; 
+import { Entity, EntityQuantity, ProtoTypeGroceryList } from '../types';
+import { MessageError } from '../utils/message-error';
 
 @Injectable({
   providedIn: 'root'
@@ -32,17 +19,104 @@ export class DataManagementService{
     };
   } 
 
-  create<T extends Omit<ProtoTypeGroceryList,'name'>>(element: EntityQuantity, type : T){
+/**
+ * 
+ * @param element 
+ * @param type 
+ */
+  create<T extends Omit<ProtoTypeGroceryList,'name'>>(element: EntityQuantity | any, type : T): void{
     let key = `groceryList_${type}`;
+    let cValue = type as unknown;
+
      if(key){
-       let dishes = [];
-       if(localStorage.getItem(key)){
-          dishes= JSON.parse(localStorage.getItem(key) as '');
-       }
-         dishes.push(element);
-         localStorage.setItem(key,JSON.stringify(dishes));
+      let datas:Array<EntityQuantity> = [];
+
+      if(cValue ==='dishes') cValue = 'recipe';
+      if(cValue ==='ingredients') cValue = 'ingredient';
+
+      if(localStorage.getItem(key)){
+        datas = JSON.parse(localStorage.getItem(key) as '');
+      }
+
+      let index = -1;
+
+      index = datas.findIndex((el:EntityQuantity| any) => el[`${cValue}`].id === element[`${cValue}`].id)
+    
+      if(index !==-1){
+        throw new ExceptionError(MessageError.EXISTING_ELEMENT_ON_CART);
+      }
+      else{
+        datas.push(element);
+      }
+
+      localStorage.setItem(key,JSON.stringify(datas));
      }  
   }
+/**
+ * 
+ * @param element 
+ * @param type 
+ * @param increment 
+ */
+  update<T extends Omit<ProtoTypeGroceryList,'name'>>(element: Entity, type: T , increment=true): void{
+    let key = `groceryList_${type}`;
+    let cValue = type as unknown;
+
+    if(key){
+      let datas:Array<EntityQuantity> = [];
+
+      if(localStorage.getItem(key)){
+         datas= JSON.parse(localStorage.getItem(key) as '');
+      }
+
+      if(cValue ==='dishes') cValue = 'recipe';
+      if(cValue ==='ingredients') cValue = 'ingredient';
+
+      let elmnt = datas.filter((el:any) =>{
+        return(
+          el[`${cValue}`].id === element.id
+        ) 
+      });
+
+      if(increment){
+          elmnt[0].quantity++;
+      }
+      else{
+        elmnt[0].quantity--;
+      }
+      if(elmnt[0].quantity === 0) throw new ExceptionError(MessageError.CONFIRM_MESSAGE);
+
+      localStorage.setItem(key,JSON.stringify(datas));
+    }
+  }
+
+/**
+ * 
+ * @param id 
+ * @param type 
+ */
+  delete<T extends Omit<ProtoTypeGroceryList,'name'>>(element: Entity, type : T): void{
+    let key = `groceryList_${type}`;
+    let cValue = type as unknown;
+
+    if(key){
+      let datas:Array<EntityQuantity> = [];
+
+      if(cValue ==='dishes') cValue = 'recipe';
+      if(cValue ==='ingredients') cValue = 'ingredient';
+
+      if(localStorage.getItem(key)){
+        datas = JSON.parse(localStorage.getItem(key) as '');
+      }
+
+      let index = -1;
+      index = datas.findIndex((el:EntityQuantity| any) => el[`${cValue}`].id === element.id);
+      datas.splice(index, 1);
+      
+      localStorage.setItem(key,JSON.stringify(datas));
+     }
+  }
+
 
   getAll(): GroceryList{
     ['dishes', 'ingredients', 'name'].forEach((el: string)=>{
@@ -54,7 +128,7 @@ export class DataManagementService{
     return this.groceryList;
   }
 
-  countAll():number{
+  countAll(): number{
    let totalArticles:number[] = [], keysTotal = 0;
    ['dishes', 'ingredients'].forEach((el: string)=>{
     let key = `groceryList_${el}`;
@@ -68,5 +142,4 @@ export class DataManagementService{
    }
    return keysTotal;
   }
-
 }
