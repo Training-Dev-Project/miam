@@ -48,6 +48,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   build-images:
+    needs: test
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/task/MIAM68/dockerisation' }}
 
