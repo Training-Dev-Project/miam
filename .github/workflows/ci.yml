@@ -50,7 +50,7 @@ jobs:
   build-images:
     needs: test
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/task/MIAM68/dockerisation' }}
+    if: ${{ github.ref == 'refs/heads/master' }}
 
     steps:
       # # Log into github registry
