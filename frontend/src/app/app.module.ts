@@ -24,8 +24,8 @@ import { RegistrationModule } from './registration/registration.module';
     HttpClientModule,
     LayoutModule,
     GlobalModule,
-    ViewsModule, 
-    RegistrationModule, 
+    ViewsModule,
+    RegistrationModule,
   ],
   exports: [
   ],

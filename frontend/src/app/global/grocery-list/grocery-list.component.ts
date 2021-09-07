@@ -33,7 +33,7 @@ export class GroceryListComponent implements OnInit {
         this.groceryList.dishes.push({recipe, quantity})
         this.saveGrocerySession()
     }
- 
+
     showPopup() {
         this.popupVisible = !this.popupVisible
     }
@@ -89,9 +89,11 @@ export class GroceryListComponent implements OnInit {
 
     ngOnInit(): void {
         this.getGrocerySession()
-        let ingredient = {id: 1, name: "banane", image: ""}
-        let recipe = {name: "tarte a la banane", ingredients: {2: 2}, peopleNumber: 2}
-        this.addIngredient(ingredient,1)
-        this.addDish(recipe,2)
+        if (this.groceryList.dishes.length === 0){
+          let ingredient = {id: 1, name: "banane", image: ""}
+          let recipe = {name: "tarte a la banane", ingredients: {2: 2}, peopleNumber: 2}
+          this.addIngredient(ingredient,1)
+          this.addDish(recipe,2)
+        }
     }
 }
