@@ -1,16 +1,12 @@
 package com.cognizant.miam.configurations;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.core.env.Environment;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
-import java.io.*;
-import java.util.Properties;
 
 @Configuration
 public class DataSourceConfig {
@@ -33,6 +29,7 @@ public class DataSourceConfig {
     @Bean
     @Profile("prod")
     public DataSource getProdDataSource() {
+        System.out.println("Prod");
         dataSourceBuilder.url(System.getenv("PG_URL"));
         dataSourceBuilder.username(System.getenv("PG_USERNAME"));
         dataSourceBuilder.password(System.getenv("PG_PASSWORD"));
