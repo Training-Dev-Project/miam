@@ -9,6 +9,7 @@ on:
       - master
       - 'feature/**'
       - 'fix/**'
+      - 'task/**'
   pull_request:
     branches: [ master ]
 
@@ -45,3 +46,37 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  build-images:
+    needs: test
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/master' }}
+
+    steps:
+      # Check out the repo
+      - name: Checkout
+        uses: actions/checkout@v2
+      # Log into Dockhub repository
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      ###### Generate backend jar
+      - name: move to backend
+        run: cd backend
+      # gradle jar
+      - name: Generate gradle jar
+        run: gradle clean build
+      # move back
+      - name: move back
+        run: cd ..
+      # Build the images
+      - name: Build the docker-compose stack
+        run: docker-compose build
+      # List images
+      - name: List images
+        run: docker images
+      # Push images
+      - name: Push images
+        run: docker-compose push

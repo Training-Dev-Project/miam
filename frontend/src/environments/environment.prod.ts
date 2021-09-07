@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  urlBackend: 'http://localhost:8086'
+  urlBackend: '${BACKEND_URL}'
 };
 

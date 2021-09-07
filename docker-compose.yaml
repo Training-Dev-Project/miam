@@ -1,26 +1,49 @@
 version: "3"
 
 services:
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "contact@miam.com"
+      PGADMIN_DEFAULT_PASSWORD: "pgadmin"
+    links:
+      - "postgres:postgres"
+    ports:
+      - "8989:80"
+  
   postgres:
     image: postgres:12
+    container_name: miam_db
     restart: always
     environment:
       POSTGRES_PASSWORD: "postgres"
       POSTGRES_DB: "miam"
     ports:
-      - "5434:5432"
-
-  frontend:
-    build: ./frontend
-    container_name: miam_frontend
-    expose:
-    - 80
-    restart: unless-stopped
+      - "5433:5432"
 
   backend:
     build: ./backend
-    network_mode: bridge
+    image: miam2021/miam:miam_backend
     container_name: miam_backend
+    links:
+      - "postgres:postgres"
+    environment:
+      PG_URL: "jdbc:postgresql://miam_db:5432/postgres"
+      PG_USERNAME: "postgres"
+      PG_PASSWORD: "postgres"
     ports:
-      - 8086:8080
+      - "8086:8086"
+    restart: unless-stopped
+  
+  frontend:
+    build: ./frontend
+    image: miam2021/miam:miam_frontend
+    container_name: miam_frontend
+    links:
+      - "backend:miam_backend"
+    environment:
+      BACKEND_URL: "http://localhost:8086"
+    ports:
+      - "4200:80"
     restart: unless-stopped
