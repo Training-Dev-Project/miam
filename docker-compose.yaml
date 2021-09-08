@@ -14,7 +14,7 @@ services:
     build: ./frontend
     container_name: miam_frontend
     expose:
-    - 80
+      - 80
     restart: unless-stopped
 
   backend:
