@@ -20,7 +20,9 @@
       "es2018",
       "dom"
     ],
-    "types": [ "jest" ],
+    "types": [ 
+      "jest"
+    ],
     //"esModuleInterop": true
   },
   "angularCompilerOptions": {
