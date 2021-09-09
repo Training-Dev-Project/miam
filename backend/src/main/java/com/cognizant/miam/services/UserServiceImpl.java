@@ -1,9 +1,12 @@
 package com.cognizant.miam.services;
 
 import com.cognizant.miam.dto.UserDTO;
+import com.cognizant.miam.jwt.MyUserDetails;
 import com.cognizant.miam.models.User;
 import com.cognizant.miam.repositories.UserRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +17,11 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
 
-	private static final String SECRET = "VERY_GOOD_SECRET_WOW_NOBODY_WILL_EVER_THINK_OF-SUCH_A_LONG_SECRET_WOW_OMG";
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 
 	public UserServiceImpl(UserRepository userRepository) {
-		this.passwordEncoder = new BCryptPasswordEncoder();
+		this.passwordEncoder = NoOpPasswordEncoder.getInstance();
 		this.userRepository = userRepository;
 	}
 
@@ -52,6 +54,7 @@ public class UserServiceImpl implements UserService {
 				.setId(user.getId()).build();
 	}
 
+
 	@Override
 	public List<UserDTO> findAll() {
 		List<UserDTO> userDTOS;
@@ -68,5 +71,10 @@ public class UserServiceImpl implements UserService {
 		).collect(Collectors.toList());
 
 		return userDTOS;
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		return new MyUserDetails(findByEmail(email));
 	}
 }
