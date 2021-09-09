@@ -12,5 +12,6 @@ public interface IngredientService {
   public Optional<Ingredient> findById(long id);
   public Ingredient save(Ingredient ingredient);
   public Long deleteByName(String name);
-  public void deleteById(long id);
+  public void deleteById(long id) throws Exception;
+  public List<Ingredient> findByNameContainingIgnoreCase(String keyword);
 }

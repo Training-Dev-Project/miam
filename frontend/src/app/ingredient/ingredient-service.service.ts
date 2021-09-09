@@ -41,4 +41,9 @@ export class IngredientServiceService {
         console.log(environment.urlBackend);
         return this.client.delete(environment.urlBackend + this.apiPath + "/delete/" + id, {headers : this.defaultHeader} )
    }
+
+   onGetSearchedIngredients(name: String): Observable<any>{
+    return this.client.get(environment.urlBackend + this.apiPath + "/find?keyword=" + name, {headers : this.defaultHeader})
+}
+
 }

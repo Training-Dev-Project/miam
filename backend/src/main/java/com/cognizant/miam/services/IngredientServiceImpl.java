@@ -77,4 +77,9 @@ public class IngredientServiceImpl implements IngredientService {
     return ingredientRepository.deleteByName(name);
   }
 
+  @Override
+  public List<Ingredient> findByNameContainingIgnoreCase(String keyword) {
+    return ingredientRepository.findByNameContainingIgnoreCase(keyword);
+  }
+
 }
