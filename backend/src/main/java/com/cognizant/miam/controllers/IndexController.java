@@ -4,38 +4,36 @@ import com.cognizant.miam.dto.AuthenticationRequest;
 import com.cognizant.miam.dto.AuthenticationResponse;
 import com.cognizant.miam.jwt.TokenManager;
 import com.cognizant.miam.services.UserService;
-import org.springframework.context.annotation.Bean;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
-@Controller
+@RestController
 public class IndexController {
 
 	private final TokenManager tokenManager;
-	private final AuthenticationManager authenticationManager;
 	private final UserService userService;
-	private final WebSecurityConfigurerAdapter webSecurityConfigurerAdapter;
+	private final Logger log = LoggerFactory.getLogger(IndexController.class);
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
-	public IndexController(TokenManager tokenManager, AuthenticationManager authenticationManager, UserService userService, WebSecurityConfigurerAdapter webSecurityConfigurerAdapter) {
+	public IndexController(TokenManager tokenManager, UserService userService) {
 		this.tokenManager = tokenManager;
-		this.authenticationManager = authenticationManager;
 		this.userService = userService;
-		this.webSecurityConfigurerAdapter = webSecurityConfigurerAdapter;
 	}
 
-	@Bean
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return webSecurityConfigurerAdapter.authenticationManagerBean();
-	}
 
 	@GetMapping(value = "/")
 	public String index() {
@@ -49,7 +47,10 @@ public class IndexController {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
 					authenticationRequest.getUsername(), authenticationRequest.getPassword()));
 		} catch (BadCredentialsException e) {
-			throw new BadCredentialsException("Incorrect Username and/or Password", e);
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "BAD CREDENTIALS");
+		} catch (Exception e) {
+			log.warn("The thrown exception was of type " + e.getClass());
+			log.warn("The thrown exception message is : " + e.getMessage());
 		}
 		final UserDetails userDetails = userService.loadUserByUsername(authenticationRequest.getUsername());
 

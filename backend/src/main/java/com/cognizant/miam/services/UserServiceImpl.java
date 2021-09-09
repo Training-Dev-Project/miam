@@ -6,8 +6,7 @@ import com.cognizant.miam.models.User;
 import com.cognizant.miam.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,10 +17,10 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
-	private final PasswordEncoder passwordEncoder;
+	private final BCryptPasswordEncoder passwordEncoder;
 
 	public UserServiceImpl(UserRepository userRepository) {
-		this.passwordEncoder = NoOpPasswordEncoder.getInstance();
+		this.passwordEncoder = new BCryptPasswordEncoder();
 		this.userRepository = userRepository;
 	}
 
@@ -29,7 +28,7 @@ public class UserServiceImpl implements UserService {
 	public UserDTO register(UserDTO userDTO) {
 
 		// ENCODE
-		String password = passwordEncoder.encode(userDTO.getPassword());
+		String password = "{bcrypt}" + passwordEncoder.encode(userDTO.getPassword());
 
 		//Save
 		final User user = userRepository.save(
@@ -71,6 +70,11 @@ public class UserServiceImpl implements UserService {
 		).collect(Collectors.toList());
 
 		return userDTOS;
+	}
+
+	@Override
+	public void deleteUsers() {
+		userRepository.deleteAll();
 	}
 
 	@Override

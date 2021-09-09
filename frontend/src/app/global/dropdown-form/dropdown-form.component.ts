@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
+import { TokenStorageService } from '../../services/token-storage.service';
 
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,29 +11,29 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./dropdown-form.component.scss']
 })
 export class DropdownFormComponent implements OnInit {
-  credentials = {
-    email: 'b@t.man',
-    password: 'password'
-  }
+
   invalidLogin = false
   faUser = faUser;
+  email = "";
+  password = "";
 
-  constructor(private router: Router, public loginService: AuthenticationService) { }
+  constructor(private router: Router,
+    public loginService: AuthenticationService,
+    public tks: TokenStorageService) { }
 
   ngOnInit() {
   }
 
   checkLogin() {
-    if (this.loginService.authenticate(this.credentials.email, this.credentials.password)
-    ) {
-      this.invalidLogin = false
-    } else
-      this.invalidLogin = true
+    this.loginService.authenticate(this.email, this.password).subscribe((data) => {
+      this.tks.saveToken(data.jwt)
+    })
   }
 
   logOut(){
     this.loginService.logOut()
     this.router.navigate(["/"])
+    console.log(this.tks.getToken())
   }
 
   register() {
