@@ -19,7 +19,7 @@ public class TokenManager implements Serializable {
 	 *
 	 */
 	private static final long serialVersionUID = 7008375124389347049L;
-	private final String jwtSecret = "VERY_GOOD_SECRET_WOW_NOBODY_WILL_EVER_THINK_OF_SUCH_A_LONG_SECRET_WOW_OMG";
+	private static final String jwtSecret = "VERY_GOOD_SECRET_WOW_NOBODY_WILL_EVER_THINK_OF_SUCH_A_LONG_SECRET_WOW_OMG";
 
 	public String generateJwtToken(UserDetails userDetails) {
 		Map<String, Object> claims = new HashMap<>();

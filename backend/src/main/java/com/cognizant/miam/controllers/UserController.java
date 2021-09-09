@@ -12,30 +12,35 @@ import java.util.List;
 @RequestMapping(value = "/users")
 public class UserController {
 
-    private final UserService userService;
+	private final UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
 
-    @PostMapping("/register")
-    public UserDTO registerUser(@RequestBody UserDTO userDTO) {
-        try {
-            UserDTO result = userService.register(userDTO);
-            return result;
-        } catch (Exception ex) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "EMAIL_ALREADY_USED");
-        }
-    }
+	@PostMapping("/register")
+	public UserDTO registerUser(@RequestBody UserDTO userDTO) {
+		try {
+			UserDTO result = userService.register(userDTO);
+			return result;
+		} catch (Exception ex) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "EMAIL_ALREADY_USED");
+		}
+	}
 
-    @GetMapping("/{email}")
-    public UserDTO getByEmail(@PathVariable String email) {
-        return userService.findByEmail(email);
-    }
+	@GetMapping("/{email}")
+	public UserDTO getByEmail(@PathVariable String email) {
+		return userService.findByEmail(email);
+	}
 
-    @GetMapping
-    public @ResponseBody
-    List<UserDTO> getAllUsers() {
-        return userService.findAll();
-    }
+	@GetMapping
+	public @ResponseBody
+	List<UserDTO> getAllUsers() {
+		return userService.findAll();
+	}
+
+	@DeleteMapping
+	void deleteAllUsers() {
+		userService.deleteUsers();
+	}
 }

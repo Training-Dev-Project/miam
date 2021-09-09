@@ -10,6 +10,8 @@ import { GlobalModule } from './global/global.module';
 
 import { AppComponent } from './app.component';
 import { AppContextService } from './app.service';
+import { AuthenticationService } from './services/authentication.service';
+import { TokenStorageService } from './services/token-storage.service';
 import { RegistrationModule } from './registration/registration.module';
 
 
@@ -30,7 +32,9 @@ import { RegistrationModule } from './registration/registration.module';
   exports: [
   ],
   providers: [
-    AppContextService
+    AppContextService,
+    AuthenticationService,
+    TokenStorageService
   ],
   bootstrap: [AppComponent]
 })

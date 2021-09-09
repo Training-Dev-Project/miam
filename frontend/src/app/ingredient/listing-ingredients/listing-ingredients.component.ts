@@ -1,10 +1,10 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Ingredient } from 'src/app/models/ingredient';
 import { IngredientServiceService } from '../ingredient-service.service';
- 
+
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DialogBoxComponent } from '../../global/dialog-box/dialog-box.component'; 
+import { DialogBoxComponent } from '../../global/dialog-box/dialog-box.component';
 import { IngredientFormComponent } from '../ingredient-form/ingredient-form.component';
 import { AppContextService } from 'src/app/app.service';
 import { MessageError } from 'src/app/utils/message-error';
@@ -20,44 +20,43 @@ export class ListingIngredientsComponent implements OnInit {
   private ingredientForm!: TemplateRef<IngredientFormComponent>;
   @ViewChild('addIngredientTemplate')
   private addIngredientTemplate!: TemplateRef<any>;
-  
+
   ingredients: Array<Ingredient> = [];
   currentIngredient!: Ingredient;
   faAddressCard = faPlusCircle;
-  isUsed : Boolean = false;
-  messageError: String = ""; 
+  isUsed: Boolean = false;
+  messageError: String = "";
   quantity = 1;
 
   constructor(
-    private ingredientService: IngredientServiceService, 
-    private modalService: NgbModal, 
+    private ingredientService: IngredientServiceService,
+    private modalService: NgbModal,
     private appCtx: AppContextService,
-    private datas: DataManagementService) 
-    {
+    private datas: DataManagementService) {
   }
 
   ngOnInit(): void {
-   this.ingredientService.onGetAllIngredients().subscribe(data => {
+    this.ingredientService.onGetAllIngredients().subscribe(data => {
       this.ingredients = data;
       this.appCtx.setIngredientsObservable(this.ingredients);
-   });
-  }
-
-  deleteById(id: number, name: string) {
-  this.ingredientService.onDeleteById(id).subscribe(() => {
-      this.isUsed = false;
-       this.ingredients = this.ingredients.filter(i => i.id !== id);
-       this.appCtx.setIngredientsObservable(this.ingredients);
-    }, error =>{ 
-      if(error.error.message === "INGREDIENT_USED"){
-        this.isUsed = true
-        this.messageError = MessageError.INGREDIENT_USED(name)
-      }
-      
     });
   }
 
-  addIngredient(ingredient:Ingredient){
+  deleteById(id: number, name: string) {
+    this.ingredientService.onDeleteById(id).subscribe(() => {
+      this.isUsed = false;
+      this.ingredients = this.ingredients.filter(i => i.id !== id);
+      this.appCtx.setIngredientsObservable(this.ingredients);
+    }, error => {
+      if (error.error.message === "INGREDIENT_USED") {
+        this.isUsed = true
+        this.messageError = MessageError.INGREDIENT_USED(name)
+      }
+
+    });
+  }
+
+  addIngredient(ingredient: Ingredient) {
     this.currentIngredient = ingredient;
     const modal = this.modalService.open(DialogBoxComponent);
     modal.componentInstance.name = this.currentIngredient.name;
@@ -65,14 +64,14 @@ export class ListingIngredientsComponent implements OnInit {
   }
 
 
-  openModalIngredient(){
-    const modal=this.modalService.open(DialogBoxComponent);
-    modal.componentInstance.name= ""
-    modal.componentInstance.bodyTemplate = this.ingredientForm; 
+  openModalIngredient() {
+    const modal = this.modalService.open(DialogBoxComponent);
+    modal.componentInstance.name = ""
+    modal.componentInstance.bodyTemplate = this.ingredientForm;
   }
 
-  submit(){
-    this.datas.create({ quantity: this.quantity, ingredient: this.currentIngredient}, 'ingredients');
+  submit() {
+    this.datas.create({ quantity: this.quantity, ingredient: this.currentIngredient }, 'ingredients');
     this.modalService.dismissAll();
   }
 
