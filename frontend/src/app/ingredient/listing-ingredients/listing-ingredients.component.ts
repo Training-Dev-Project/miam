@@ -16,21 +16,22 @@ import { DataManagementService } from 'src/app/services/data-management.service'
   styleUrls: ['./listing-ingredients.component.scss']
 })
 export class ListingIngredientsComponent implements OnInit {
-  @ViewChild('ingredientForm')
-  private ingredientForm!: TemplateRef<IngredientFormComponent>;
-  @ViewChild('addIngredientTemplate')
-  private addIngredientTemplate!: TemplateRef<any>;
 
+  @ViewChild('ingredientForm')private ingredientForm!: TemplateRef<IngredientFormComponent>;
+  @ViewChild('addIngredientTemplate')private addIngredientTemplate!: TemplateRef<any>;
+  @ViewChild('footerTemplate') private footerTemplate!: TemplateRef<any>;
+  
   ingredients: Array<Ingredient> = [];
   currentIngredient!: Ingredient;
   faAddressCard = faPlusCircle;
-  isUsed: Boolean = false;
-  messageError: String = "";
+  isUsed : boolean = false;
+  messageError: string = ''; 
   quantity = 1;
+  messageLog = '';
 
   constructor(
-    private ingredientService: IngredientServiceService,
-    private modalService: NgbModal,
+    private ingredientService: IngredientServiceService, 
+    public modalService: NgbModal, 
     private appCtx: AppContextService,
     private datas: DataManagementService) {
   }
@@ -58,9 +59,11 @@ export class ListingIngredientsComponent implements OnInit {
 
   addIngredient(ingredient: Ingredient) {
     this.currentIngredient = ingredient;
+    this.messageLog = '';
     const modal = this.modalService.open(DialogBoxComponent);
     modal.componentInstance.name = this.currentIngredient.name;
     modal.componentInstance.bodyTemplate = this.addIngredientTemplate;
+    modal.componentInstance.footerTemplate= this.footerTemplate;
   }
 
 
@@ -70,9 +73,21 @@ export class ListingIngredientsComponent implements OnInit {
     modal.componentInstance.bodyTemplate = this.ingredientForm;
   }
 
-  submit() {
-    this.datas.create({ quantity: this.quantity, ingredient: this.currentIngredient }, 'ingredients');
-    this.modalService.dismissAll();
+  submit(){
+    try{
+      this.datas.create({ quantity: this.quantity, ingredient: this.currentIngredient}, 'ingredients');
+      this.modalService.dismissAll();
+    }
+  catch(e){
+    this.messageLog = e.messageLog();
   }
-
 }
+
+
+onGetSearchedIngredients(name: String) {
+  this.ingredientService.onGetSearchedIngredients(name).subscribe(data => {
+    this.ingredients = data;
+    this.appCtx.setIngredientsObservable(this.ingredients);
+  })
+}
+  }

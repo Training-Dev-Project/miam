@@ -17,7 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ShopCartComponent } from './shop-cart/shop-cart.component';
 import { LogoutComponent } from './logout/logout.component';
 import { FormsModule } from '@angular/forms';
-
+import { NotificationComponent } from './notification/notification.component'; 
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     DecodeErrorMessagePipe,
     GroceryListComponent,
     ShopCartComponent,
-    LogoutComponent
+    LogoutComponent,
+    NotificationComponent
   ],
   imports: [
     CommonModule,
@@ -50,8 +51,10 @@ import { FormsModule } from '@angular/forms';
         DecodeErrorMessagePipe,
         ImageUploaderComponent,
         GroceryListComponent,
+
         LogoutComponent,
-        ShopCartComponent
+        ShopCartComponent,
+        NotificationComponent
  ]
 })
 export class GlobalModule { }

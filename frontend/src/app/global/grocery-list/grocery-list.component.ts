@@ -1,8 +1,11 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import {faShoppingCart, faTrash} from '@fortawesome/free-solid-svg-icons';
-import {GroceryList} from "../../models/grocery-list";
-import {Ingredient} from "../../models/ingredient";
-import {Recipe} from "../../models/recipe";
+import { Component, Input, OnInit, Output, EventEmitter, ViewChild, TemplateRef } from '@angular/core';
+import * as icons from '@fortawesome/free-solid-svg-icons';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DataManagementService } from 'src/app/services/data-management.service';
+import { Entity } from 'src/app/types';
+import { MessageError } from 'src/app/utils/message-error';
+import { GroceryList } from "../../models/grocery-list";
+import { NotificationComponent } from '../notification/notification.component'; 
 
 @Component({
     selector: 'app-grocery-list',
@@ -10,90 +13,52 @@ import {Recipe} from "../../models/recipe";
     styleUrls: ['./grocery-list.component.scss']
 })
 export class GroceryListComponent implements OnInit {
-    faShoppingCart = faShoppingCart
-    faTrash = faTrash
-
-    @Input() headerMode = true
-
+    
     @Input() grocery!: GroceryList;
+    icons = icons;
 
-    @Output() private badgeEvent = new EventEmitter<boolean>();
-
-    popupVisible: boolean = false
-
-    groceryList: GroceryList = {name: "Ma liste de courses", ingredients: [], dishes: []}
-    sessionStorageKey = "GroceryList-" + new Date().getDate() + "/" + new Date().getMonth()
-
-    addIngredient(ingredient: Ingredient, quantity: number) {
-        this.groceryList.ingredients.push({ingredient, quantity})
-        this.saveGrocerySession()
+    constructor(
+        private datas: DataManagementService,
+        private modalService: NgbModal,
+        ) {
     }
 
-    addDish(recipe: Recipe, quantity: number) {
-        this.groceryList.dishes.push({recipe, quantity})
-        this.saveGrocerySession()
+
+    ngOnInit(): void {
+        this.grocery = this.datas.getAll();
     }
 
-    showPopup() {
-        this.popupVisible = !this.popupVisible
-    }
-
-    emptyList() {
-        this.groceryList.ingredients = []
-        this.groceryList.dishes = []
-        this.saveGrocerySession()
-    }
-
-    removeDish(dish: any) {
-        if (confirm("Êtes-vous sûr de vouloir supprimer ce repas?")) {
-           this.groceryList.dishes.splice(this.groceryList.dishes.indexOf(dish), 1)
-         }
-    }
-
-    minusDishQuantity(dish: any) {
-        if (dish.quantity > 1) {
-            dish.quantity--
-        } else if (dish.quantity == 1) {
-            this.removeDish(dish)
+    delete(element: Entity,  type: string){
+     const modal=this.modalService.open(NotificationComponent);
+     modal.componentInstance.name= element.name;
+     modal.componentInstance.message= MessageError.CONFIRM_MESSAGE
+     modal.result.then((value)=>{
+        if(value=='confirm'){
+            this.datas.delete(element, type);
         }
-        this.saveGrocerySession()
+     }).catch(e =>{});
     }
 
-    plusDishQuantity(dish: any) {
-        dish.quantity++
-        this.saveGrocerySession()
-    }
-
-    saveGrocerySession() {
-        sessionStorage.setItem(this.sessionStorageKey, JSON.stringify(this.groceryList))
-    }
-
-    getGrocerySession() {
-        let localGroceryList = sessionStorage.getItem(this.sessionStorageKey)
-        if (!localGroceryList) {
-            this.saveGrocerySession()
-        } else {
-            this.groceryList = JSON.parse(localGroceryList)
+    update(element: Entity, type: string, increment?: boolean){
+        try{
+            this.datas.update(element, type, increment);
+        }
+        catch(e){
+            const modal=this.modalService.open(NotificationComponent);
+            modal.componentInstance.name= element.name;
+            modal.componentInstance.message= e.messageLog();
+            modal.result.then((value) => {
+               if(value=='confirm'){
+                    this.datas.delete(element, type);
+               }
+            }).catch(e =>{});
         }
     }
-
+    
     clearCache(){
-        this.badgeEvent.emit(true);
         this.grocery.ingredients = [];
         this.grocery.dishes = [];
         localStorage.clear();
-    }
-
-    constructor() {
-    }
-
-    ngOnInit(): void {
-        this.getGrocerySession()
-        if (this.groceryList.dishes.length === 0){
-          let ingredient = {id: 1, name: "banane", image: ""}
-          let recipe = {name: "tarte a la banane", ingredients: {2: 2}, peopleNumber: 2}
-          this.addIngredient(ingredient,1)
-          this.addDish(recipe,2)
-        }
+        this.grocery = this.datas.getAll();
     }
 }

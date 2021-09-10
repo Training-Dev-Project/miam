@@ -1,0 +1,16 @@
+<div class="modal-header">
+<h4 class="modal-title" style="font-family:'Varela Round', sans-serif">{{name}}</h4>
+<button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+ <p>{{message}}</p>
+ <p class="text-warning">
+     <small>Cette action est irreversible.</small>
+ </p>
+</div>
+<div class="modal-footer" style="background: #ECF0F1;">
+    <input type="button" class="btn btn-default" value="Annuler" (click)="cancel()">
+    <input type="button" class="btn btn-danger" value="Confirmer" (click)="confirm()">
+</div>

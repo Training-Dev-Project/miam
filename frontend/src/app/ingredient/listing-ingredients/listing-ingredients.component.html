@@ -4,7 +4,9 @@
        <h3 class="title-page">Liste des ingrédients</h3>
    </div>
    <div class="row">
-       <div class="col-md-6"></div>
+       <div class="col-md-6">
+         <input type=text class="col-md-6" #searchName placeholder="Chercher" (keyup)="onGetSearchedIngredients(searchName.value)">
+       </div>
        <div class="col-md-6 text-right">
            <div style="cursor: pointer" (click)="openModalIngredient()">
                <fa-icon [icon]="faAddressCard" size="1x" style="color:#0a2735"></fa-icon>
@@ -48,10 +50,12 @@
           <input [(ngModel)]="quantity" type="number" name="ingredientToAddQuantity" class="form-control" id="ingredientQuantity">
       </div>
   </div>
-  <hr/>
-  <div class="row" style="padding: 5px;">
-      <div class="col-sm-10 offset-md-2 text-right">
-          <button type="button" (click)="submit()" class="btn btn-primary">Confirmer l'ajout au panier</button>
-      </div>
+  <div class="row">
+    <div *ngIf="messageLog!==''" class="text-danger">{{messageLog}}</div>
   </div>
+</ng-template>
+
+<ng-template #footerTemplate>
+    <input type="button" class="btn btn-default" value="Annuler" (click)="modalService.dismissAll()">
+    <input type="button" class="btn btn-primary" value="Confirmer" (click)="submit()">
 </ng-template>

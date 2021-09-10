@@ -15,4 +15,8 @@ export class MessageError {
     static IMAGE_SIZE_EXCEEDED = (max_size: number): string => {
         return "The image must not exceed the size : 100"
     }
+
+    static EXISTING_ELEMENT_ON_CART = "Déja ajouter dans la liste de course"
+
+    static CONFIRM_MESSAGE = "Souhitez-vous le supprimer dans la liste des courses?"
 }

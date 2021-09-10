@@ -8,9 +8,10 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DialogBoxComponent{
 
-  @Input()
-  bodyTemplate!: TemplateRef<any>;
-  @Input()
-  name = ''
+  @Input() bodyTemplate!: TemplateRef<any>
+  @Input() footerTemplate!: TemplateRef<any>
+  @Input() name = ''
+
   constructor(public activeModal: NgbActiveModal) {}
+
 }
