@@ -15,9 +15,9 @@ export class IngredientServiceService {
 
   }
 
-  onSubmitIngredient(ingredient: Ingredient): Observable<any>{
+   onSubmitIngredient(ingredient: Ingredient): Observable<any>{
       return this.client.post(environment.urlBackend + this.apiPath , ingredient, {headers : this.defaultHeader} );
-  }
+   }
 
    onGetAllIngredients(): Observable<any>{
         return this.client.get(environment.urlBackend + this.apiPath, {headers : this.defaultHeader});
@@ -25,12 +25,7 @@ export class IngredientServiceService {
    onGetIngredientById(id :string): Observable<any>{
         return this.client.get(environment.urlBackend + this.apiPath+"/id/"+id, {headers : this.defaultHeader});
         //console.log(ingredients);
-   }
-   onGetIngredientById(id :string): Observable<any>{
-        return this.client.get(environment.urlBackend + this.apiPath+"/id/"+id, {headers : this.defaultHeader});
-        //console.log(ingredients);
-   }
-   
+   } 
    onGetIngredientsByIds(ids : Array<number>) : Observable<any> {
      return this.client.get(environment.urlBackend + this.apiPath + "/" + ids.join(','), {headers : this.defaultHeader} );
      }
