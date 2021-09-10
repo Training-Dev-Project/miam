@@ -7,7 +7,7 @@ import { TokenStorageService } from './token-storage.service';
   providedIn: 'root'
 })
 export class AuthenticationService {
-	readonly apiPath: string = '/login';
+	readonly apiPath: string = '/users/login';
 	private defaultHeader: HttpHeaders = new HttpHeaders({ 'Content-type': 'application/json' });
 
 	constructor(private client: HttpClient, private tks: TokenStorageService) { }
