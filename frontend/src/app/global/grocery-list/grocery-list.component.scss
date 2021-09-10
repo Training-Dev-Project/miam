@@ -1,22 +1,22 @@
-.grocery-list-component-container > fa-icon {
+fa-icon {
   color: grey;
   cursor: pointer
 }
 
-.grocery-list-component-container > fa-icon:hover {
+ fa-icon:hover {
   color: darkgrey;
 }
 
-.grocery-list-component-container > .grocery-list-cart-popup {
+.grocery-list-cart-popup {
   position: absolute;
-  top: 7em;
+  top: 3em;
   right: 1em;
   background: white;
   border: black 1px solid;
   border-radius: 4px;
   padding: 10px;
-}
-.grocery-list-component-container .grocery-list-quantity-button {
+  width: 300%;
+} .grocery-list-quantity-button {
     height: 20px;
     width: 20px;
     margin-bottom: 2px;
@@ -24,4 +24,25 @@
     font-weight: bold;
     border-radius: 100%;
     line-height: 16px;
+}
+.grocery-list-cart-popup .grocery-list-cart-popup-ingredients-table{
+  width: 100%;
+  text-transform: capitalize;
+  font-size: 1.3em;
+
+}
+.grocery-list-cart-popup .grocery-list-cart-popup-scrollable-list{
+  max-height: 500px;
+  overflow: scroll;
+  margin: 10px 0
+}
+.grocery-list-cart-popup-refresh-icon:hover{
+  color : black;
+}
+.grocery-list-cart-popup-refresh-icon{
+  position: absolute;
+  top: 3.5em;
+  right: 1em;
+  cursor: pointer;
+  color: gray;
 }

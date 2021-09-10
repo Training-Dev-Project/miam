@@ -16,7 +16,7 @@ export class MessageError {
         return "The image must not exceed the size : 100"
     }
 
-    static EXISTING_ELEMENT_ON_CART = "Déja ajouter dans la liste de course"
+    static EXISTING_ELEMENT_ON_CART = "L'élément existe déjà dans la liste."
 
     static CONFIRM_MESSAGE = "Souhitez-vous le supprimer dans la liste des courses?"
 }
