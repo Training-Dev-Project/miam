@@ -50,7 +50,7 @@ jobs:
   build-images:
     needs: test
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/fix/push-distinct-images-to-dockerhub' }}
+    if: ${{ github.ref == 'refs/heads/master' }}
 
     steps:
       # Check out the repo
