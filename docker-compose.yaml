@@ -24,7 +24,6 @@ services:
 
   backend:
     build: ./backend
-    image: miam2021/miam:miam_backend
     container_name: miam_backend
     links:
       - "postgres:postgres"
@@ -38,7 +37,6 @@ services:
   
   frontend:
     build: ./frontend
-    image: miam2021/miam:miam_frontend
     container_name: miam_frontend
     links:
       - "backend:miam_backend"
