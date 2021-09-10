@@ -1,16 +1,13 @@
 package com.cognizant.miam.models;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
-import com.cognizant.miam.dto.RecipeDTO;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -18,109 +15,110 @@ import lombok.NoArgsConstructor;
 @Table(name = "recipe")
 public class Recipe {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name="id")
-  private long id;
-  
-  @NotNull
-  @NotBlank
-  @Column(name="name")
-  private String name;
-  
-  @OneToMany(cascade = CascadeType.ALL,mappedBy="recipe")
-  private Set<RecipeIngredient> recipeIngredientList = new HashSet<>();
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private long id;
 
-  @NotNull
-  @NotBlank
-  @Column(name="instructions")
-  private String instructions;
+	@NotNull
+	@NotBlank
+	@Column(name = "name")
+	private String name;
 
-  @Column(name="people_number")
-  private int peopleNumber;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+	private Set<RecipeIngredient> recipeIngredientList = new HashSet<>();
 
-  public long getId() {
-    return id;
-  }
+	@NotNull
+	@NotBlank
+	@Column(name = "instructions")
+	private String instructions;
 
-  public void setId(long id) {
-    this.id = id;
-  }
+	@Column(name = "people_number")
+	private int peopleNumber;
 
-  public String getName() {
-    return name;
-  }
+	public long getId() {
+		return id;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-  public Set<RecipeIngredient> getRecipeIngredientList() {
-    return recipeIngredientList;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setRecipeIngredientList(Set<RecipeIngredient> recipeIngredientList) {
-    this.recipeIngredientList = recipeIngredientList;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public String getInstructions() {
-    return instructions;
-  }
+	public Set<RecipeIngredient> getRecipeIngredientList() {
+		return recipeIngredientList;
+	}
 
-  public void setInstructions(String instructions) {
-    this.instructions = instructions;
-  }
+	public void setRecipeIngredientList(Set<RecipeIngredient> recipeIngredientList) {
+		this.recipeIngredientList = recipeIngredientList;
+	}
 
-  public int getPeopleNumber() {
-    return peopleNumber;
-  }
+	public String getInstructions() {
+		return instructions;
+	}
 
-  public void setPeopleNumber(int peopleNumber) {
-    this.peopleNumber = peopleNumber;
-  }
-  public static class Builder {
+	public void setInstructions(String instructions) {
+		this.instructions = instructions;
+	}
 
-    private long id;
-    private String name;
-    private String instructions;
-    private int peopleNumber;
+	public int getPeopleNumber() {
+		return peopleNumber;
+	}
 
-    private Builder() {
-    }
+	public void setPeopleNumber(int peopleNumber) {
+		this.peopleNumber = peopleNumber;
+	}
 
-    public static Builder newInstance() {
-      return new Builder();
-    }
+	public static class Builder {
 
-    public Builder set(long id) {
-      this.id = id;
-      return this;
-    }
+		private long id;
+		private String name;
+		private String instructions;
+		private int peopleNumber;
 
-    public Builder setName(String name) {
-      this.name = name;
-      return this;
-    }
+		private Builder() {
+		}
 
-    public Builder setInstructions(String instructions) {
-      this.instructions = instructions;
-      return this;
-    }
+		public static Builder newInstance() {
+			return new Builder();
+		}
 
-    public Recipe build() {
-      Recipe recipe = new Recipe();
-      recipe.setId(this.id);
-      recipe.setName(this.name);
-      recipe.setInstructions(this.instructions);
-      recipe.setPeopleNumber(this.peopleNumber);
-      return recipe;
-    }
+		public Builder set(long id) {
+			this.id = id;
+			return this;
+		}
 
-    public Builder setPeopleNumber(int peopleNumber){
+		public Builder setName(String name) {
+			this.name = name;
+			return this;
+		}
 
-      this.peopleNumber = peopleNumber;
-      return this;
-    }
+		public Builder setInstructions(String instructions) {
+			this.instructions = instructions;
+			return this;
+		}
 
-  }
+		public Recipe build() {
+			Recipe recipe = new Recipe();
+			recipe.setId(this.id);
+			recipe.setName(this.name);
+			recipe.setInstructions(this.instructions);
+			recipe.setPeopleNumber(this.peopleNumber);
+			return recipe;
+		}
+
+		public Builder setPeopleNumber(int peopleNumber) {
+
+			this.peopleNumber = peopleNumber;
+			return this;
+		}
+
+	}
 }

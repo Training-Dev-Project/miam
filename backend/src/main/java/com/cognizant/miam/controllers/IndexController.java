@@ -49,8 +49,8 @@ public class IndexController {
 		} catch (BadCredentialsException e) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "BAD CREDENTIALS");
 		} catch (Exception e) {
-			log.warn("The thrown exception was of type " + e.getClass());
-			log.warn("The thrown exception message is : " + e.getMessage());
+			log.warn(new StringBuilder().append("The thrown exception was of type ").append(e.getClass()).toString());
+			log.warn(new StringBuilder().append("The thrown exception message is : ").append(e.getMessage()).toString());
 		}
 		final UserDetails userDetails = userService.loadUserByUsername(authenticationRequest.getUsername());
 
