@@ -1,71 +1,82 @@
 package com.cognizant.miam.services;
 
 import com.cognizant.miam.dto.UserDTO;
+import com.cognizant.miam.jwt.MyUserDetails;
 import com.cognizant.miam.models.User;
 import com.cognizant.miam.repositories.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    //private BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final UserRepository userRepository;
+	private final UserRepository userRepository;
+	private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository) {
-        //this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.userRepository = userRepository;
-    }
+	public UserServiceImpl(UserRepository userRepository) {
+		this.passwordEncoder = new BCryptPasswordEncoder();
+		this.userRepository = userRepository;
+	}
 
-    @Override
-    public UserDTO register(UserDTO userDTO) {
+	@Override
+	public UserDTO register(UserDTO userDTO) {
+		// ENCODE
+		String password = passwordEncoder.encode(userDTO.getPassword());
 
-        // ENCODE
-        // String password = userDTO.getPassword();
+		//Save
+		final User user = userRepository.save(
+				User.Builder.newInstance()
+						.setName(userDTO.getName())
+						.setEmail(userDTO.getEmail())
+						.setPassword(password).build()
+		);
 
-        //Save
-        final User user = userRepository.save(
-                User.Builder.newInstance()
-                        .setName(userDTO.getName())
-                        .setEmail(userDTO.getEmail())
-                        .setPassword(userDTO.getPassword()).build()
-        );
+		userDTO.setId(user.getId());
+		return userDTO;
+	}
 
-        userDTO.setId(user.getId());
-        return userDTO;
-    }
+	@Override
+	public UserDTO findByEmail(String email) {
+		User user = userRepository.findByEmail(email);
 
-    @Override
-    public UserDTO findByEmail(String email) {
-        User user = userRepository.findByEmail(email);
+		return UserDTO.Builder.newInstance()
+				.setName(user.getName())
+				.setEmail(user.getEmail())
+				.setPassword(user.getPassword())
+				.setId(user.getId()).build();
+	}
 
-        return UserDTO.Builder.newInstance()
-                .setName(user.getName())
-                .setEmail(user.getEmail())
-                .setPassword(user.getPassword())
-                .setId(user.getId()).build();
-    }
 
-    @Override
-    public List<UserDTO> findAll() {
-        List<UserDTO> userDTOS = new ArrayList<>();
-        List<User> users = userRepository.findAll();
+	@Override
+	public List<UserDTO> findAll() {
+		List<UserDTO> userDTOS;
+		List<User> users = userRepository.findAll();
 
-        userDTOS = users.stream().map(user -> {
-                    return UserDTO.Builder.newInstance()
-                            .setName(user.getName())
-                            .setEmail(user.getEmail())
-                            .setPassword(user.getPassword())
-                            .setId(user.getId())
-                            .build();
-                }
-        ).collect(Collectors.toList());
+		userDTOS = users.stream().map(user ->
+				UserDTO.Builder.newInstance()
+						.setName(user.getName())
+						.setEmail(user.getEmail())
+						.setPassword(user.getPassword())
+						.setId(user.getId())
+						.build()
+		).collect(Collectors.toList());
 
-        return userDTOS;
-    }
+		return userDTOS;
+	}
+
+	@Override
+	public void deleteUsers() {
+		userRepository.deleteAll();
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		return new MyUserDetails(findByEmail(email));
+	}
 }
