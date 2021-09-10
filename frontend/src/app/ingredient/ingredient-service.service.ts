@@ -16,17 +16,11 @@ export class IngredientServiceService {
   }
 
   onSubmitIngredient(ingredient: Ingredient): Observable<any>{
-    // console.log(environment.urlBackend + this.apiPath)
       return this.client.post(environment.urlBackend + this.apiPath , ingredient, {headers : this.defaultHeader} );
-
-              // .map( (response:Ingredient)  => response );
   }
 
    onGetAllIngredients(): Observable<any>{
-        console.log("LOGGGGGGS");
-        console.log(environment.urlBackend);
         return this.client.get(environment.urlBackend + this.apiPath, {headers : this.defaultHeader});
-        //console.log(ingredients);
    }
    
    onGetIngredientsByIds(ids : Array<number>) : Observable<any> {
