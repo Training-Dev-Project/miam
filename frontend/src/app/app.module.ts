@@ -8,13 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { LayoutModule } from './layout/layout.module';
 import { ViewsModule } from './views/views.module';
 import { GlobalModule } from './global/global.module';
+import { RegistrationModule } from './registration/registration.module';
 
-import { AppComponent } from './app.component';
 import { AppContextService } from './app.service';
 import { AuthenticationService } from './services/authentication.service';
 import { TokenStorageService } from './services/token-storage.service';
-import { RegistrationModule } from './registration/registration.module';
 
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -33,9 +33,8 @@ import { RegistrationModule } from './registration/registration.module';
   exports: [
   ],
   providers: [
-    AppContextService,
     AuthenticationService,
-    TokenStorageService
+    TokenStorageService,
     AppContextService,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],

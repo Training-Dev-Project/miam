@@ -48,9 +48,7 @@ public class UserController {
 	@PostMapping("/login")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest)
 			throws AuthenticationException {
-		log.warn("YOU ARE HERE MOFO");
 		try {
-			log.warn(authenticationRequest.getPassword());
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
 					authenticationRequest.getUsername(), authenticationRequest.getPassword()));
 		} catch (BadCredentialsException e) {
@@ -79,7 +77,7 @@ public class UserController {
 	}
 
 	@DeleteMapping
-	void deleteAllUsers() {
+	public void deleteAllUsers() {
 		userService.deleteUsers();
 	}
 }
