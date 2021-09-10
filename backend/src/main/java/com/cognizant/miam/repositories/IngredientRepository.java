@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.Set;
+import java.util.List;
 
 public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
     Long deleteByName(String name);
@@ -14,4 +15,6 @@ public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
 
     @Query("SELECT i From Ingredient i WHERE i.id IN (:ids)")
     Set<Ingredient> findIngredients(Set<Long> ids);
+
+    List<Ingredient> findByNameContainingIgnoreCase(String keyword);
 }

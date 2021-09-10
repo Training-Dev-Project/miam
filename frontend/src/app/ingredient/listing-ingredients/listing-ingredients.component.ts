@@ -82,4 +82,11 @@ export class ListingIngredientsComponent implements OnInit {
     this.messageLog = e.messageLog();
   }
 }
+
+onGetSearchedIngredients(name: String) {
+  this.ingredientService.onGetSearchedIngredients(name).subscribe(data => {
+    this.ingredients = data;
+    this.appCtx.setIngredientsObservable(this.ingredients);
+  })
+}
   }

@@ -62,4 +62,16 @@ public class IngredientController {
     }
   }
 
+  @GetMapping("/find")
+  public ResponseEntity<List<IngredientDTO>> findByNameContaining(@RequestParam(required=false) String keyword) {
+    if(keyword == null) {
+      return getAllIngredients();
+    }
+    List<Ingredient> ingredients = ingredientService.findByNameContainingIgnoreCase(keyword);
+    List<IngredientDTO> ingredientDTOs = ingredients.stream()
+                  .map(ingredient -> modelMapper.map(ingredient, IngredientDTO.class))
+                  .collect(Collectors.toList());
+    return new ResponseEntity<>(ingredientDTOs, HttpStatus.OK);
+  }
+
 }
