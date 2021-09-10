@@ -26,32 +26,6 @@ public class IngredientController {
 		this.ingredientService = ingredientService;
 	}
 
-	@PostMapping
-	public ResponseEntity<Ingredient> addIngredients(@RequestBody IngredientDTO ingredientDTO) {
-		Ingredient ingredient = modelMapper.map(ingredientDTO, Ingredient.class);
-		ingredient = ingredientService.save(ingredient);
-		return new ResponseEntity<>(ingredient, HttpStatus.OK);
-	}
-
-	@GetMapping
-	public ResponseEntity<List<IngredientDTO>> getAllIngredients() {
-		List<Ingredient> ingredients = ingredientService.findAll();
-		List<IngredientDTO> ingredientDTOs = ingredients.stream()
-				.map(ingredient -> modelMapper.map(ingredient, IngredientDTO.class))
-				.collect(Collectors.toList());
-		return new ResponseEntity<>(ingredientDTOs, HttpStatus.OK);
-	}
-
-	@GetMapping("/id/{id}")
-	public ResponseEntity<IngredientDTO> getIngredient(@PathVariable("id") long id) {
-		Optional<Ingredient> ingredient = ingredientService.findById(id);
-		IngredientDTO ingredientDTO = new IngredientDTO();
-		ingredientDTO.setId(id);
-		ingredientDTO.setName(ingredient.get().getName());
-
-		//modelMapper.map(ingredient,IngredientDTO.class)
-		return new ResponseEntity<>(ingredientDTO, HttpStatus.OK);
-	}
 
 	@GetMapping("/{ids}")
 	public ResponseEntity<List<IngredientDTO>> getIngredientsByIds(@PathVariable("ids") ArrayList<Long> ids) {
@@ -61,6 +35,31 @@ public class IngredientController {
 				.collect(Collectors.toList());
 		return new ResponseEntity<>(ingredientDTOs, HttpStatus.OK);
 	}
+  
+  @PostMapping
+  public ResponseEntity<Ingredient> addIngredients(@RequestBody IngredientDTO ingredientDTO){
+    Ingredient ingredient = modelMapper.map(ingredientDTO, Ingredient.class);
+    ingredient = ingredientService.save(ingredient);
+    return new ResponseEntity<>(ingredient, HttpStatus.OK);
+  }
+  @GetMapping
+  public ResponseEntity<List<IngredientDTO>> getAllIngredients(){
+    List<Ingredient> ingredients = ingredientService.findAll();
+    List<IngredientDTO> ingredientDTOs = ingredients.stream()
+                  .map(ingredient -> modelMapper.map(ingredient, IngredientDTO.class))
+                  .collect(Collectors.toList());
+    return new ResponseEntity<>(ingredientDTOs, HttpStatus.OK);
+  }
+  @GetMapping("/id/{id}")
+  public ResponseEntity<IngredientDTO> getIngredient(@PathVariable ("id") long id){
+    Optional<Ingredient> ingredient = ingredientService.findById(id);
+    IngredientDTO ingredientDTO = new IngredientDTO();
+    ingredientDTO.setId(id);
+    if(ingredient.isPresent()){
+      ingredientDTO.setName(ingredient.get().getName());
+    }
+    return new ResponseEntity<>(ingredientDTO, HttpStatus.OK);
+  }
 
 	@DeleteMapping("/{name}")
 	public void deleteIngredient(@PathVariable("name") String name) {
