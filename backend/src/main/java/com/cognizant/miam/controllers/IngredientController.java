@@ -44,8 +44,9 @@ public class IngredientController {
     Optional<Ingredient> ingredient = ingredientService.findById(id);
     IngredientDTO ingredientDTO = new IngredientDTO();
     ingredientDTO.setId(id);
-    ingredientDTO.setName(ingredient.get().getName());
-
+    if(ingredient.isPresent()){
+      ingredientDTO.setName(ingredient.get().getName());
+    }
     //modelMapper.map(ingredient,IngredientDTO.class)
     return new ResponseEntity<>(ingredientDTO, HttpStatus.OK);
   }

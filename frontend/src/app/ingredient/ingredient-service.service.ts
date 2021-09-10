@@ -15,9 +15,9 @@ export class IngredientServiceService {
 
   }
 
-  onSubmitIngredient(ingredient: Ingredient): Observable<any>{
+   onSubmitIngredient(ingredient: Ingredient): Observable<any>{
       return this.client.post(environment.urlBackend + this.apiPath , ingredient, {headers : this.defaultHeader} );
-  }
+   }
 
    onGetAllIngredients(): Observable<any>{
         return this.client.get(environment.urlBackend + this.apiPath, {headers : this.defaultHeader});
