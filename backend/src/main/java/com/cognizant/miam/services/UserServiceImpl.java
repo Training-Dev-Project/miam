@@ -26,9 +26,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDTO register(UserDTO userDTO) {
-
 		// ENCODE
-		String password = "{bcrypt}" + passwordEncoder.encode(userDTO.getPassword());
+		String password = passwordEncoder.encode(userDTO.getPassword());
 
 		//Save
 		final User user = userRepository.save(
