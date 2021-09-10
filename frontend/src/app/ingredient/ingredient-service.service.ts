@@ -26,6 +26,10 @@ export class IngredientServiceService {
         return this.client.get(environment.urlBackend + this.apiPath+"/id/"+id, {headers : this.defaultHeader});
         //console.log(ingredients);
    }
+   onGetIngredientById(id :string): Observable<any>{
+        return this.client.get(environment.urlBackend + this.apiPath+"/id/"+id, {headers : this.defaultHeader});
+        //console.log(ingredients);
+   }
    
    onGetIngredientsByIds(ids : Array<number>) : Observable<any> {
      return this.client.get(environment.urlBackend + this.apiPath + "/" + ids.join(','), {headers : this.defaultHeader} );
