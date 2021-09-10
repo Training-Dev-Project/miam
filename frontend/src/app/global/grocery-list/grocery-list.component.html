@@ -1,87 +1,68 @@
-<div>
-    <h3 class="title-page">Liste d'épicerie</h3>
-</div>
-<hr/>
-<h3>Ingredients</h3>
-<div class="row" *ngIf="grocery.ingredients else emptyContent">
-    <div class="col-md-8 offset-md-2" style="background: white;">
-        <div>
-                <ul *ngFor="let groceryIngredient of grocery.ingredients" class="list-group">
-                    <li class=" d-flex justify-content-between align-items-center" style="border-bottom:1px solid rgba(0,0,0,.2); height:80px;">
-                        <td style="width:15%"> 
-                            <!-- <img 
-                                [src]="groceryIngredient.ingredient.name?'assets/images/'+groceryIngredient.ingredient.name+'.png':'assets/images/png/empty.jpg'" 
-                                class="mr-2" style="width: 80px; height: 80px;" alt="Image of the recipe"
-                            /> -->
-                        </td>
-                        <td style="width:25%;text-align:left;">
-                            <ul style="list-style-type: none;">
-                                <li>{{ groceryIngredient.ingredient.name }}</li>
-                            </ul>
-                        </td>
-                        <td style="width:25%;text-align:center;">  
-                            <div>
-                                <span class="ml-1 mr-1">pour</span>
-                                <fa-icon [icon]="icons.faMinusCircle" size="2x" class="text-danger" (click)="update(groceryIngredient.ingredient, 'ingredients', false)" style="cursor:pointer"></fa-icon>
-                                <span class="ml-1 mr-1">{{ groceryIngredient.quantity }}</span>
-                                <fa-icon [icon]="icons.faPlusCircle" size="2x" class="text-success" (click)="update(groceryIngredient.ingredient, 'ingredients')" style="cursor:pointer"></fa-icon>
-                                <span class="ml-1 mr-1">personnes</span>
-                            </div>
-                        </td>
+<div class="grocery-list-cart-popup">
+    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+        <li ngbNavItem>
+            <a ngbNavLink>plats & Ingrédients</a>
+            <ng-template ngbNavContent>
+                <h3>Ingredients</h3>
+                <table class="grocery-list-cart-popup-ingredients-table">
+                    <tr *ngFor="let groceryIngredient of grocery.ingredients">
+
+                        <td>{{groceryIngredient.ingredient.name}}</td>
+                        <th>
+                            <fa-icon [icon]="icons.faMinusCircle"  class="text-danger" (click)="update(groceryIngredient.ingredient, 'ingredients', false)" style="cursor:pointer"></fa-icon>
+                            {{ groceryIngredient.quantity }}
+                            <fa-icon [icon]="icons.faPlusCircle" class="text-success" (click)="update(groceryIngredient.ingredient, 'ingredients')" style="cursor:pointer"></fa-icon>
+                        </th>
                         <td style="cursor:pointer" (click)="delete(groceryIngredient.ingredient, 'ingredients')">
-                                <div>
-                                    <fa-icon [icon]="icons.faTrash" size="1x" style="cursor:pointer"></fa-icon> Supprimer
-                                </div>
-                      </td>
-                    </li>
-            </ul> 
-        </div>
-    </div>
+                                <fa-icon [icon]="icons.faTrash" size="1x" ></fa-icon>
+                        </td>
+                    </tr>
+                </table>
+
+                <h3 class="mt-3">Dishes</h3>
+                <table class="grocery-list-cart-popup-ingredients-table">
+                    <tr *ngFor="let groceryDish of grocery.dishes; let i = index">
+
+                        <td>{{groceryDish.recipe.name }}</td>
+                        <th>
+                            <fa-icon [icon]="icons.faMinusCircle" size="1x" class="text-danger" (click)="update(groceryDish.recipe, 'dishes', false)" style="cursor:pointer"></fa-icon>
+                            {{ groceryDish.quantity }}
+                            <fa-icon [icon]="icons.faPlusCircle" size="1x" class="text-success" (click)="update(groceryDish.recipe, 'dishes')" style="cursor:pointer"></fa-icon>
+                        </th>
+                        <td style="cursor:pointer" (click)="delete(groceryDish.recipe, 'dishes')">
+                                <fa-icon [icon]="icons.faTrash" size="1x" style="cursor:pointer"></fa-icon>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row" style="padding: 20px;">
+                    <div class="col-sm-12 text-left">
+                        <button type="button" class="btn btn-primary" (click)="clearCache()">Vider la liste</button>
+                    </div>
+                </div>
+
+                <ng-template #emptyContent>
+                    <div>La liste est vide</div>
+                </ng-template>
+            </ng-template>
+        </li>
+        <li ngbNavItem>
+            <a ngbNavLink (click)="generateComputedGroceryList()">liste de courses</a>
+            <ng-template ngbNavContent>
+                <fa-icon class="grocery-list-cart-popup-refresh-icon" [icon]="icons.faSync" (click)="generateComputedGroceryList()"></fa-icon>
+                <table class="grocery-list-cart-popup-ingredients-table">
+                    <tr *ngFor="let item of computedGroceryList | keyvalue">
+
+                        <td>{{item.key}}</td><th>{{item.value}}</th></tr>
+                </table>
+
+            </ng-template>
+        </li>
+    </ul>
+    <div [ngbNavOutlet]="nav"></div>
+
+
 </div>
 
-<h3 class="mt-3">Dishes</h3>
 
-<div class="row">
-    <div class="col-md-8 offset-md-2" style="background: white;">
-        <div>
-            <ul *ngFor="let groceryDish of grocery.dishes; let i = index" class="list-group">
-                <li class=" d-flex justify-content-between align-items-center" style="border-bottom:1px solid rgba(0,0,0,.2);height:80px;">
-                    <td style="width:15%">  
-                        <!-- <img 
-                            [src]="groceryIngredient.ingredient.name?'assets/images/'+groceryIngredient.ingredient.name+'.png':'assets/images/png/empty.jpg'" 
-                            class="mr-2" style="width: 80px; height: 80px;" alt="Image of the recipe"
-                        /> -->
-                    </td>
-                    <td style="width:25%;text-align:left;">
-                        <ul style="list-style-type: none;">
-                            <li>{{ groceryDish.recipe.name }}</li>
-                        </ul>
-                    </td>
-                    <td style="width:25%;text-align:center;">
-                        <div>
-                            <span class="ml-1 mr-1">pour</span>
-                            <fa-icon [icon]="icons.faMinusCircle" size="2x" class="text-danger" (click)="update(groceryDish.recipe, 'dishes', false)" style="cursor:pointer"></fa-icon>
-                            <span class="ml-1 mr-1">{{ groceryDish.quantity }}</span>
-                            <fa-icon [icon]="icons.faPlusCircle" size="2x" class="text-success" (click)="update(groceryDish.recipe, 'dishes')" style="cursor:pointer"></fa-icon>
-                            <span class="ml-1 mr-1">personnes</span>
-                        </div>
-                    </td>
-                    <td style="cursor:pointer" (click)="delete(groceryDish.recipe, 'dishes')">
-                            <div>
-                                <fa-icon [icon]="icons.faTrash" size="1x" style="cursor:pointer"></fa-icon> Supprimer
-                            </div>
-                  </td>
-                </li>
-           </ul> 
-        </div>
-    </div>
-</div>
-<div class="row" style="padding: 20px;">
-    <div class="col-sm-12 text-left">
-        <button type="button" class="btn btn-primary" (click)="clearCache()">Vider la liste</button>
-    </div>
-</div>
 
-<ng-template #emptyContent>
-      <div>La liste est vide</div>
-</ng-template>

@@ -2,6 +2,7 @@ package com.cognizant.miam.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import com.cognizant.miam.dto.IngredientDTO;
 import com.cognizant.miam.models.Ingredient;
@@ -37,6 +38,16 @@ public class IngredientController {
                   .map(ingredient -> modelMapper.map(ingredient, IngredientDTO.class))
                   .collect(Collectors.toList());
     return new ResponseEntity<>(ingredientDTOs, HttpStatus.OK);
+  }
+  @GetMapping("/id/{id}")
+  public ResponseEntity<IngredientDTO> getIngredient(@PathVariable ("id") long id){
+    Optional<Ingredient> ingredient = ingredientService.findById(id);
+    IngredientDTO ingredientDTO = new IngredientDTO();
+    ingredientDTO.setId(id);
+    ingredientDTO.setName(ingredient.get().getName());
+
+    //modelMapper.map(ingredient,IngredientDTO.class)
+    return new ResponseEntity<>(ingredientDTO, HttpStatus.OK);
   }
 
   @GetMapping("/{ids}")
