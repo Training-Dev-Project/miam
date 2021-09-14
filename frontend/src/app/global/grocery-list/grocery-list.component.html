@@ -60,17 +60,19 @@
             <a ngbNavLink (click)="generateComputedGroceryList()">liste de courses</a>
             <ng-template ngbNavContent>
                 <fa-icon class="grocery-list-cart-popup-refresh-icon" [icon]="icons.faSync" (click)="generateComputedGroceryList()"></fa-icon>
-                <table class="grocery-list-cart-popup-ingredients-table">
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                    <tr *ngFor="let item of computedGroceryList | keyvalue">
+                <div class="grocery-list-cart-popup-scrollable-list">
+                    <table class="grocery-list-cart-popup-ingredients-table" id="content" #content>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                        <tr *ngFor="let item of computedGroceryList | keyvalue">
 
-                        <td>{{item.key}}</td><td>{{item.value}}</td></tr>
-                </table>
-
+                            <td>{{item.key}}</td><td>{{item.value}}</td></tr>
+                    </table>
+                </div>
+                <button type="button" class="btn btn-success" (click)="export()">Télécharger la liste</button>
             </ng-template>
         </li>
     </ul>
