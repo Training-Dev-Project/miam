@@ -28,6 +28,7 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-web:${springVersion}"
     implementation "org.springframework.boot:spring-boot-starter-security:${springVersion}"
     implementation "org.springframework.boot:spring-boot-devtools:${springVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-oauth2-client:${springVersion}"
     implementation "org.springdoc:springdoc-openapi-ui:1.5.9"
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
     implementation "org.projectlombok:lombok:1.18.20"

@@ -13,4 +13,6 @@ public interface UserService extends UserDetailsService {
 	List<UserDTO> findAll();
 
 	void deleteUsers();
+
+	void processOAuthPostLogin(String email);
 }

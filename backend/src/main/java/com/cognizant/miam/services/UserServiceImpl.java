@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -73,6 +75,17 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteUsers() {
 		userRepository.deleteAll();
+	}
+
+	@Override
+	public void processOAuthPostLogin(String email) {
+
+				User newUser = new User();
+				newUser.setName(email);
+				newUser.setEmail(email);
+				newUser.setPassword(randomAlphabetic(8));
+
+				userRepository.save(newUser);
 	}
 
 	@Override
