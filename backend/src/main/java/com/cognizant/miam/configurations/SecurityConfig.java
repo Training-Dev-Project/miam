@@ -1,5 +1,7 @@
 package com.cognizant.miam.configurations;
 
+import com.cognizant.miam.facebook.CustomOAuth2User;
+import com.cognizant.miam.facebook.CustomOAuth2UserService;
 import com.cognizant.miam.jwt.JwtRequestFilter;
 import com.cognizant.miam.services.UserService;
 import org.springframework.context.annotation.Bean;
@@ -11,8 +13,15 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
@@ -21,9 +30,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private final JwtRequestFilter jwtRequestFilter;
 	private final UserService userService;
 
-	public SecurityConfig(JwtRequestFilter jwtRequestFilter, UserService userService) {
+	private CustomOAuth2UserService oauth2UserService;
+
+	public SecurityConfig(JwtRequestFilter jwtRequestFilter,
+						  UserService userService,
+						  CustomOAuth2UserService oauth2UserService) {
 		this.jwtRequestFilter = jwtRequestFilter;
 		this.userService = userService;
+		this.oauth2UserService = oauth2UserService;
 	}
 
 	@Override
@@ -31,7 +45,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers("/profile").authenticated()
 				.antMatchers("/**").permitAll()
-				.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+				.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+				.and().oauth2Login().loginPage("/login").userInfoEndpoint().userService(oauth2UserService)
+				.and().successHandler(new AuthenticationSuccessHandler() {
+					@Override
+					public void onAuthenticationSuccess(HttpServletRequest request,
+														HttpServletResponse response,
+														Authentication authentication)
+							throws IOException, ServletException {
+						CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
+						userService.processOAuthPostLogin(oauthUser.getEmail());
+						response.sendRedirect("/");
+					}
+				});
 		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 
