@@ -5,10 +5,11 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegistrationRoutingModule } from './registration-routing.module';
+import { FacebookComponent } from './facebook/facebook.component';
 
 
 @NgModule({
-  declarations: [RegistrationFormComponent],
+  declarations: [RegistrationFormComponent, FacebookComponent],
   imports: [
     CommonModule,
     NgbModule,

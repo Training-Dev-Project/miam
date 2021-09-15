@@ -16,6 +16,7 @@ export class DropdownFormComponent implements OnInit {
   faUser = faUser;
   email = "";
   password = "";
+  fbLoginURI = "https://www.facebook.com/v12.0/dialog/oauth?client_id=370639514764939&redirect_uri=http://localhost:4200/FBlogin/";
 
   constructor(private router: Router,
     public loginService: AuthenticationService,
@@ -30,7 +31,7 @@ export class DropdownFormComponent implements OnInit {
     })
   }
 
-  logOut(){
+  logOut() {
     this.loginService.logOut()
     this.router.navigate(["/"])
     console.log(this.tks.getToken())

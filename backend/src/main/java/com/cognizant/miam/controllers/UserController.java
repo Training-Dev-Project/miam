@@ -65,6 +65,12 @@ public class UserController {
 		return ResponseEntity.ok(new AuthenticationResponse(jwt));
 	}
 
+	@GetMapping("/FBlogin/{code}")
+	public String getFBCode(@PathVariable String code) {
+		System.out.println(code);
+		return code;
+	}
+
 	@GetMapping("/{email}")
 	public UserDTO getByEmail(@PathVariable String email) {
 		return userService.findByEmail(email);
