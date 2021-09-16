@@ -2,6 +2,9 @@
     transition: transform 0.6s;
 }
 
+.card-columns {
+  column-count: 2;
+}
 .card:hover{
   img{
     opacity: .7;
@@ -18,14 +21,16 @@
 }
 
 .ingredients{
-    background-image: url("../../../assets/images/png/ingredients.png");
+    background-image: url("../../../assets/images/png/new-ingredients.jpg");
     background-repeat: no-repeat;
     background-position: center;
+  background-size: 100%;
 }
 .recipe{
-    background-image: url("../../../assets/images/png/recipe.png");
+    background-image: url("../../../assets/images/png/new-recipes.jpg");
     background-repeat: no-repeat;
     background-position: center;
+  background-size: 100%;
 }  
 .recipes{
     background-image: url("../../../assets/images/png/recipes.png");
@@ -36,4 +41,7 @@
     background-image: url("../../../assets/images/png/vegan.png");
     background-repeat: no-repeat;
     background-position: center;
+}
+.card-footer > a{
+  margin-right:5px;
 }

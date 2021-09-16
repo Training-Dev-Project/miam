@@ -75,16 +75,12 @@ export class GroceryListComponent implements OnInit {
         }
     }
 
-
     clearCache() {
         this.grocery.ingredients = [];
         this.grocery.dishes = [];
         localStorage.clear();
         this.grocery = this.datas.getAll();
     }
-
-
-
 
     addIngredientToComputedGroceryList(name: string, quantity: number) {
         if (this.computedGroceryList.get(name)) {

@@ -16,6 +16,7 @@ export class DropdownFormComponent implements OnInit {
   faUser = faUser;
   email = "";
   password = "";
+  showLoginError = false;
 
   constructor(private router: Router,
     public loginService: AuthenticationService,
@@ -25,15 +26,23 @@ export class DropdownFormComponent implements OnInit {
   }
 
   checkLogin() {
+    this.showLoginError = false
     this.loginService.authenticate(this.email, this.password).subscribe((data) => {
       this.tks.saveToken(data.jwt)
-    })
+    },error => {
+          this.showLoginError = true;
+        },
+        () => {
+          // 'onCompleted' callback.
+          // No errors, route to new page here
+        }
+    )
   }
+
 
   logOut(){
     this.loginService.logOut()
     this.router.navigate(["/"])
-    console.log(this.tks.getToken())
   }
 
   register() {

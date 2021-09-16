@@ -4,9 +4,9 @@
        <h3 class="title-page">Liste des ingrédients</h3>
    </div>
    <div class="row">
-       <div class="col-md-6">
-         <input type=text class="col-md-6" #searchName placeholder="Chercher" (keyup)="onGetSearchedIngredients(searchName.value)">
-       </div>
+
+         <input type=text class="col-md-6" #searchName placeholder="Chercher" style="font-size: 1.7em" (keyup)="onGetSearchedIngredients(searchName.value)">
+
        <div class="col-md-6 text-right">
            <div style="cursor: pointer" (click)="openModalIngredient()">
                <fa-icon [icon]="faAddressCard" size="1x" style="color:#0a2735"></fa-icon>

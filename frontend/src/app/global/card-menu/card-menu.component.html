@@ -1,15 +1,21 @@
 <div class="card-columns">
     <ng-container *ngIf="menus">
         <div class="card" *ngFor="let menu of menus" style="cursor: pointer;color:#242A31">
-            <div class="{{menu.href}}" style="height:200px"> 
+            <div class="{{menu.href}}" style="height:25vw">
             </div>
-            <div class="card-body">
+            <div class="card-body .d-none .d-lg-block .d-xl-none">
               <h5 class="card-title">{{menu.title}}</h5>
-              <p class="card-text">{{menu.description}}</p>
+              <p class="card-text ">{{menu.description}}</p>
             </div>
-            <div class="card-footer text-right" style="background: white;">
-                <a [routerLink]="menu.uri" class="btn btn-primary">{{menu.buttonText}} >></a>
+            <div class="card-footer" style="background: white;">
+                <a [routerLink]="menu.viewUri" class="btn btn-light">
+                    <fa-icon [icon]="icons.faList" size="2x" title="{{menu.viewButtonText}}"></fa-icon>
+                </a>
+                <a [routerLink]="menu.addUri" class="btn btn-light">
+                    <fa-icon [icon]="icons.faPlus" size="2x" title="{{menu.addButtonText}}"></fa-icon>
+                </a>
             </div>
+
           </div>
     </ng-container>
   </div>

@@ -10,41 +10,23 @@ export class HomeComponent implements OnInit {
   menus: Menu[] =[
   {
     href: 'ingredients',
-    title: 'Liste d\'ingrédients',
-    description: 'Selection et verifier la liste de vos ingredients ..',
-    uri: 'workflow-ingredients/list-ingredients',
-    buttonText: 'Voir liste'
+    title: 'Ingrédients',
+    description: 'Ajouter ou Parcourir les ingrédients...',
+    viewUri: 'workflow-ingredients/list-ingredients',
+    viewButtonText: 'Voir liste',
+    addUri:'workflow-ingredients/create-ingredient',
+    addButtonText:"Ajouter un ingrédient"
 }
-,
-  {
-    href: 'ingredient',
-    title: 'Créer un ingrédient',
-    description: 'Ajouter de nouvel ingrédient...',
-    uri: 'workflow-ingredients/create-ingredient',
-    buttonText: 'Créer'
-},
-{
-  href: 'recipe',
-  title: 'Ajouter une recette',
-  description: 'Préparer vos recttes favoris...',
-  uri: 'workflow-recipes/recipe',
-  buttonText: 'Ajouter'
-},
-  {
-    href: 'recipes',
-    title: 'Liste des recettes',
-    description: 'Lister et afficher toutes vos recttes déjà réalisées...',
-    uri: 'workflow-recipes/list-recipes',
-    buttonText: 'Voir'
+,  {
+    href: 'recipe',
+    title: 'Recettes',
+    description: 'Ajouter ou Parcourir nos recettes...',
+    viewUri: 'workflow-recipes/list-recipes',
+    viewButtonText: 'Voir liste',
+    addUri:'workflow-recipes/recipe',
+    addButtonText:"Créer"
 }
-,
-  {
-    href: 'vegan',
-    title: 'Vegan? par ici',
-    description: 'Vous avez une préférence pour de la nourriture Végan...',
-    uri: '',
-    buttonText: 'Gérer'
-}
+
 ] 
 
   ngOnInit(): void {
