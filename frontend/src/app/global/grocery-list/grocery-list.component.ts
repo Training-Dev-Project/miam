@@ -9,10 +9,8 @@ import {NotificationComponent} from "../notification/notification.component";
 import {Entity} from "../../types";
 import {Recipe} from "../../models/recipe";
 import {jsPDF} from "jspdf";
-import jspdf from 'jspdf';
 import html2canvas from "html2canvas";
 
-import {MessageError} from "../../utils/message-error";
 
 
 
@@ -73,8 +71,7 @@ export class GroceryListComponent implements OnInit {
                 if (value == 'confirm') {
                     this.datas.delete(element, type);
                 }
-            }).catch(e => {
-            });
+            })
         }
     }
 
