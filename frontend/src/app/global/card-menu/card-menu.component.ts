@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Menu } from 'src/app/models/menu';
+import * as icons from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-card-menu',
@@ -8,6 +10,7 @@ import { Menu } from 'src/app/models/menu';
 })
 export class CardMenuComponent implements OnInit {
   @Input() menus:Menu[] = []
+  icons = icons;
 
   constructor() { }
 

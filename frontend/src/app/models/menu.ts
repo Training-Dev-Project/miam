@@ -2,6 +2,8 @@ export interface Menu{
     href: string;
     title: string;
     description: string;
-    uri: string;
-    buttonText: string
+    viewUri: string;
+    viewButtonText: string;
+    addUri:string;
+    addButtonText:string;
 }

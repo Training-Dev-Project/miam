@@ -3,57 +3,55 @@
         <li ngbNavItem>
             <a ngbNavLink>plats & Ingrédients</a>
             <ng-template ngbNavContent>
-                <h3>Ingredients</h3>
-                <table class="grocery-list-cart-popup-ingredients-table">
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                    <tr *ngFor="let groceryIngredient of grocery.ingredients">
+                <div class="grocery-list-cart-popup-scrollable-list">
 
-                        <td>{{groceryIngredient.ingredient.name}}</td>
-                        <td>
-                            <fa-icon [icon]="icons.faMinusCircle"  class="text-danger" (click)="update(groceryIngredient.ingredient, 'ingredients', false)" style="cursor:pointer"></fa-icon>
-                            {{ groceryIngredient.quantity }}
-                            <fa-icon [icon]="icons.faPlusCircle" class="text-success" (click)="update(groceryIngredient.ingredient, 'ingredients')" style="cursor:pointer"></fa-icon>
-                        </td>
-                        <td style="cursor:pointer" (click)="delete(groceryIngredient.ingredient, 'ingredients')">
-                                <fa-icon [icon]="icons.faTrash" size="1x" ></fa-icon>
-                        </td>
-                    </tr>
-                </table>
+                    <h3>Ingredients</h3>
+                    <table class="grocery-list-cart-popup-ingredients-table">
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                        <tr *ngFor="let groceryIngredient of grocery.ingredients">
 
-                <h3 class="mt-3">Dishes</h3>
-                <table class="grocery-list-cart-popup-ingredients-table">
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                    <tr *ngFor="let groceryDish of grocery.dishes; let i = index">
+                            <td>{{groceryIngredient.ingredient.name}}</td>
+                            <td>
+                                <fa-icon [icon]="icons.faMinusCircle"  class="text-danger" (click)="update(groceryIngredient.ingredient, 'ingredients', false)" style="cursor:pointer"></fa-icon>
+                                {{ groceryIngredient.quantity }}
+                                <fa-icon [icon]="icons.faPlusCircle" class="text-success" (click)="update(groceryIngredient.ingredient, 'ingredients')" style="cursor:pointer"></fa-icon>
+                            </td>
+                            <td style="cursor:pointer" (click)="delete(groceryIngredient.ingredient, 'ingredients')">
+                                    <fa-icon [icon]="icons.faTrash" size="1x" ></fa-icon>
+                            </td>
+                        </tr>
+                    </table>
 
-                        <td>{{groceryDish.recipe.name }}</td>
-                        <td>
-                            <fa-icon [icon]="icons.faMinusCircle" size="1x" class="text-danger" (click)="update(groceryDish.recipe, 'dishes', false)" style="cursor:pointer"></fa-icon>
-                            {{ groceryDish.quantity }}
-                            <fa-icon [icon]="icons.faPlusCircle" size="1x" class="text-success" (click)="update(groceryDish.recipe, 'dishes')" style="cursor:pointer"></fa-icon>
-                        </td>
-                        <td style="cursor:pointer" (click)="delete(groceryDish.recipe, 'dishes')">
-                                <fa-icon [icon]="icons.faTrash" size="1x" style="cursor:pointer"></fa-icon>
-                        </td>
-                    </tr>
-                </table>
+                    <h3 class="mt-3">Dishes</h3>
+                    <table class="grocery-list-cart-popup-ingredients-table">
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                        <tr *ngFor="let groceryDish of grocery.dishes; let i = index">
 
-                <div class="row" style="padding: 20px;">
-                    <div class="col-sm-12 text-left">
-                        <button type="button" class="btn btn-primary" (click)="clearCache()">Vider la liste</button>
-                    </div>
+                            <td>{{groceryDish.recipe.name }}</td>
+                            <td>
+                                <fa-icon [icon]="icons.faMinusCircle" size="1x" class="text-danger" (click)="update(groceryDish.recipe, 'dishes', false)" style="cursor:pointer"></fa-icon>
+                                {{ groceryDish.quantity }}
+                                <fa-icon [icon]="icons.faPlusCircle" size="1x" class="text-success" (click)="update(groceryDish.recipe, 'dishes')" style="cursor:pointer"></fa-icon>
+                            </td>
+                            <td style="cursor:pointer" (click)="delete(groceryDish.recipe, 'dishes')">
+                                    <fa-icon [icon]="icons.faTrash" size="1x" style="cursor:pointer"></fa-icon>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-
+                <button type="button" class="btn btn-primary" (click)="clearCache()">Vider la liste</button>
                 <ng-template #emptyContent>
                     <div>La liste est vide</div>
                 </ng-template>
+
             </ng-template>
         </li>
         <li ngbNavItem>

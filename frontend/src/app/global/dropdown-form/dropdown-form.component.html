@@ -1,5 +1,6 @@
 <div class="row">
   <div class="col">
+
     <div class="d-inline-block dropdown-menu-right" display="dynamic" ngbDropdown>
       <div ngbDropdownToggle *ngIf="!loginService.isUserLoggedIn()">
         <fa-icon [icon]="faUser" size="2x" style="color:gray;cursor:pointer"></fa-icon>
@@ -7,6 +8,7 @@
       </div>
       <div aria-labelledby="navbarDropdownForm" ngbDropdownMenu *ngIf="!loginService.isUserLoggedIn()">
         <form class="px-4 py-3" (ngSubmit)="checkLogin()">
+
           <div class="form-group">
             <label for="navbarDropdownFormEmail">Email</label>
             <input autocomplete="email" class="form-control" id="navbarDropdownFormEmail"
@@ -23,6 +25,14 @@
               Se souvenir de moi
             </label>
           </div>
+
+
+          <div class="alert alert-danger alert-dismissible fade show" *ngIf="showLoginError">
+            <strong>Oups!</strong> Vos identifiants sont invalides.
+            <button type="button" class="close" data-dismiss="alert" (click)="showLoginError=false">&times;</button>
+          </div>
+
+
           <button class="btn btn-primary" type="submit">Connexion</button>
         </form>
         <div class="dropdown-divider"></div>
